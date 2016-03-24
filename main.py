@@ -21,6 +21,8 @@ Fichiers
     les noeuds enregistres par le PC
 """
 
+import modules.reseau
+
 def getpeer():
     """ Se connecte à une adresse-mère, donnant les adresses d'autres noeuds du
     réseau. """
