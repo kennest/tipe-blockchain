@@ -1,3 +1,7 @@
+####
+# Ceci n'est absolument pas opérationnel.
+# Le réseau sera développé plus tard.
+####
 """
 
 Gestion transaction
@@ -23,22 +27,10 @@ Fichiers
 
 import modules.reseau
 
-def getpeer():
-    """ Se connecte à une adresse-mère, donnant les adresses d'autres noeuds du
-    réseau. """
-    return None
-
-    
-def getblockchain():
-    """ Créé la blockchain sur cet ordinateur, en se connectant aux
-    autres pairs du réseau. """
-    return None
-
-
 def initialisation():
-    """ Initialise le programme au lancemant. """
-    getpeer()
-    getblockchain()
+    """ Initialise le programme au lancement. """
+    # getpeer()
+    # getblockchain()
     return None
 
 
