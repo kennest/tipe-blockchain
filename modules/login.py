@@ -4,8 +4,6 @@ def login(path):
     """ Permet à l'utilisateur de se connecter. """
     password = input('Mot de passe : ')
     with open(path + '/wallet', 'r') as f:
-        f.readline()
-        f.readline()
         truepassword = f.readline()
     if truepassword == password:
         return True
@@ -20,7 +18,7 @@ def signin(path):
         password = input('Mot de passe : ')
         print(password)
         choix = input('y/n ')
-     # Manque la clef publique et la clef privée
+    # Manque la clef publique et la clef privée
     with open(path + '/wallet', 'w') as f: # Sauvegarde la wallet
         f.write(password)
     return None
