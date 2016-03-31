@@ -30,39 +30,23 @@ Fichiers
 import os
 import modules.reseau
 import modules.pow
+import modules.login
 
 def initialisation():
-    """ Initialise le programme au lancement. """
-    # getpeer()
-    # getblockchain()
-    name = input()
-    path = "../name"
-    while acces != True
-     acces = login
-    return path
-
-
-def login():
-    """ Permet à l'utilisateur de se connecter. """
-    password = input()
-    with open(path + '/wallet', 'r') as f:
-        f.readline()
-        f.readline()
-        truepassword = f.readline()
-     if truepassword == password
-          return True
-    return False
-
-
-def signin():
-    """ Permet à l'utilisateur de créer un compte. """
-    while choix != 'y': # L'utilisateur doit confirmer le mot de passe
-        password = input()
-        print(password)
-        choix = input('y/n')
-     # Manque la clef publique et la clef privée
-    with open(path + '/wallet', 'w') as f: # Sauvegarde la wallet
-        f.write()
+    """ Initialise le programme au lancement. Récupère le chemin du fichier
+    contenant wallet et blockchain."""
+    acces = False #Par défaut, l'accès est refusé
+    name = input('Username : ') # Nom de l'utilisateur
+    path = "../" + name # Le dossier contenant wallet et blockchain est a
+                        # l'addresse de path
+    check = modules.login.checkuser(path)
+    if not(check):
+        modules.login.signin(path)
+    while acces != True:
+        acces = modules.login.login(path)
     return None
 
+
 initialisation()
+
+
