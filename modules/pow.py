@@ -1,5 +1,4 @@
 """
-
 Module pour le minage.
 
     - Créé un nouveau bloc
@@ -8,3 +7,9 @@ Module pour le minage.
     
 """
 
+
+def gettransactions():
+    """ Get the transactions from a transaction pool on the other computers."""
+    transactions = []
+    #Loooooop
+    return transactions
