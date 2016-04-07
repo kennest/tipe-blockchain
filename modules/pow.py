@@ -7,6 +7,7 @@ Module pour le minage.
     
 """
 import os
+import hashlib
 
 
 def gettransactions(utilisateur):
