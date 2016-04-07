@@ -30,7 +30,7 @@ import modules.login
 
 #Variables :
 
-leave = False # Do U wanna leave ?
+leave = False # Booléen pour savoir si l'utilisateur veut quitter
 
 
 def initialisation():
