@@ -1,3 +1,7 @@
+# - : a faire
+# ° : fait
+#
+
 Génération de clef
 
 
@@ -9,9 +13,11 @@ Activité client:
 	  	- prendre plus long
 
 	- Proof of work :
+		° Format d'une transaction
 		° Récolte transactions demandées
 		- Vérifie validité
 		- si non, invalide transactions
 		- si oui, cherche le truc et dès que trouvé, ajoute bloc à la chaîne
 
 
+Interface
