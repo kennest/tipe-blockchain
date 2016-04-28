@@ -1,9 +1,0 @@
----                                              # Délimitation bloc
-XXXXXXXXXX                                       # Identifieur du bloc
-< hash précédent >
-< hash du bloc >
-(<clefpublic alice> ; <clefpublic bob> ; valeur)
-(transaction)
----
-XXXXXXXX+1
-(transaction)
