@@ -1,0 +1,17 @@
+Génération de clef
+
+
+Activité client:
+	- Gestion de la blockchain (arbre de Merkel):
+		- lire blockchain alice
+		- Vérifier concordance avec bob
+		- Si différence :
+	  	- prendre plus long
+
+	- Proof of work :
+		° Récolte transactions demandées
+		- Vérifie validité
+		- si non, invalide transactions
+		- si oui, cherche le truc et dès que trouvé, ajoute bloc à la chaîne
+
+
