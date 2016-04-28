@@ -23,7 +23,7 @@ def gettransactions(utilisateur):
         liste.append(t)
         os.remove(transactions[i]) # supprime le fichier de transaction
                                    # pour éviter des doublons
-    return transactions
+    return liste
 
 
 def validitetransaction(transaction):
