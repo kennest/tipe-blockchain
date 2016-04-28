@@ -50,10 +50,23 @@ def initialisation():
         acces = modules.login.login(path)
     return path
 
+
+def get_public_key(path) :
+    """Récupère la clef publique de l'utilisateur"""
+    with open(path + '/wallet', 'r') as f:
+        f.readline()
+        key = f.readline()
+    return key
+
+
 def main(path):
     """ Main function"""
 
+
+# le script lui-même
+
 path = initialisation()
+public_key = get_public_key(path)
 
 while leave == False:
     main(path)
