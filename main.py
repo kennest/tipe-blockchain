@@ -26,6 +26,7 @@ import os
 import modules.reseau
 import modules.pow
 import modules.login
+import modules.blockchain
 
 
 #Variables :
