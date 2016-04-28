@@ -4,6 +4,6 @@
 (<clefpublic alice> ; <clefpublic bob> ; valeur)
 (<clefpublic cedric> ; <clefpublic dylan> ; valeur)
 (<clefpublic etienne> ; <clefpublic fanny> ; valeur)
-< Solde alice >
+alice::42   # Solde d'alice
 < Solde bob >
 < Solde cedric >
