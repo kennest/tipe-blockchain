@@ -13,7 +13,7 @@ def login(path):
 def signin(path):
     """ Permet à l'utilisateur de créer un compte. """
     print("Création d'une wallet")
-    choix = 'f'
+    choix = 'n' # The choice is no by default
     while choix != 'y': # L'utilisateur doit confirmer le mot de passe
         password = input('Mot de passe : ')
         print(password)
