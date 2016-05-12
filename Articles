@@ -64,7 +64,10 @@ http://alexgorale.com/how-proof-of-work-works
 Hashcash, exemple d'implémentation pour une proof of work
 https://en.wikipedia.org/wiki/Hashcash
 
-Python:
+##Python:
+
+Travailler avec sha256 :
+http://pythoncentral.io/hashing-strings-with-python/
 
 Réseau:
 - http://apprendre-python.com/page-reseaux-sockets-python-port
