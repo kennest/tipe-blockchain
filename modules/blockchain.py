@@ -25,9 +25,13 @@ def get_bloc(utilisateur, i):
     solde alice, solde bob, solde cedric,
     solde dylan, solde etienne, solde fanny]
     """
+
+    nbr = str(i)
+    
     # Récupère le bloc
-    with open(utilisateur + '/blockchain/' + i, 'r') as f:
+    with open(utilisateur + '/blockchain/' + nbr, 'r') as f:
         bloc = f.readlines()
+    l_bloc = len(bloc)
     for j in range(3): # Les trois premiers champs sont
                             # 1) hash précédent
                             # 2) hash du bloc
@@ -36,6 +40,10 @@ def get_bloc(utilisateur, i):
         
     # traitement des trois transactions
     for j in range(3,6):
-        t = bloc.split(" ; ")
-        bloc[j] = [int(k) for k in t]
+        temp = bloc[j].split(" ; ")
+        bloc[j] = [int(k.strip("( )\n")) for k in temp]
+    for j in range(6, l_bloc):
+        temp = '\n'.strip(bloc[j])
+        templist = temp.split('::')
+        bloc[j] = [templist[0], float(templist[1])]
     return bloc
