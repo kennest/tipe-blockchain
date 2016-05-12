@@ -2,4 +2,4 @@
 
 ## Description
 
-This is our project for the MPSI TIPE.
+Projet de TIPE en MPSI
