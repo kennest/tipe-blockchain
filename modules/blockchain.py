@@ -32,12 +32,10 @@ def get_bloc(utilisateur, i):
     with open(utilisateur + '/blockchain/' + nbr, 'r') as f:
         bloc = f.readlines()
     l_bloc = len(bloc)
-    for j in range(3): # Les trois premiers champs sont
-                            # 1) hash précédent
-                            # 2) hash du bloc
-                            # 3) timestamp
-        bloc[j] = int(bloc[j])
-        
+    for j in range(2):             # Les deux premiers champs sont
+        bloc[j] = int(bloc[j], 16) # 0) hash précédent
+                                   # 1) hash du bloc
+    bloc[2] = int(bloc[2])  # 2) timestamp
     # traitement des trois transactions
     for j in range(3,6):
         temp = bloc[j].split(" ; ")
@@ -47,3 +45,26 @@ def get_bloc(utilisateur, i):
         templist = temp.split('::')
         bloc[j] = [templist[0], float(templist[1])]
     return bloc
+
+
+def validite_hash_bloc(utilisateur, i):
+    """ Vérifie la validité du bloc i. """
+
+    #Vérifie hash bloc i
+    bloc = get_bloc(utilisateur, i) # Récupère le bloc i
+    l_bloc = len(bloc)
+    bloc_text = bloc.copy() # Créé un bloc temporaire, qui sera converti
+    bloc_text.pop(1)        # en texte, afin d'en calculer le hash
+    for i in range(l_bloc -1):
+        bloc_text[i] = str(bloc_text[i])
+    hash_obj = hashlib.sha256(bloc_text.encode('utf8'))
+    hash_current = int(hash_obj.hexdigest(), 16)
+    validite_courante = (hash_current == bloc[1])
+
+    bloc_p = get_bloc(utilisateur, i)
+    validite_precedente = (bloc_p[1] == bloc[0])
+    
+    validite = validite_courante and validite_precedente
+    return validite
+
+    
