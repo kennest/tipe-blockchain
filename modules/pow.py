@@ -35,6 +35,8 @@ def validitetransaction(transaction):
 
 def transaction(utilisateur,recepteur,montant) :
     """Effectue une transaction d'un compte vers un autre."""
+    
+    assert validite_hash_bloc(utilisateur,get_id_last_bloc(utilisateur))
 
     f = get_bloc(utilisateur,get_id_last_bloc(utilisateur))
     nb = int(f[0])
