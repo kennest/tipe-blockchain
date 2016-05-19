@@ -9,12 +9,13 @@ def get_id_last_bloc(utilisateur):
     """ Récupère le numéro du dernier bloc d'un utilisateur."""
 
     # récupère la liste des blocs
-    blockchain = os.listdir(utilisateur + "/blockchain")
+    blockchain = os.listdir("../utilisateurs/" + utilisateur + "/blockchain")
 
     # Récupère la liste des numéros des blockchains
     for i in range(len(blockchain)):
         blockchain[i] = int(blockchain[i])
     m = max(blockchain) # Dernier bloc de l'utilisateur
+    return m
 
 
 
@@ -29,7 +30,7 @@ def get_bloc(utilisateur, i):
     nbr = str(i)
     
     # Récupère le bloc
-    with open(utilisateur + '/blockchain/' + nbr, 'r') as f:
+    with open("../utilisateurs/" + utilisateur + '/blockchain/' + nbr, 'r') as f:
         bloc = f.readlines()
     l_bloc = len(bloc)
     for j in range(2):             # Les deux premiers champs sont
@@ -45,7 +46,6 @@ def get_bloc(utilisateur, i):
         templist = temp.split('::')
         bloc[j] = [templist[0], float(templist[1])]
     return bloc
-
 
 def validite_hash_bloc(utilisateur, i):
     """ Vérifie la validité du bloc i. """
