@@ -1,9 +1,9 @@
 < hash précédent >
 < hash du bloc >
 < timestamp >
-(<clefpublic alice> ; <clefpublic bob> ; valeur)
+(<clefpublic alice donneur> ; <clefpublic bob receveur> ; valeur)
 (<clefpublic cedric> ; <clefpublic dylan> ; valeur)
 (<clefpublic etienne> ; <clefpublic fanny> ; valeur)
-alice::42   # Solde d'alice
+<clef publique alice>::42   # Solde d'alice
 < Solde bob >
 < Solde cedric >

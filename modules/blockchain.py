@@ -6,7 +6,8 @@ import os
 
 
 def get_id_last_bloc(utilisateur):
-    """ Récupère le numéro du dernier bloc d'un utilisateur."""
+    """ str -> int
+    Récupère le numéro du dernier bloc d'un utilisateur."""
 
     # récupère la liste des blocs
     blockchain = os.listdir("../utilisateurs/" + utilisateur + "/blockchain")
@@ -20,10 +21,11 @@ def get_id_last_bloc(utilisateur):
 
 
 def get_bloc(utilisateur, i):
-    """Récupère le bloc i de l'utilisateur. Renvoie une liste de la forme
-    [< hash précédent >, < hash du bloc >, < timestamp >,
-    < transaction 1 >, < transaction 2 >, < transaction 3 >,
-    solde alice, solde bob, solde cedric,
+    """ str -> int -> list
+    Récupère le bloc i de l'utilisateur. Renvoie une liste de la forme
+    [< hash précédent >, < hash du bloc >, < timestamp >,    int
+    < transaction 1 >, < transaction 2 >, < transaction 3 >, [int, int, int]
+    solde alice, solde bob, solde cedric,                    [int, int]
     solde dylan, solde etienne, solde fanny]
     """
 
@@ -37,11 +39,13 @@ def get_bloc(utilisateur, i):
         bloc[j] = int(bloc[j], 16) # 0) hash précédent
                                    # 1) hash du bloc
     bloc[2] = int(bloc[2])  # 2) timestamp
+    
     # traitement des trois transactions
     for j in range(3,6):
         temp = bloc[j].split(" ; ")
         bloc[j] = [int(k.strip("( )\n")) for k in temp]
-    for j in range(6, l_bloc):
+        
+    for j in range(6, l_bloc): #traitement des soldes
         temp = '\n'.strip(bloc[j])
         templist = temp.split('::')
         bloc[j] = [templist[0], float(templist[1])]
