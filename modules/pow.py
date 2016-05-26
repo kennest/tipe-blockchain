@@ -39,18 +39,21 @@ def verifie_solde_transaction(utilisateur, i):
     que l'émetteur ait plus ou autant de réserve que le montant envoyé."""
     validite = True
     id_last = blockchain.get_id_last_bloc(utilisateur)
-    bloc = blockchain.get_bloc(utilisateur, id_last)
-    l_bloc = len(bloc)
     
-    for i in range(6, l_bloc):
-        clefpublique = bloc[i][0]
-        solde = bloc[i][1]
+    bloc_actuel = blockchain.get_bloc(utilisateur, id_last)
+    l_bloc_actuel = len(bloc_actuel)
+    bloc_precedent = blockchain.get_bloc(utilisateur, id_last - 1)
+    l_bloc_precedent = len(bloc_precedent)
+    
+    for i in range(6, l_bloc_precedent):
+        clefpublique = bloc_precedent[i][0]
+        solde = bloc_precedent[i][1]
         for j in range(3,6):
             balance = 0
-            if bloc[j][0] == clefpublique:
-                balance = balance - bloc[j][2]
-            if bloc[j][1] == clefpublique:
-                balance = blance + bloc[j][2]
+            if bloc_actuel[j][0] == clefpublique:
+                balance = balance - bloc_actuel[j][2]
+            if bloc_actuel[j][1] == clefpublique:
+                balance = blance + bloc_actuel[j][2]
         if balance + solde < 0:
             return False
     return True
