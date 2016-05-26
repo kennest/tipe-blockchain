@@ -28,9 +28,11 @@ def gettransactions(utilisateur):
     return liste
 
 
-def validite_transaction(utilisateur, i):
-    """ Vérifie la validité de la transaction en cours. C'est-à-dire
+def verifie_solde_transaction(utilisateur, i):
+    """ str -> int -> bool
+    Vérifie la validité de la transaction en cours. C'est-à-dire
     que l'émetteur ait plus ou autant de réserve que le montant envoyé."""
+    validite = True
     id_last = blockchain.get_id_last_bloc(utilisateur)
     bloc = blockchain.get_bloc(utilisateur, id_last)
     l_bloc = len(bloc)
@@ -40,6 +42,10 @@ def validite_transaction(utilisateur, i):
         for j in range(3,6):
             balance = 0
             if bloc[j][0] == clefpublique:
-                balance = balance + 
-    return validite
+                balance = balance - bloc[j][2]
+            if bloc[j][1] == clefpublique:
+                balance = blance + bloc[j][2]
+        if balance + solde < 0:
+            return False
+    return True
 
