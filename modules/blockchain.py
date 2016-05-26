@@ -3,6 +3,7 @@ Module de gestion de la blockchain
 """
 
 import os
+import hashlib
 
 
 def get_id_last_bloc(utilisateur):
@@ -35,6 +36,7 @@ def get_bloc(utilisateur, i):
     with open("../utilisateurs/" + utilisateur + '/blockchain/' + nbr, 'r') as f:
         bloc = f.readlines()
     l_bloc = len(bloc)
+    
     for j in range(2):             # Les deux premiers champs sont
         bloc[j] = int(bloc[j], 16) # 0) hash précédent
                                    # 1) hash du bloc
@@ -46,9 +48,13 @@ def get_bloc(utilisateur, i):
         bloc[j] = [int(k.strip("( )\n")) for k in temp]
         
     for j in range(6, l_bloc): #traitement des soldes
-        temp = '\n'.strip(bloc[j])
+        
+        temp = bloc[j].strip('\n')
+        
         templist = temp.split('::')
+        
         bloc[j] = [templist[0], float(templist[1])]
+        
     return bloc
 
 def validite_hash_bloc(utilisateur, i):
@@ -59,9 +65,12 @@ def validite_hash_bloc(utilisateur, i):
     l_bloc = len(bloc)
     bloc_text = bloc.copy() # Créé un bloc temporaire, qui sera converti
     bloc_text.pop(1)        # en texte, afin d'en calculer le hash
-    for i in range(l_bloc -1):
-        bloc_text[i] = str(bloc_text[i])
-    hash_obj = hashlib.sha256(bloc_text.encode('utf8'))
+    for j in range(l_bloc - 1):
+        bloc_text[j] = str(bloc_text[j])
+    texte = '\n'.join(bloc_text)
+        
+    
+    hash_obj = hashlib.sha256(texte.encode('utf8'))
     hash_current = int(hash_obj.hexdigest(), 16)
     validite_courante = (hash_current == bloc[1])
 
@@ -72,3 +81,4 @@ def validite_hash_bloc(utilisateur, i):
     return validite
 
     
+
