@@ -16,14 +16,19 @@ import blockchain
 def gettransactions(utilisateur):
     """ Récupère les transactions en provenance d'un utilisateur. """
     liste = [] # liste de transactions
-    transactions = os.listdir("../utilisateurs/" + utilisateur + "/transactions_pending")
+    chemin = "../utilisateurs/" + utilisateur + "/transactions_pending/"
+    transactions = os.listdir(chemin)
           # liste des fichiers de transactions
     n = len(transactions)
-    for i in range(max(n,3)): # Ne prend que trois transactions
-        with open("../utilisateurs/" + utilisateur + "/transactions_pending/" + transactions[i], 'r') as f: # lecture de chaque fichier de transaction
+    for i in range(min(n,3)): # Ne prend que trois transactions
+        with open(chemin + transactions[i], 'r') as f:
+            # lecture de chaque fichier de transaction
             t = f.readlines() # liste contenant la transaction
+        for j in range(len(t)):
+            t[j] = (t[j]).strip('\n')
+        print(t)
         liste.append(t)
-        os.remove("../utilisateurs/" + utilisateur + "/transactions_pending/" + transactions[i]) # supprime le fichier de transaction
+        os.remove(chemin + transactions[i]) # supprime le fichier de transaction
                                    # pour éviter des doublons
     return liste
 
