@@ -1,0 +1,23 @@
+Etat de l'art
+
+ { L'idée de monnaies basées sur de la cryptographie date des années 1980. Cependant, les premières étaient centralisées. } En 1998, Wei Dai propose un protocole de gestion anonyme et électronique de monnaie : la "b-money". A sa suite, Nick Szabo propose BitGold, qui influencera ensuite Bitcoin. BitGold est le premier système à nécessiter une preuve de travail cryptographique.
+
+
+
+
+
+Problèmes :
+
+ - Consommation de ressources importante [[ -> D'où la proof of stake]]
+ - Irréversibilité [[Pas forcément problème ]]
+
+
+Historique
+
+ - Avant 2000
+ - Bitcoin
+
+
+ - Altcoins
+ - Ethereum
+     - Proof-of-work -> proof of stake
