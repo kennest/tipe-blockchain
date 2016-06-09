@@ -9,6 +9,19 @@
 
 
 
+De nombreuses cryptomonnaies ont été créées dans le but de devenir des alternatives à Bitcoin, en en améliorant certaines composantes. Le terme général pour les désigner est "altcoins", il y en a plus de 400 actuellement. La plupart reprennent le code de Bictoin  et n'en améliorent qu'un aspect mineur, comme l'algorithme de hashage, ou la rapidité des transactions. Elles ne survivent en général pas longtemps, à l'exception de quelques unes, comme Litecoin ou Darkcoin, qui propose des transactions totalement anonymes. La prolifération de monnaies alternatives permet de décentraliser encore plus la cryptomonnaie, ce qui est un des buts de Bitcoin, et d'expérimenter des méthodes de fonctionnement différentes, que Bitcoin pourrait peut-être utiliser plus tard.
+La première altcoin, Namecoin, a été créée en 2011 et avait la particularité de décentraliser les registres des noms de domaine des utilisateurs, ce qui avait pour effet de limiter la censure d'Internet.
+
+
+
+
+Ethereum
+
+	Ethereum est l'une des dernières cryptomonnaies endate, souvent présentée comme étant le "Bitcoin 2.0". Ethereum a été créée en partant de rien, en reprenant des concepts importants de Bitcoin tels que la preuve de travail ou la blockchain, mais va au-dela des limites de Bitcoin en ne se cantonant pas à des échanges monétaires. En effet Ethereum permet l'exécution de programmes créés pas la communauté, qu'on utilise en dépensant de l'Ether, la monnaie d'Ethereum. Ces contrats s'exécutent automatiquement après payement, sans action humaine, coupant donc toute possibilité de triche. Ils peuvent proposer des idées originales, comme Augur, qui est un marché de prédiction, c'est à dire que les participants parient sur la réalisation d'un évènement futur. 
+
+
+
+
 
 Problèmes :
 
