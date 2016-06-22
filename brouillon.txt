@@ -1,0 +1,6 @@
+
+programme :
+ - A quoi ressemble une blockchain, une transaction...
+ - Preuve de travail
+
+proof of stake
