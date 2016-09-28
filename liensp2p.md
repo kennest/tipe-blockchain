@@ -28,4 +28,10 @@ Freenet is good as a anon datastorage and high latency anon network.
 I2P is good for low latency anon communication.
 For real P2P I2P is better as it is low latency and faster than other anon networks.
 I2P includes torrents, gnutella clients, a iMule client, IRC and other tools. Freenet has FROST and his free-sites.
-Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC 
+Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC
+
+##Autre
+
+###Distance entre des pages web
+ * 'w' Catégorie : Analyse du Web https://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Analyse_du_web
+ * 'w' Cartographie d'information https://fr.wikipedia.org/wiki/Cartographie_d'information
