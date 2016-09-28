@@ -24,8 +24,8 @@
  * **Comparaison** Tor / Freenet / I2P
    * https://www.reddit.com/r/i2p/comments/1lk49r/i2p_vs_freenet_vs_tor/
    * "Great you know I2P and freenet and care about security and anonymity.
-Freenet is good as a anon datastorage and high latency anon network.
-I2P is good for low latency anon communication.
+*Freenet* is good as a anon datastorage and high latency anon network.
+*I2P* is good for low latency anon communication.
 For real P2P I2P is better as it is low latency and faster than other anon networks.
 I2P includes torrents, gnutella clients, a iMule client, IRC and other tools. Freenet has FROST and his free-sites.
 Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC
@@ -37,3 +37,4 @@ Do not listen to guys telling you usual torrent is "secure" - every torrent on u
  * Cartographie d'information `w` https://fr.wikipedia.org/wiki/Cartographie_d'information
  * Documents, variation entre 2001 et 2013 https://ateliercartographie.files.wordpress.com/2016/03/chapitre2.pdf
  * Explication web *crawling* http://graal.ens-lyon.fr/~abenoit/reso05/cours/4-web.pdf
+ * Encore sur le web *crawling* https://tel.archives-ouvertes.fr/tel-00137084/document
