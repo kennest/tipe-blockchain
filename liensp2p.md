@@ -1,12 +1,12 @@
 #Liens sur le P2P
 
 ##Général
- * P2P file sharing https://en.wikipedia.org/wiki/Peer-to-peer_file_sharing
+ * P2P file sharing `w` https://en.wikipedia.org/wiki/Peer-to-peer_file_sharing
 
 ##I2P
- * Documentation https://geti2p.net/fr/docs
- * Kademlia, algorithme sur lequel est basé i2p, µTorrent...
-   https://fr.wikipedia.org/wiki/Kademlia
+ * **Documentation** https://geti2p.net/fr/docs
+ * **Kademlia**, algorithme sur lequel est basé i2p, µTorrent...
+   `w` https://fr.wikipedia.org/wiki/Kademlia
  * Introduction à I2P (1) https://geti2p.net/fr/about/intro
  * Introduction à I2P (2) https://geti2p.net/fr/docs/how/intro
  * Introduction à I2P (3) Plus technique. https://geti2p.net/fr/docs/how/tech-intro
@@ -21,7 +21,7 @@
  * Quelles sont les différences avec Tor ?
    * https://geti2p.net/en/comparison/tor
    * Tor's threat model was designed for security and anonymity communication going in and coming out from the network, whereas I2P was designed to keep communications secure within the network.
- * Comparaison Tor / Freenet / I2P
+ * **Comparaison** Tor / Freenet / I2P
    * https://www.reddit.com/r/i2p/comments/1lk49r/i2p_vs_freenet_vs_tor/
    * "Great you know I2P and freenet and care about security and anonymity.
 Freenet is good as a anon datastorage and high latency anon network.
@@ -33,5 +33,7 @@ Do not listen to guys telling you usual torrent is "secure" - every torrent on u
 ##Autre
 
 ###Distance entre des pages web
- * `w` Catégorie : Analyse du Web https://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Analyse_du_web
- * `w` Cartographie d'information https://fr.wikipedia.org/wiki/Cartographie_d'information
+ * Catégorie : Analyse du Web `w` https://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Analyse_du_web
+ * Cartographie d'information `w` https://fr.wikipedia.org/wiki/Cartographie_d'information
+ * Documents, variation entre 2001 et 2013 https://ateliercartographie.files.wordpress.com/2016/03/chapitre2.pdf
+ * Explication web *crawling* http://graal.ens-lyon.fr/~abenoit/reso05/cours/4-web.pdf
