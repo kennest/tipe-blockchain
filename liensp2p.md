@@ -1,0 +1,3 @@
+#Liens sur le P2P
+ * Kademlia, algorithme sur lequel est basé i2p, µTorrent...
+   https://fr.wikipedia.org/wiki/Kademlia
