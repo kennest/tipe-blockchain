@@ -33,5 +33,5 @@ Do not listen to guys telling you usual torrent is "secure" - every torrent on u
 ##Autre
 
 ###Distance entre des pages web
- * 'w' Catégorie : Analyse du Web https://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Analyse_du_web
- * 'w' Cartographie d'information https://fr.wikipedia.org/wiki/Cartographie_d'information
+ * `w` Catégorie : Analyse du Web https://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Analyse_du_web
+ * `w` Cartographie d'information https://fr.wikipedia.org/wiki/Cartographie_d'information
