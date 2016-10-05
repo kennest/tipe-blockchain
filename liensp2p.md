@@ -1,9 +1,10 @@
-#Liens sur le P2P
+#Liens
+##Liens sur le P2P
 
-##Général
+###Général
  * P2P file sharing `w` https://en.wikipedia.org/wiki/Peer-to-peer_file_sharing
 
-##I2P
+###I2P
  * **Documentation** https://geti2p.net/fr/docs
  * **Kademlia**, algorithme sur lequel est basé i2p, µTorrent...
    `w` https://fr.wikipedia.org/wiki/Kademlia
@@ -11,13 +12,13 @@
  * Introduction à I2P (2) https://geti2p.net/fr/docs/how/intro
  * Introduction à I2P (3) Plus technique. https://geti2p.net/fr/docs/how/tech-intro
 
-##Freenet
+###Freenet
  * Comprendre Freenet https://freenetproject.org/documentation.html#understand
 
-##Tor
+###Tor
  * Conçu pour créer des noeuds sortants
 
-##Questions
+###Questions
  * Quelles sont les différences avec Tor ?
    * https://geti2p.net/en/comparison/tor
    * Tor's threat model was designed for security and anonymity communication going in and coming out from the network, whereas I2P was designed to keep communications secure within the network.
@@ -30,7 +31,6 @@ For real P2P I2P is better as it is low latency and faster than other anon netwo
 I2P includes torrents, gnutella clients, a iMule client, IRC and other tools. Freenet has FROST and his free-sites.
 Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC
 
-##Autre
 
 ###Distance entre des pages web
  * Catégorie : Analyse du Web `w` https://fr.wikipedia.org/wiki/Cat%C3%A9gorie:Analyse_du_web
@@ -38,3 +38,6 @@ Do not listen to guys telling you usual torrent is "secure" - every torrent on u
  * Documents, variation entre 2001 et 2013 https://ateliercartographie.files.wordpress.com/2016/03/chapitre2.pdf
  * Explication web *crawling* http://graal.ens-lyon.fr/~abenoit/reso05/cours/4-web.pdf
  * Encore sur le web *crawling* https://tel.archives-ouvertes.fr/tel-00137084/document
+
+##Documentation Python
+ * Tutoriel POO http://apprendre-python.com/page-apprendre-programmation-orientee-objet-poo-classes-python-cours-debutants
