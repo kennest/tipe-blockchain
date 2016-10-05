@@ -4,7 +4,7 @@
 ###Général
  * P2P file sharing `w` [https://en.wikipedia.org/wiki/Peer-to-peer_file_sharing]
 
-###I2P
+###[I2P](https://geti2p.net/fr/)
  * **Documentation** https://geti2p.net/fr/docs
  * **Kademlia**, algorithme sur lequel est basé i2p, µTorrent...
    `w` https://fr.wikipedia.org/wiki/Kademlia
@@ -31,7 +31,7 @@
 *I2P* is good for low latency anon communication.
 For real P2P I2P is better as it is low latency and faster than other anon networks.
 I2P includes torrents, gnutella clients, a iMule client, IRC and other tools. Freenet has FROST and his free-sites.
-Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." [https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC]
+Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC
    * Etude de I2P et Tor https://geti2p.net/_static/pdf/icimp_2014_1_40_30015.pdf 
 
 
@@ -43,4 +43,4 @@ Do not listen to guys telling you usual torrent is "secure" - every torrent on u
  * Encore sur le web *crawling* https://tel.archives-ouvertes.fr/tel-00137084/document
 
 ##Documentation Python
- * Tutoriel POO http://apprendre-python.com/page-apprendre-programmation-orientee-objet-poo-classes-python-cours-debutants
+ * Tutoriel POO [apprendre-python.com](http://apprendre-python.com/page-apprendre-programmation-orientee-objet-poo-classes-python-cours-debutants)
