@@ -11,6 +11,9 @@
  * Introduction à I2P (1) https://geti2p.net/fr/about/intro
  * Introduction à I2P (2) https://geti2p.net/fr/docs/how/intro
  * Introduction à I2P (3) Plus technique. https://geti2p.net/fr/docs/how/tech-intro
+ * Practical Attacks Against The I2P Network https://wwwcip.informatik.uni-erlangen.de/~spjsschl/i2p.pdf
+ * [Improving Content Availability in the I2P Anonymous
+File-Sharing Environment](https://hal.inria.fr/hal-00744922/PDF/Improving_Content_Availability_in_the_I2P_0AAnonymous_File-Sharing_Environment_0A.pdf)
 
 ###Freenet
  * Comprendre Freenet https://freenetproject.org/documentation.html#understand
@@ -30,6 +33,7 @@
 For real P2P I2P is better as it is low latency and faster than other anon networks.
 I2P includes torrents, gnutella clients, a iMule client, IRC and other tools. Freenet has FROST and his free-sites.
 Do not listen to guys telling you usual torrent is "secure" - every torrent on usual internet tells your IP to the other users. NO usual client does hide your IP or the fact you (your IP) are downloading that file." https://answers.yahoo.com/question/index?qid=20100527095947AAYMSDC
+   * Etude de I2P et Tor https://geti2p.net/_static/pdf/icimp_2014_1_40_30015.pdf 
 
 
 ###Distance entre des pages web
