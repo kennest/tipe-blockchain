@@ -11,8 +11,10 @@
  * Introduction à I2P (1) https://geti2p.net/fr/about/intro
  * Introduction à I2P (2) https://geti2p.net/fr/docs/how/intro
  * Introduction à I2P (3) Plus technique. https://geti2p.net/fr/docs/how/tech-intro
+ * [Bibliographie](https://geti2p.net/fr/papers/) I2P
  * [Practical Attacks Against The I2P Network](https://wwwcip.informatik.uni-erlangen.de/~spjsschl/i2p.pdf)
  * [Improving Content Availability in the I2P Anonymous File-Sharing Environment](https://hal.inria.fr/hal-00744922/PDF/Improving_Content_Availability_in_the_I2P_0AAnonymous_File-Sharing_Environment_0A.pdf)
+ * [Modèle de menace](https://geti2p.net/fr/docs/how/threat-model)
 
 ###Freenet
  * Comprendre Freenet https://freenetproject.org/documentation.html#understand
