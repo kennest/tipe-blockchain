@@ -52,10 +52,10 @@ class Reseau:
             if x.id == ag_id:
                 return x
         return False
-    
-     def _set_tunnel(self,id_emetteur,id_recepteur):
+
+    def _set_tunnel(self,id_emetteur,id_recepteur):
         """Ajoute un tunnel entre l'émetteur d'id id_emetteur et
-        le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
+    le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
         list_tunnels = self._get_list_tunnels()
         assert not((id_emetteur,id_recepteur) in list_tunnels)
         t = Tunnel()
