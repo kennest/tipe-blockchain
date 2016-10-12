@@ -15,5 +15,5 @@ for lien in liens:
 ## Boucle principale
     information0 = mod.Informations()
     agent0 = net._get_agent(0)
-    agent0._add_information
+    agent0._add_info(information0)
 
