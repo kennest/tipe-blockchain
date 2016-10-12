@@ -75,4 +75,15 @@ class Reseau:
         """Récupère la liste des tunnels du réseau."""
         return [(t.emetteur,t.recepteur) for t in self.tunnels]
     
+    def _get_voisins(self,ag_id):
+        """Retourne la liste des voisins de l'agent d'id ag_id."""
+        t = self._get_list_tunnels()
+        voisins = []
+        for i in t :
+            if i[0] == ag_id :
+                voisins.append(i[1])
+            elif i[1] == ag_id :
+                voisins.append(i[0])
+        return voisins
+    
 
