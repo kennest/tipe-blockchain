@@ -48,68 +48,42 @@ Do not listen to guys telling you usual torrent is "secure" - every torrent on u
  * Tutoriel POO [apprendre-python.com](http://apprendre-python.com/page-apprendre-programmation-orientee-objet-poo-classes-python-cours-debutants)
 
 ##Sur les cryptomonnaies
- * Zerocoin, extension de bitcoin pour plus d'anonymat http://spar.isi.jhu.edu/~mgreen/ZerocoinOakland.pdf
 
 ###Ethereum:
+ * [White Paper](https://github.com/ethereum/wiki/wiki/White-Paper)
 
-White Paper :
-https://github.com/ethereum/wiki/wiki/White-Paper
+ * http://www.bortzmeyer.org/contrat-ethereum.html
+ * https://docs.google.com/document/d/1ndBAcD72sHJnH0GpWY0pe8_KhkSZHFNTqBAHGBmY9N8/mobilebasic?pli=1
+ * http://www.ethereum-france.com/smart-contract-ou-le-contrat-auto-executant/
+ * Github du projet https://github.com/ethereum
+ * [Site officiel](https://www.ethereum.org/ether)
+ * Un forum https://forum.ethereum.org/
+ * Blog d'actualité https://blog.ethereum.org/
+ * Applications Python (pour le code soure) https://github.com/ethereum/pyethapp
+ * Statistiques https://ethstats.net/
+ * Guide https://ethereum.gitbooks.io/frontier-guide/
+ * Whisper (messages) https://github.com/ethereum/go-ethereum/wiki/How-to-Whisper
+ * Homestead https://github.com/ethereum/homestead-guide https://ethereum-homestead.readthedocs.org/en/latest/
 
-http://www.bortzmeyer.org/contrat-ethereum.html
-https://docs.google.com/document/d/1ndBAcD72sHJnH0GpWY0pe8_KhkSZHFNTqBAHGBmY9N8/mobilebasic?pli=1
-http://www.ethereum-france.com/smart-contract-ou-le-contrat-auto-executant/
-
-Github du projet :
-https://github.com/ethereum
-
-Site officiel :
-https://www.ethereum.org/ether
-
-Un forum :
-https://forum.ethereum.org/
-
-Blog d'actualité :
-https://blog.ethereum.org/
-
-Applications Python (pour le code soure) :
-https://github.com/ethereum/pyethapp
-
-Statistiques :
-https://ethstats.net/
-
-Guide :
-https://ethereum.gitbooks.io/frontier-guide/
-
-Whisper (messages) :
-https://github.com/ethereum/go-ethereum/wiki/How-to-Whisper
-
-Homestead :
-https://github.com/ethereum/homestead-guide
-https://ethereum-homestead.readthedocs.org/en/latest/
+####Applications basées sur Ethereum :
+ * http://dapps.ethercasts.com/
+ * http://www.augur.net/
+ * Boardroom http://boardroom.to/ et http://boardroom.to/BoardRoom_WhitePaper.pdf
 
 
-Applications basées sur Ethereum :
-http://dapps.ethercasts.com/
-http://www.augur.net/
-Boardroom : 
-http://boardroom.to/
-http://boardroom.to/BoardRoom_WhitePaper.pdf
-
-
-
-Namecoin (nom de domaine) :
-  https://namecoin.org/
-
-
-http://www.bortzmeyer.org/ethereum.html
+###Autres
+ * `w` https://en.wikipedia.org/wiki/Cryptocurrency
+ * `w` https://fr.wikipedia.org/wiki/Crypto-monnaie
+ * `w` https://en.wikipedia.org/wiki/Proof-of-work_system
+ * Namecoin (nom de domaine) https://namecoin.org/
+ * Zerocoin, extension de bitcoin pour plus d'anonymat http://spar.isi.jhu.edu/~mgreen/ZerocoinOakland.pdf
+ * http://www.bortzmeyer.org/ethereum.html
 
 
 ------
 Général :
 
-https://en.wikipedia.org/wiki/Cryptocurrency
-https://fr.wikipedia.org/wiki/Crypto-monnaie
-https://en.wikipedia.org/wiki/Proof-of-work_system
+
 
 ------
 
