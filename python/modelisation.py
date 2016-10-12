@@ -4,10 +4,16 @@ class Agent:
         self.id = 0
         self.strategie = "normal" #possible de faire varier
                                   # la stratégie des agents (frauduleux...)
+        self.informations = []
 
     def _set_id(self, ag_id):
         """Change l'id de l'agent."""
         self.id = ag_id
+
+    def _add_info(self, info):
+        """Ajoute une information au noeud."""
+        self.informations.append(info)
+        
 
 class Tunnel:
     def __init__(self):
@@ -24,6 +30,10 @@ class Informations:
     def __init__(self):
         self.id = 0
         self.destinataires = []
+
+    def _set_id(self, inf_id):
+        """Change l'id de l'information."""
+        self.id = inf_id
         
     def _add_destinataires_(self,id):
         self.destinataires.append(id)
