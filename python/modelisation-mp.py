@@ -26,10 +26,16 @@ class Reseau:
         self.agents = []
         self.tunnels = []
 
+    def _get_list_id(self):
+        """Récupère la liste des id des agnets du réseau."""
+        return [ag.id for ag in self.agents]
+                
     def _set_agent(self, ag_id):
         """Ajoute un agent d'id ag_id à la liste agents. Si l'id est
     déjà utilisée, échoue."""
-        # Ajouter le fait que ça échoue si l'id est déjà prise
+        # Echoue si l'id est déjà prise
+        list_id = self._get_list_id()
+        assert not(ag_id in list_id)
         x = Agent()
         x._set_id(ag_id)
         self.agents.append(x)
