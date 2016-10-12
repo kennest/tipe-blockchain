@@ -23,6 +23,9 @@ class Tunnel:
 class Informations:
     def __init__(self):
         self.id = 0
+        self.destinataires = []
+    def _set_destinataires_(self,id):
+        self.destinataires.append(id)
 
 
 class Reseau:
