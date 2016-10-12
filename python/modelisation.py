@@ -2,14 +2,12 @@ class Agent:
     """Les agents sont les noeuds du réseau (utilisateurs). """
     def __init__(self):
         self.id = 0
-        self.strategie = "normal"
+        self.strategie = "normal" #possible de faire varier
+                                  # la stratégie des agents (frauduleux...)
 
     def _set_id(self, ag_id):
+        """Change l'id de l'agent."""
         self.id = ag_id
-        
-    def _get_voisins(self):
-        pass
-
 
 class Tunnel:
     def __init__(self):
