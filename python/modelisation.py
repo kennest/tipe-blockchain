@@ -25,7 +25,7 @@ class Informations:
         self.id = 0
         self.destinataires = []
         
-    def _set_destinataires_(self,id):
+    def _add_destinataires_(self,id):
         self.destinataires.append(id)
 
 
