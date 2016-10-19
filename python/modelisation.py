@@ -60,7 +60,8 @@ class Informations:
 
     def prinfo(self):
         print("id: " + str(self.id))
-        print("passeurs: " + str(self.destinataire))
+        print("destinataire: " + str(self.destinataire))
+        print("passeurs: " + str(self.passeurs))
 
     
 

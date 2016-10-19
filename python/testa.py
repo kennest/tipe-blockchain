@@ -16,9 +16,9 @@ def envoyer_info(information, emetteur_id, dest_id):
     """emetteur envoie information à l'agent d'id destinataire."""
     voisins = net._get_voisins(emetteur_id)
     assert dest_id in voisins
-    ag_dest = net._get_agent(dest_id)
     information._add_passeur(dest_id)
-    ag_dest._add_info(information)
+    information.prinfo()
+    net._get_agent(dest_id)._add_info(information)
     
 def actions_agent(agent):
     """Réalise les actions entre les agents, depuis l'agent 'agent'."""
