@@ -15,21 +15,19 @@ for lien in liens:
 def envoyer_info(information, emetteur_id, dest_id):
     """emetteur envoie information à l'agent d'id destinataire."""
     voisins = net._get_voisins(emetteur_id)
-    assert destinataire in voisins
+    assert dest_id in voisins
     ag_dest = net._get_agent(dest_id)
+    information._add_passeur(dest_id)
     ag_dest._add_info(information)
     
 def actions_agent(agent):
     ag_id = agent.id
-    voisins = net._get_voisins(emetteur_id)
+    voisins_id = net._get_voisins(ag_id)
     for info in agent.informations:
         info_id = info.id
-        for vois in voisins:
-            if not info in vois.information:
-                vois_id = vois.id
-                info_b = info
-                info_b._add_passeur(vois_id)
-                vois._add_info(info_b)
+        for vois_id in voisins_id:
+            if not info in net._get_agent(vois_id).informations:
+                envoyer_info(info, ag_id, vois_id)
 
 
 

@@ -55,7 +55,7 @@ class Informations:
     def _add_destinataire(self, ag_id):
         self.destinataire = ag_id
         
-    def _add_passeur_(self,ag_id):
+    def _add_passeur(self,ag_id):
         self.passeurs.append(ag_id)
 
     def prinfo(self):
