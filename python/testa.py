@@ -35,6 +35,7 @@ def actions_agent(agent):
 
 ## Boucle principale
 information0 = mod.Informations()
+information0._add_passeur(0)
 agent0 = net._get_agent(0)
 agent0._add_info(information0)
 
