@@ -14,6 +14,12 @@ class Agent:
         """Ajoute une information au noeud."""
         self.informations.append(info)
         
+    def prinfo(self):
+        print("id: " + str(self.id))
+        print("Informations:")
+        for i in self.informations:
+            i.prinfo()
+        
 
 class Tunnel:
     def __init__(self):
@@ -37,6 +43,10 @@ class Informations:
         
     def _add_destinataires_(self,id):
         self.destinataires.append(id)
+
+    def prinfo(self):
+        print("id: " + str(self.id))
+        print("destinataires: " + str(self.destinataires))
 
 
 class Reseau:

@@ -1,7 +1,7 @@
 import modelisation as mod
 
 
-## Init
+## Initialisation du réseau
 net = mod.Reseau()
 
 for i in range(10):
@@ -13,7 +13,6 @@ for lien in liens:
     net._set_tunnel(lien[0], lien[1])
 
 ## Boucle principale
-    information0 = mod.Informations()
-    agent0 = net._get_agent(0)
-    agent0._add_info(information0)
-
+information0 = mod.Informations()
+agent0 = net._get_agent(0)
+agent0._add_info(information0)
