@@ -35,18 +35,22 @@ class Tunnel:
 class Informations:
     def __init__(self):
         self.id = 0
-        self.destinataires = []
+        self.passeurs = []
+        self.destinataire = 0
 
     def _set_id(self, inf_id):
         """Change l'id de l'information."""
         self.id = inf_id
+
+    def _add_destinataire(self, ag_id):
+        self.destinataire = ag_id
         
-    def _add_destinataires_(self,id):
-        self.destinataires.append(id)
+    def _add_passeur_(self,ag_id):
+        self.passeurs.append(ag_id)
 
     def prinfo(self):
         print("id: " + str(self.id))
-        print("destinataires: " + str(self.destinataires))
+        print("passeurs: " + str(self.destinataires))
 
 
 class Reseau:

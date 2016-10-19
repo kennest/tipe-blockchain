@@ -16,3 +16,7 @@ for lien in liens:
 information0 = mod.Informations()
 agent0 = net._get_agent(0)
 agent0._add_info(information0)
+
+for i in range(10):
+    for agent in net.agents:
+        
