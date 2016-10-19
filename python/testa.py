@@ -20,7 +20,16 @@ def envoyer_info(information, emetteur_id, dest_id):
     ag_dest._add_info(information)
     
 def actions_agent(agent):
-    pass
+    ag_id = agent.id
+    voisins = net._get_voisins(emetteur_id)
+    for info in agent.informations:
+        info_id = info.id
+        for vois in voisins:
+            if not info in vois.information:
+                vois_id = vois.id
+                info_b = info
+                info_b._add_passeur(vois_id)
+                vois._add_info(info_b)
 
 
 
@@ -28,8 +37,9 @@ def actions_agent(agent):
 information0 = mod.Informations()
 agent0 = net._get_agent(0)
 agent0._add_info(information0)
+
 """
 for i in range(10):
     for agent in net.agents:
-        
+        actions_agent(agent)
 """

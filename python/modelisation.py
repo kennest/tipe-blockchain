@@ -42,7 +42,7 @@ class Informations:
         """Change l'id de l'information."""
         self.id = inf_id
 
-    def _add_destinataire(self, ag_id):
+    def _set_destinataire(self, ag_id):
         self.destinataire = ag_id
         
     def _add_passeur_(self,ag_id):
