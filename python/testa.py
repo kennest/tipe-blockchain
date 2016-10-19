@@ -1,6 +1,5 @@
 import modelisation as mod
 
-
 ## Initialisation du réseau
 net = mod.Reseau()
 
@@ -12,11 +11,25 @@ liens = [(1,5),(1,2), (2,1),(2,0), (3,4),(3,5),(3,8),(3,9), (4,0), \
 for lien in liens:
     net._set_tunnel(lien[0], lien[1])
 
+## Fonctions
+def envoyer_info(information, emetteur_id, dest_id):
+    """emetteur envoie information à l'agent d'id destinataire."""
+    voisins = net._get_voisins(emetteur_id)
+    assert destinataire in voisins
+    ag_dest = net._get_agent(dest_id)
+    ag_dest._add_info(information)
+    
+def actions_agent(agent):
+    pass
+
+
+
 ## Boucle principale
 information0 = mod.Informations()
 agent0 = net._get_agent(0)
 agent0._add_info(information0)
-
+"""
 for i in range(10):
     for agent in net.agents:
         
+"""

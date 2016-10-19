@@ -50,7 +50,8 @@ class Informations:
 
     def prinfo(self):
         print("id: " + str(self.id))
-        print("passeurs: " + str(self.destinataires))
+        print("passeurs: " + str(self.passeurs))
+        print("destinataires: " + str(self.destinataires))
 
 
 class Reseau:
