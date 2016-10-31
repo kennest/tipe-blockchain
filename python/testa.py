@@ -19,7 +19,7 @@ def envoyer_info(information, emetteur_id, dest_id):
 
 
     
-    voisins = net._get_voisins(emetteur_id)
+    voisins = net._get_voisins_emet(emetteur_id)
     list_id_emet = emetteur._get_list_info_id() #liste des id des
                             # informations que possède emetteur
     list_id_dest = net._get_agent(dest_id)._get_list_info_id() #liste
@@ -43,7 +43,7 @@ def envoyer_info(information, emetteur_id, dest_id):
 def actions_agent(agent):
     """Réalise les actions entre les agents, depuis l'agent 'agent'."""
     ag_id = agent.id
-    voisins_id = net._get_voisins(ag_id)
+    voisins_id = net._get_voisins_emet(ag_id)
     for info in agent.informations:
         info_id = info.id
         for vois_id in voisins_id:
@@ -63,3 +63,6 @@ for i in range(1):
     for agent in net.agents:
         actions_agent(agent)
 
+for i in range(10):
+    net.agents[i].prinfo()
+    print('---')
