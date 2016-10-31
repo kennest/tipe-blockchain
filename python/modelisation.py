@@ -59,6 +59,7 @@ class Informations:
         self.id = inf_id
 
     def _add_destinataire(self, ag_id):
+        """ """
         self.destinataire = ag_id
         
     def _add_passeur(self,ag_id):

@@ -19,12 +19,18 @@ def envoyer_info(information, emetteur_id, dest_id):
     voisins = net._get_voisins(emetteur_id)
     list_id_emet = emetteur._get_list_info_id() #liste des id des
                             # informations que possède emetteur
-    assert information.id in list_id_emet
-    assert dest_id in voisins$
+
+    #Pour ne pas avoir de problème d'alias
+    info_bis = mod.Informations()
+    info_bis._set_id(information.id)
+    passeurs_bis = information.passeurs.copy()
+    info_bis.passeurs = passeurs_bis
+    info_bis._add_destinataire(information.destinataire)
     
-    information._add_passeur(dest_id)
-    information.prinfo()
-    net._get_agent(dest_id)._add_info(information)
+    assert information.id in list_id_emet
+    assert dest_id in voisins
+    info_bis._add_passeur(dest_id)
+    net._get_agent(dest_id)._add_info(info_bis)
     
 def actions_agent(agent):
     """Réalise les actions entre les agents, depuis l'agent 'agent'."""
