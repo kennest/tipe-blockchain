@@ -16,10 +16,18 @@ def envoyer_info(information, emetteur_id, dest_id):
     """emetteur envoie information à l'agent d'id destinataire."""
     # Il faut faire attention aux alias !
     emetteur = net._get_agent(emetteur_id)
+
+
+    
     voisins = net._get_voisins(emetteur_id)
     list_id_emet = emetteur._get_list_info_id() #liste des id des
                             # informations que possède emetteur
-
+    list_id_dest = net._get_agent(dest_id)._get_list_info_id() #liste
+                            # des id des informations que possède
+                            # le destinataire
+    if information.id in list_id_dest:
+        return None
+    
     #Pour ne pas avoir de problème d'alias
     info_bis = mod.Informations()
     info_bis._set_id(information.id)
@@ -50,8 +58,8 @@ information0._add_passeur(0)
 agent0 = net._get_agent(0)
 agent0._add_info(information0) #pas de problème d'alias ici
 
-"""
-for i in range(10):
+
+for i in range(1):
     for agent in net.agents:
         actions_agent(agent)
-"""
+
