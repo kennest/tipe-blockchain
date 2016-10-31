@@ -14,8 +14,14 @@ for lien in liens:
 ## Fonctions
 def envoyer_info(information, emetteur_id, dest_id):
     """emetteur envoie information à l'agent d'id destinataire."""
+    # Il faut faire attention aux alias !
+    emetteur = net._get_agent(emetteur_id)
     voisins = net._get_voisins(emetteur_id)
-    assert dest_id in voisins
+    list_id_emet = emetteur._get_list_info_id() #liste des id des
+                            # informations que possède emetteur
+    assert information.id in list_id_emet
+    assert dest_id in voisins$
+    
     information._add_passeur(dest_id)
     information.prinfo()
     net._get_agent(dest_id)._add_info(information)
@@ -36,7 +42,7 @@ def actions_agent(agent):
 information0 = mod.Informations()
 information0._add_passeur(0)
 agent0 = net._get_agent(0)
-agent0._add_info(information0)
+agent0._add_info(information0) #pas de problème d'alias ici
 
 """
 for i in range(10):

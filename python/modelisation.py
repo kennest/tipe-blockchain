@@ -21,6 +21,12 @@ class Agent:
         print("Informations:")
         for i in self.informations:
             i.prinfo()
+            
+    def _get_list_info_id(self):
+        list_id = []
+        for i in self.informations:
+            list_id.append(i.id)
+        return list_id
     
 
 
