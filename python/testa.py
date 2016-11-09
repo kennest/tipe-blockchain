@@ -66,3 +66,52 @@ for i in range(1):
 for i in range(10):
     net.agents[i].prinfo()
     print('---')
+    
+predecesseur = [1000]*10
+d = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],[2,2,2,0,1,1,2,2,1,1],[1,4,4,2,0,3,4,4,3,3],[2,1,2,2,3,0,1,4,3,3],[3,3,3,1,2,2,0,3,2,2],[2,3,3,2,2,3,0,2,1],[3,3,3,1,2,2,3,3,0,2],[1,4,4,2,2,3,4,1,3,0]]
+
+
+def distance_min(emetteur_id,liste,d) :    
+    mini = 1000
+    noeud = -1
+    for x in liste :
+        if d[emetteur_id][x] < mini :
+            mini = d[emetteur_id][x]
+            noeud = x
+    return noeud
+
+def maj_distance(emetteur_id,n1,n2,d) :
+    if d[emetteur_id][n2] > d[emetteur_id][n1] + 1 :
+        d[emetteur_id][n2] = d[emetteur_id][n1] + 1
+        predecesseur[n2] = n1
+
+
+
+
+    
+def recherche_chemin(emetteur_id,dest_id) :
+    """Recherche un plus court chemin dans le graphe entre l'émetteur et le destinataire."""
+    Chemin = []
+    d_maj = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],[2,2,2,0,1,1,2,2,1,1],[1,4,4,2,0,3,4,4,3,3],[2,1,2,2,3,0,1,4,3,3],[3,3,3,1,2,2,0,3,2,2],[2,3,3,2,2,3,0,2,1],[3,3,3,1,2,2,3,3,0,2],[1,4,4,2,2,3,4,1,3,0]]
+    Q = net._get_list_id()
+
+    while Q != [] :
+        print(Q)
+        s1 = distance_min(emetteur_id,Q,d_maj)
+        print(s1)
+        Q.pop(Q.index(s1))
+        for s2 in net._get_voisins_emet(s1) :
+            print(s2)
+            maj_distance(emetteur_id,s1,s2,d_maj)
+            print(predecesseur)
+            
+    
+    
+    s = dest_id
+    while s != emetteur_id :
+        Chemin.append(s)
+        
+        s = predecesseur[predecesseur.index(s)]
+
+    return Chemin
+
