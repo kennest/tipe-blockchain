@@ -66,16 +66,26 @@ for i in range(1):
 for i in range(10):
     net.agents[i].prinfo()
     print('---')
-    
+
+
+##
+#
+# Recherche la distance entre deux noeuds par l'algorithme de Djikstra
+#
+##
+ 
 predecesseur = [1000]*10
-d = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],/
-     [2,2,2,0,1,1,2,2,1,1],[1,4,4,2,0,3,4,4,3,3],[2,1,2,2,3,0,1,4,3,3],/
-     [3,3,3,1,2,2,0,3,2,2],[2,3,3,2,2,3,0,2,1],[3,3,3,1,2,2,3,3,0,2],/
+# d : distances calculées à la main, pour vérification
+d = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],\
+     [2,2,2,0,1,1,2,2,1,1],[1,4,4,2,0,3,4,4,3,3],[2,1,2,2,3,0,1,4,3,3],\
+     [3,3,3,1,2,2,0,3,2,2],[2,3,3,2,2,3,0,2,1],[3,3,3,1,2,2,3,3,0,2],\
      [1,4,4,2,2,3,4,1,3,0]]
 
 
-def distance_min(emetteur_id,liste,d) :    
-    mini = 1000
+def distance_min(emetteur_id,liste,d) :
+    """ liste : liste de noeuds ? """
+    mini = float("Infinity") # Valeur arbitraire, tous les chemins
+                             # sont plus petits
     noeud = -1
     for x in liste :
         if d[emetteur_id][x] < mini :
@@ -129,6 +139,6 @@ def calcule_distance(emetteur_id) :
                for v in net._get_voisins_emet(j) :
                    t.append(v)
         d.append(k)
-        return  d
+    return  d
 
 
