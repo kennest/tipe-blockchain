@@ -118,3 +118,17 @@ def recherche_chemin(emetteur_id,dest_id) :
 
     return Chemin
 
+def calcule_distance(emetteur_id) :
+    d = []
+    for i in net._get_list_id() :
+        t = [emetteur_id]
+        k = 0
+        while not i in t :
+            k = k + 1
+            for j in t :
+               for v in net._get_voisins_emet(j) :
+                   t.append(v)
+        d.append(k)
+        return  d
+
+
