@@ -1,5 +1,5 @@
 import modelisation as mod
-import heapq as hq
+import heapq as hq #Pour implémenter des files de priorité
 
 ## Initialisation du réseau
 net = mod.Reseau()
@@ -27,4 +27,4 @@ d = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],\
      [3,3,3,1,2,2,0,3,2,2],[2,3,3,2,2,3,0,2,1],[3,3,3,1,2,2,3,3,0,2],\
      [1,4,4,2,2,3,4,1,3,0]]
 
-hq.heapify()
+#hq.heapify()

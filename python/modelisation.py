@@ -53,6 +53,7 @@ class Informations:
         self.id = 0
         self.passeurs = []
         self.destinataire = 0
+        # ajouter un champ requête et un champ réponse ?
         
     def _set_id(self, inf_id):
         """Change l'id de l'information."""
