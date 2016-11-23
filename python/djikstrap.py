@@ -27,10 +27,6 @@ predecesseur = [1000]*10
      [3,3,3,1,2,2,0,3,2,2],[2,3,3,2,2,3,0,2,1],[3,3,3,1,2,2,3,3,0,2],\
      [1,4,4,2,2,3,4,1,3,0]]"""
 
-<<<<<<< HEAD
-#hq.heapify()
-=======
-hq.heapify()
 
 
 def calcule_distance(emetteur_id) :
@@ -63,4 +59,3 @@ def calcule_distance2(emetteur_id,recepteur_id) :
              for v in net._get_voisins_emet(j) :
                 t.append(v)
     return k
->>>>>>> eab093ededf8ef9eabbf2bec30203039d75bb110
