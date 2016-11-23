@@ -19,7 +19,9 @@ for lien in liens:
 # Recherche la distance entre deux noeuds par l'algorithme de Djikstra
 #
 ##
- 
+
+#hq.heapify()
+
 predecesseur = [1000]*10
 # d : distances calculées à la main, pour vérification
 """d = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],\
@@ -53,7 +55,7 @@ def calcule_distance2(emetteur_id,recepteur_id) :
     k = 0
     while not recepteur_id in t :
         k = k + 1
-        print(k)
+        # print(k)
         r = t.copy()
         for j in r :
              for v in net._get_voisins_emet(j) :
