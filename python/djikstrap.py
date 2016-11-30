@@ -64,6 +64,7 @@ def calcule_distance2(emetteur_id,recepteur_id) :
     return k
 
 def Trouve_min(emetteur_id,Noeuds) :
+    """ Trouve le noeud le plus proche. (_get_voisins sinon ?) """
     mini = 1000
     noeud = -1
     for i in Noeuds :
@@ -72,15 +73,22 @@ def Trouve_min(emetteur_id,Noeuds) :
             noeud = i
     return noeud
 
-def maj_distance(emetteur_id,n1,n2,distance,predecesseur) :
-    if distance[emetteur_id][n2] > distance[emetteur_id][n1] + distance[n1][n2] :
-        distance[emetteur_id][n2] = distance[emetteur_id][n1] +\
-                                    distance[n1][n2]
-
+def maj_distance(emetteur_id, n1, n2, distance, predecesseur):
+    """ Calcule le prédecesseur de n2 sur le chemin (emet_id -> n2).
+    Faut-il passer par n1 ? Si oui, n1 devient le prédecesseur de n2.
+    distance est la liste des distances entre tous le spoints du réseau.
+    predecesseur est le chemin."""
+    dist_emet_n2 = distance[emetteur_id][n2]
+    dist_emet_n1_n2 = distance[emetteur_id][n1] + distance[n1][n2]
+    
+    if dist_emet_n2 >= dist_emet_n1_n2:
+        dist_emet_n2 = dist_emet_n1_n2
         predecesseur[n2] = n1
+    return None
 
 
 def recherche_chemin(emetteur_id,dest_id) :
+    
     Chemin = []
     d_maj = d.copy()
     Noeuds = net._get_list_id()
@@ -88,17 +96,19 @@ def recherche_chemin(emetteur_id,dest_id) :
     s1 = 0
     while len(Noeuds) != 1 :#Noeuds != [] :
         s1 = Trouve_min(emetteur_id,Noeuds)
-        print(s1)
+        print('s1 :',s1)
         Noeuds.pop(Noeuds.index(s1))
         for s2 in net._get_voisins_emet(s1) :
-            print(s2)
-            print(Predecesseur)
+            print('s2 :',s2)
+            print('predecesseur :',Predecesseur)
             maj_distance(emetteur_id,s1,s2,d_maj,\
                                 Predecesseur)
-    print(Predecesseur)
+    print('predecesseur :',Predecesseur)
     s = dest_id
     while s != emetteur_id :
         Chemin.append(s)
         s = predecesseur[predecesseur.index(s)]
     return reverse(Chemin)
 
+
+### Réecriture by Matthias
