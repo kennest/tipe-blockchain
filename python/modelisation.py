@@ -145,4 +145,13 @@ class Reseau:
         return voisins_recep
 
         
-    
+def conv_net_to_matrix(net):
+    """ Retourne une matrice représentant le réseau. La ligne j
+    correspond à l'émetteur d'id i."""
+    n = len(net._get_list_id())
+    mat = [[0 for i in range(n)] for j in range(n)]
+    for i in range(n):
+        voisins = net._get_voisins_emet(i)
+        for j in voisins:
+            mat[i][j] = 1
+    return mat
