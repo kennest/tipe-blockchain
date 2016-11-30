@@ -155,3 +155,8 @@ def conv_net_to_matrix(net):
         for j in voisins:
             mat[i][j] = 1
     return mat
+
+def matrix_to_csv(matrice, filename):
+    """ Prend en argument une matrice carrée et écrit un fichier csv
+    la représentant. """
+    
