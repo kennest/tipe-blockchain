@@ -62,3 +62,43 @@ def calcule_distance2(emetteur_id,recepteur_id) :
              for v in net._get_voisins_emet(j) :
                 t.append(v)
     return k
+
+def Trouve_min(emetteur_id,Noeuds) :
+    mini = 1000
+    noeud = -1
+    for i in Noeuds :
+        if d[emetteur_id][i] < mini and d[emetteur_id][i] != 0 :
+            mini = d[emetteur_id][i]
+            noeud = i
+    return noeud
+
+def maj_distance(emetteur_id,n1,n2,distance,predecesseur) :
+    if distance[emetteur_id][n2] > distance[emetteur_id][n1] + distance[n1][n2] :
+        distance[emetteur_id][n2] = distance[emetteur_id][n1] +\
+                                    distance[n1][n2]
+
+        predecesseur[n2] = n1
+
+
+def recherche_chemin(emetteur_id,dest_id) :
+    Chemin = []
+    d_maj = d.copy()
+    Noeuds = net._get_list_id()
+    Predecesseur = [-1]*10
+    s1 = 0
+    while len(Noeuds) != 1 :#Noeuds != [] :
+        s1 = Trouve_min(emetteur_id,Noeuds)
+        print(s1)
+        Noeuds.pop(Noeuds.index(s1))
+        for s2 in net._get_voisins_emet(s1) :
+            print(s2)
+            print(Predecesseur)
+            maj_distance(emetteur_id,s1,s2,d_maj,\
+                                Predecesseur)
+    print(Predecesseur)
+    s = dest_id
+    while s != emetteur_id :
+        Chemin.append(s)
+        s = predecesseur[predecesseur.index(s)]
+    return reverse(Chemin)
+
