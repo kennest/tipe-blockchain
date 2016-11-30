@@ -2,6 +2,8 @@ import modelisation as mod
 import heapq as hq #Pour implémenter des files de priorité
 
 ## Initialisation du réseau
+
+"""
 net = mod.Reseau()
 
 for i in range(10):
@@ -11,18 +13,29 @@ liens = [(0,3),(0,4), (1,2),(1,5), (2,0),(2,1), (3,4),(3,5),(3,8),(3,9), \
          (4,0), (5,1),(5,2),(5,6), (6,3), (7,3),(7,9), (8,3), (9,0),(9,7)]
 for lien in liens:
     net._set_tunnel(lien[0], lien[1])
+"""
 
+net = mod.Reseau()
+for i in range(4):
+    net._set_agent(i)
 
+net._set_tunnel(0,2)
+net._set_tunnel(2,1)
+net._set_tunnel(1,0)
+net._set_tunnel(3,2)
+net._set_tunnel(2,3)
 
 ##
 #
 # Recherche la distance entre deux noeuds par l'algorithme de Djikstra
 #
+# Voir : http://stackoverflow.com/questions/4997851/python-dijkstra-algorithm#16117378
+#
 ##
 
 #hq.heapify()
 
-predecesseur = [1000]*10
+
 # r : distances calculées à la main, pour vérification, certaines
 # valeurs sont fausses
 r = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],\
@@ -33,7 +46,9 @@ r = [[0,3,3,1,1,2,3,3,2,2],[2,0,1,3,3,1,6,5,4,4],[1,1,0,2,2,2,3,4,3,3],\
 
 
 def calcule_distance(emetteur_id) :
-    """Calcule la distance d'emetteur_id à tous les noeuds du réseau."""
+    """Calcule la distance d'emetteur_id à tous les noeuds du réseau.
+    Attention, si un noeud n'a pas de tunnel sortant, cette fonction
+    ne termine pas."""
     d = []
     for i in net._get_list_id() :
         t = [emetteur_id]
@@ -47,6 +62,7 @@ def calcule_distance(emetteur_id) :
         d.append(k)
     return  d
 
+# Liste des distances :
 d = [calcule_distance(k) for k in net._get_list_id()]
 
 def calcule_distance2(emetteur_id,recepteur_id) :
@@ -84,31 +100,36 @@ def maj_distance(emetteur_id, n1, n2, distance, predecesseur):
     if dist_emet_n2 >= dist_emet_n1_n2:
         dist_emet_n2 = dist_emet_n1_n2
         predecesseur[n2] = n1
-    return None
+    return predecesseur
 
 
 def recherche_chemin(emetteur_id,dest_id) :
     
     Chemin = []
-    d_maj = d.copy()
-    Noeuds = net._get_list_id()
-    Predecesseur = [-1]*10
-    s1 = 0
-    while len(Noeuds) != 1 :#Noeuds != [] :
+    d_maj = d.copy() #liste des distances entre les points
+    Noeuds = net._get_list_id() #liste des noeuds considérés
+    n = len(Noeuds)
+    predecesseur = [-1]* n
+    s1 = emetteur_id # noeud le plus proche de l'émetteur, puis du suivant...
+    
+    while n != 0 : #Noeuds != [] :
+        # variant n est le nombre de noeuds considérés
+        
         s1 = Trouve_min(emetteur_id,Noeuds)
         print('s1 :',s1)
         Noeuds.pop(Noeuds.index(s1))
+        n -= 1
         for s2 in net._get_voisins_emet(s1) :
             print('s2 :',s2)
-            print('predecesseur :',Predecesseur)
-            maj_distance(emetteur_id,s1,s2,d_maj,\
-                                Predecesseur)
-    print('predecesseur :',Predecesseur)
+            print('predecesseur :',predecesseur)
+            predecesseur = maj_distance(emetteur_id, s1, s2, d_maj, predecesseur)
+        # n = n_debut -1
+
+    print('predecesseur :',predecesseur)
     s = dest_id
+    
     while s != emetteur_id :
         Chemin.append(s)
+        #print(Chemin)
         s = predecesseur[predecesseur.index(s)]
     return reverse(Chemin)
-
-
-### Réecriture by Matthias
