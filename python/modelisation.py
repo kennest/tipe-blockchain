@@ -159,4 +159,17 @@ def conv_net_to_matrix(net):
 def matrix_to_csv(matrice, filename):
     """ Prend en argument une matrice carrée et écrit un fichier csv
     la représentant. """
-    
+    with open(filename + '.csv', 'w') as f:
+        for j in matrice:
+            for x in j:
+                f.write(str(x) + ',')
+            f.write("\n")
+    return True
+
+def csv_to_matrix(filename)
+    mat = [[]]
+    return mat
+
+def conv_matrix_to_net(matrice)
+    net = Reseau()
+    return net
