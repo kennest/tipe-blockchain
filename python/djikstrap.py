@@ -80,9 +80,10 @@ def calcule_distance2(emetteur_id,recepteur_id) :
     return k
 
 def Trouve_min(emetteur_id,Noeuds) :
-    """ Trouve le noeud le plus proche. (_get_voisins sinon ?) """
+    """ Trouve le noeud le plus proche. (Pas _get_voisins,
+    car Noeud peut varier.) """
     mini = 1000
-    noeud = -1
+    noeud = emetteur_id
     for i in Noeuds :
         if d[emetteur_id][i] < mini and d[emetteur_id][i] != 0 :
             mini = d[emetteur_id][i]
@@ -110,26 +111,38 @@ def recherche_chemin(emetteur_id,dest_id) :
     Noeuds = net._get_list_id() #liste des noeuds considérés
     n = len(Noeuds)
     predecesseur = [-1]* n
-    s1 = emetteur_id # noeud le plus proche de l'émetteur, puis du suivant...
+    s1 = Trouve_min(emetteur_id,Noeuds)# noeud le plus proche de
+                                       #l'émetteur, puis du suivant...
+    predecesseur[s1] = emetteur_id # A l'init, on connaît un
+                                   # prédecesseur de s1 : emetteur_id
+
     
-    while n != 0 : #Noeuds != [] :
+    while n != 0 : # Noeuds != [] :
         # variant n est le nombre de noeuds considérés
         
         s1 = Trouve_min(emetteur_id,Noeuds)
-        print('s1 :',s1)
+        #print('s1 :',s1)
+        #print("Noeuds ", Noeuds)
         Noeuds.pop(Noeuds.index(s1))
         n -= 1
+        #print('predecesseur :',predecesseur)
         for s2 in net._get_voisins_emet(s1) :
-            print('s2 :',s2)
-            print('predecesseur :',predecesseur)
+            #print('s2 :',s2)
             predecesseur = maj_distance(emetteur_id, s1, s2, d_maj, predecesseur)
+            #print('predecesseur :',predecesseur)
         # n = n_debut -1
 
-    print('predecesseur :',predecesseur)
+    #print('Sortie predecesseur :',predecesseur)
     s = dest_id
+
+    
     
     while s != emetteur_id :
+        #print(Chemin)
         Chemin.append(s)
         #print(Chemin)
-        s = predecesseur[predecesseur.index(s)]
-    return reverse(Chemin)
+        s = predecesseur[s]
+        # s = predecesseur[predecesseur.index(s)]
+    Chemin.append(s)
+    Chemin.reverse()
+    return Chemin
