@@ -166,10 +166,20 @@ def matrix_to_csv(matrice, filename):
             f.write("\n")
     return True
 
-def csv_to_matrix(filename)
-    mat = [[]]
+def csv_to_matrix(filename):
+    """ Lis le fichier filename.csv et retourne la matrice
+    représentée par le fichier.""" 
+    mat = []
+    with open(filename + '.csv', 'r') as f:
+        text = f.readlines()
+        for line in text:
+            listi = line.split(',')
+            listi.pop() # il y a une virgule de trop en fin de ligne
+            for i in range(len(listi)):
+                listi[i] = int(listi[i])
+            mat.append(listi)
     return mat
 
-def conv_matrix_to_net(matrice)
+def conv_matrix_to_net(matrice):
     net = Reseau()
     return net
