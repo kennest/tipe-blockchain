@@ -55,7 +55,12 @@ morekeywords={len,input,range}}
 
 
 \title{\'Etat de l'art}
-\date{}
+%
+%
+% Propagation des informations dans un réseau pair-à-pair
+%
+%
+\date{2016-12-14}
 \author{Dimitri Granger \and Matthias Goffette}
 
 \begin{document}
@@ -89,12 +94,14 @@ Plusieurs problématiques s'offrent à nous :
 
 \section{Objectifs du travail}
 
+Les réseaux sont présents dans de multiples domaines. En particulier, la transmission d'informations dans un réseau est importante, car dans un réseau pair-à-pair, l'émetteur ne peut souvent pas les envoyer directement. Les données doivent donc passer par des intermédiaires, qui peuvent les attaquer. Il est donc nécessaire d'étudier des algorithmes de propagation sûrs et efficaces.
+
 \section{Liste des références bibliographiques}
 
 
 \section{Reprise d'un document précédent}
 	\subsection{Paragraphe 1}
-On peut représenter une case du labyrinthe par un carré de $3\times3$ pixels (\ref{case}) : la case elle-même se trouve au pixel $5$. Les pixels $2$,$4$,$6$ et $8$ servent à faire le lien entre la case et les cases adjacentes. Un tableau de $(2*n)+1$ pixels est nécessaire. Les pixels $1$,$3$,$7$ et $9$ sont alors toujours noirs, le pixel $5$ toujours blanc, et les pixels $2$,$4$,$6$ et $8$ sont noirs ou blancs, selon la possibitité de déplacement d'une case à l'autre (\ref{caser}). Par exemple, à partir de la case représentée en \ref{expl}, on peut se déplacer vers le haut ou vers la gauche, mais pas vers le bas ou vers la droite.
+On peut représenter une case du labyrinthe par un carré de $3\times3$ pixels (\ref{case}) : la case elle-même se trouve au pixel $5$. Les pixels $2$,$4$,$6$ et $8$ servent à faire le lien entre la case et les cases adjacentes. Un tableau de $(2 \times n)+1$ pixels est nécessaire. Les pixels $1$,$3$,$7$ et $9$ sont alors toujours noirs, le pixel $5$ toujours blanc, et les pixels $2$,$4$,$6$ et $8$ sont noirs ou blancs, selon la possibitité de déplacement d'une case à l'autre (\ref{caser}). Par exemple, à partir de la case représentée en \ref{expl}, on peut se déplacer vers le haut ou vers la gauche, mais pas vers le bas ou vers la droite.
 \begin{figure}[h]
 \begin{center}
 \hfill
