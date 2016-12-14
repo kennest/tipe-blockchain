@@ -161,8 +161,10 @@ def matrix_to_csv(matrice, filename):
     la représentant. """
     with open(filename + '.csv', 'w') as f:
         for j in matrice:
-            for x in j:
-                f.write(str(x) + ',')
+            for i in range(len(j)):
+                j[i] = str(j[i])
+            text = ','.join(j)
+            f.write(text)
             f.write("\n")
     return True
 
@@ -174,7 +176,6 @@ def csv_to_matrix(filename):
         text = f.readlines()
         for line in text:
             listi = line.split(',')
-            listi.pop() # il y a une virgule de trop en fin de ligne
             for i in range(len(listi)):
                 listi[i] = int(listi[i])
             mat.append(listi)
@@ -182,4 +183,11 @@ def csv_to_matrix(filename):
 
 def conv_matrix_to_net(matrice):
     net = Reseau()
+    n = len(matrice)
+    for i in range(n):
+        net._set_agent(i)
+    for i in range(n):
+        for j in range(n):
+            if matrice[i][j] == 1:
+                net._set_tunnel(i,j)
     return net
