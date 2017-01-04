@@ -60,7 +60,7 @@ morekeywords={len,input,range}}
 % Propagation des informations dans un réseau pair-à-pair
 %
 %
-\date{2017-01-02}
+\date{2017-01-04}
 \author{Dimitri Granger \and Matthias Goffette}
 
 \begin{document}
@@ -81,7 +81,7 @@ Informatique pratique
 
 \section{Mots-clefs}
 
-Réseau ...
+Réseau ... \textbf{A compléter}
 
 
 \section{Bibliographie commentée}
@@ -89,8 +89,7 @@ Réseau ...
 \begin{itemize}
 
 	\item Attack, Defense and Contagion in Networks (S. Goyal et A. Vigier), \emph{2014-01-18}
-		Ici, il semble qu'un réseau en étoile, c'est-à-dire ressemblant à l'architecture client-serveur, permet au \emph{Designer} de protéger plus facilement le réseau. Cet article utilise des probabilités pour mesurer qui est le vainqueur. Il semble intéressant de reproduire cette expérience, et en modifier les paramètres, de manière à observer des différences en terme de stratégie optimale. En effet, il nous semblait, avant de lire cet article, qu'un réseau complet % Vérifier le terme
-		(chaque noeud est lié à tous les autres) aurait été le meilleur. Ceci dépend vraisemblablement du but de l'attaquant (corrompre un noeud précis, s'emparer de la totalité du réseau...) et des paramètres.
+		Ici, il semble qu'un réseau en étoile, c'est-à-dire ressemblant à l'architecture client-serveur, permet au \emph{Designer} de protéger plus facilement le réseau. Cet article utilise des probabilités pour mesurer qui est le vainqueur. Il semble intéressant de reproduire cette expérience, et en modifier les paramètres, de manière à observer des différences en terme de stratégie optimale. En effet, il nous semblait, avant de lire cet article, qu'un réseau en forme de \emph{graphe complet} (chaque noeud est lié à tous les autres) aurait été le meilleur. Ceci dépend vraisemblablement du but de l'attaquant (corrompre un noeud précis, s'emparer de la totalité du réseau...) et des paramètres utilisés pour la modélisation.
 	
 \end{itemize}
 
@@ -100,10 +99,10 @@ Réseau ...
 
 Plusieurs problématiques s'offrent à nous :
 \begin{itemize}
-	\item Quelle architecture du réseau permet la meilleure résistance aux attaques ?
+	\item Quelle architecture du réseau permet la meilleure résistance aux attaques, tout en gardant de bonnes vitesses de propagation des données ?
 	\item \textbf{Comment rechercher efficacement une information sur un réseau ? Application : Moteur de recherche décentralisé.}
 	\begin{itemize}
-		\item Comment s'assurer que les informations reçues sont \emph{de confiance} ?
+		\item Comment s'assurer que les informations reçues sont \emph{de confiance}, c'est-à-dire vraie et correspondant à une réponse à ce qui a été demandé ?
 	\end{itemize}
 	
 	\item (Comment organiser le partage de fichiers efficacement (cas d'un iso \emph{linux}) ? Rajouter des contraintes : combien de noeuds maximum ?)

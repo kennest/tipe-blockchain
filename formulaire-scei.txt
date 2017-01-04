@@ -2,18 +2,12 @@ Titre :
 
  Comment optimiser l'architecture d'un réseau afin de mieux résister aux attaques, tout garantissant une certaine vitesse de transmission des données ?
 
- 
+
  Quelle est votre motivation pour le choix du sujet ?
- 
- Les réseaux pair-à-pair occupant une place importante dans les échanges d'informations dans de multiples domaines. Dans un réseau de ce type, l'émetteur ne peut souvent pas envoyer les informations directement. Les données doivent passer par des intermédiaires, qui peuvent alors les attaquer. Les dommages causés par ces attaques dépendent de la structure du réseau. C'est pourquoi 
- 
-La méthode de transmission des informations est donc un point clef du fonctionnement du réseau. Il est donc nécessaire d'étudier des algorithmes de propagation sûrs et efficaces.
- 
- 
- En quoi votre étude s'inscrit-elle dans le thème de l'année ?
- 
- Nous proposons d'étudier la réalisation d'un réseau pair-à-pair afin de maximiser la vitesse des échanges d'informations, sous une contrainte de protection du réseau.
 
- ---
+ Les réseaux pair-à-pair occupent une place importante dans les échanges d'informations dans de multiples domaines. Dans un réseau de ce type, l'émetteur ne peut souvent pas envoyer les informations directement au destinataire. Les données doivent donc passer par des intermédiaires, qui peuvent éventuellement les modifier ou refuser de les transmettre. Les dommages causés par ces attaques dépendent de la structure du réseau. C'est pourquoi il est nécessaire d'étudier ce dernier point.
 
- il est important de trouver comment construire un tel réseau pour optimiser la vitesse de propagation des informations, tout en empêchant les attaques contre le réseau.
+
+En quoi votre étude s'inscrit-elle dans le thème de l'année ?
+ 
+ Nous proposons d'étudier la réalisation d'un réseau pair-à-pair afin de maximiser la vitesse des échanges d'informations, sous une contrainte de protection du réseau due aux attaques.
