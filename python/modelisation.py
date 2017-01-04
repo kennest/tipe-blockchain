@@ -94,7 +94,12 @@ class Reseau:
         x = Agent()
         x._set_id(ag_id)
         self.agents.append(x)
-
+        
+    def _set_list_agents(self, liste):
+        """ Ajoute une liste d'agents au réseau."""
+        for i in liste:
+            self._set_agent(i)
+        
     def _get_agent(self, ag_id):
         """Retourne l'agent d'id ag_id. Si il n'existe pas, renvoie False."""
         for x in self.agents:
@@ -111,6 +116,11 @@ class Reseau:
         t._set_emetteur(id_emetteur)
         t._set_recepteur(id_recepteur)
         self.tunnels.append(t)
+
+    def _set_tunnel_double(self, id_1, id_2):
+        self._set_tunnel(id_1, id_2)
+        self._set_tunnel(id_2, id_1)
+        
 
     def _get_tunnel(self,id_emetteur,id_recepteur):
         """Retourne le tunnel entre l'agent d'id id_emetteur et le récepteur
@@ -144,6 +154,8 @@ class Reseau:
                 voisins_recep.append(i[0])
         return voisins_recep
 
+
+## Liens avec csv et matrices
         
 def conv_net_to_matrix(net):
     """ Retourne une matrice représentant le réseau. La ligne j
@@ -190,4 +202,18 @@ def conv_matrix_to_net(matrice):
         for j in range(n):
             if matrice[i][j] == 1:
                 net._set_tunnel(i,j)
+    return net
+
+
+# Génération de certains types de réseau
+
+def reseau_etoile(n):
+    """ Génère un réseau en étoile de taille n :
+    pour tout i appartenant à [1,n] chaque noeud i est lié
+    avec le noeud 0 en émetteur et récepteur."""
+    net = Reseau()
+    liste = [i for i in range(n)]
+    net._set_list_agents(liste)
+    for i in range(1,n):
+        net._set_tunnel_double(0,i)
     return net
