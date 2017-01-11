@@ -111,11 +111,13 @@ class Reseau:
         """Ajoute un tunnel entre l'émetteur d'id id_emetteur et
         le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
         list_tunnels = self._get_list_tunnels()
-        assert not((id_emetteur,id_recepteur) in list_tunnels)
-        t = Tunnel()
-        t._set_emetteur(id_emetteur)
-        t._set_recepteur(id_recepteur)
-        self.tunnels.append(t)
+        if not((id_emetteur,id_recepteur) in list_tunnels):
+            t = Tunnel()
+            t._set_emetteur(id_emetteur)
+            t._set_recepteur(id_recepteur)
+            self.tunnels.append(t)
+        else:
+            pass
 
     def _set_tunnel_double(self, id_1, id_2):
         self._set_tunnel(id_1, id_2)
@@ -207,13 +209,27 @@ def conv_matrix_to_net(matrice):
 
 # Génération de certains types de réseau
 
+def reseau_sans_tunnel(n):
+    net = Reseau()
+    liste = [i for i in range(n)]
+    net._set_list_agents(liste)
+    return net
+
 def reseau_etoile(n):
     """ Génère un réseau en étoile de taille n :
     pour tout i appartenant à [1,n] chaque noeud i est lié
     avec le noeud 0 en émetteur et récepteur."""
-    net = Reseau()
-    liste = [i for i in range(n)]
-    net._set_list_agents(liste)
+    net = reseau_sans_tunnel(n)
     for i in range(1,n):
         net._set_tunnel_double(0,i)
+    return net
+
+def reseau_complet(n):
+    """ Génère un réseau ayant la structure d'un graphe complet de n
+    noeuds. """
+    net = reseau_sans_tunnel(n)
+    for i in range(n):
+        for j in range(n):
+            if i !=j:
+                net._set_tunnel_double(i,j)
     return net
