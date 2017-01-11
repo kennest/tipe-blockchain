@@ -2,10 +2,10 @@
 
 
 class Agent:
-    """Les agents sont les noeuds du réseau (utilisateurs). """
-    def __init__(self):
-        self.id = 0
-        self.strategie = "normal"
+    """Les agents sont les noeuds du réseau (utilisateurs)."""
+    def __init__(self, id, strategie = "normal"):
+        self.id = id
+        self.strategie = strategie
         self.informations = []
 
     def _set_id(self, ag_id):
@@ -31,9 +31,9 @@ class Agent:
 
 
 class Tunnel:
-    def __init__(self):
-        self.emetteur = 0
-        self.recepteur = 0
+    def __init__(self, emet, recep):
+        self.emetteur = emet
+        self.recepteur = recep
 
     def _set_emetteur(self,id_emetteur):
         self.emetteur = id_emetteur
@@ -48,28 +48,36 @@ class Tunnel:
     
     
             
-class Informations:
-    def __init__(self):
-        self.id = 0
+class Information:
+    def __init__(self, id, destinataire, info):
+        self.id = id
         self.passeurs = []
-        self.destinataire = 0
+        self.destinataire = destinataire
+        self.info = info
         # ajouter un champ requête et un champ réponse ?
         
     def _set_id(self, inf_id):
         """Change l'id de l'information."""
         self.id = inf_id
 
-    def _add_destinataire(self, ag_id):
+    def _set_destinataire(self, ag_id):
         """ """
         self.destinataire = ag_id
+    
+    def _set_info(self, info):
+        """ info : str """
+        self.info = info
         
     def _add_passeur(self,ag_id):
+        """ Ajoute l'agent d'id ag_id à la liste des passeurs."""
         self.passeurs.append(ag_id)
 
     def prinfo(self):
         print("id: " + str(self.id))
         print("destinataire: " + str(self.destinataire))
         print("passeurs: " + str(self.passeurs))
+        print("Info: " + self.info)
+
 
     
 
@@ -91,7 +99,7 @@ class Reseau:
         """Ajoute un agent d'id ag_id à la liste agents. Si l'id est
     déjà utilisée, échoue."""
         # Ajouter le fait que ça échoue si l'id est déjà prise
-        x = Agent()
+        x = Agent(ag_id)
         x._set_id(ag_id)
         self.agents.append(x)
         
@@ -101,7 +109,7 @@ class Reseau:
             self._set_agent(i)
         
     def _get_agent(self, ag_id):
-        """Retourne l'agent d'id ag_id. Si il n'existe pas, renvoie False."""
+        """Retourne l'agent (objet "Agent") d'id ag_id. Si il n'existe pas, renvoie False."""
         for x in self.agents:
             if x.id == ag_id:
                 return x
@@ -112,12 +120,10 @@ class Reseau:
         le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
         list_tunnels = self._get_list_tunnels()
         if not((id_emetteur,id_recepteur) in list_tunnels):
-            t = Tunnel()
+            t = Tunnel(id_emetteur, id_recepteur)
             t._set_emetteur(id_emetteur)
             t._set_recepteur(id_recepteur)
             self.tunnels.append(t)
-        else:
-            pass
 
     def _set_tunnel_double(self, id_1, id_2):
         self._set_tunnel(id_1, id_2)
