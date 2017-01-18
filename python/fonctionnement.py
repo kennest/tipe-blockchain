@@ -51,8 +51,12 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
             net._get_agent(i).strategie = "attaque"
     
     info = md.Information(0, destinataire, "vrai")
+    
+    ##Diffusion
     boucle_diffusion(net, emetteur, info)
     
+    ##Affichage des résultats
     for i in range(n):
         print("  ----  ")
         net._get_agent(i).prinfo()
+        
