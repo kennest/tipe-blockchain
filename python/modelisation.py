@@ -50,11 +50,11 @@ class Tunnel:
             
 class Information:
 
-    def __init__(self, id, destinataire, info):
+    def __init__(self, id, destinataire, infotxt):
         self.id = id
         self.passeurs = []
         self.destinataire = destinataire
-        self.info = info
+        self.infotxt = infotxt
         # ajouter un champ requête et un champ réponse ?
         
     def _set_id(self, inf_id):
@@ -65,9 +65,9 @@ class Information:
         """ """
         self.destinataire = ag_id
     
-    def _set_info(self, info):
+    def _set_info(self, infotxt):
         """ info : str """
-        self.info = info
+        self.info = infotxt
         
     def _add_passeur(self,ag_id):
         """ Ajoute l'agent d'id ag_id à la liste des passeurs."""
@@ -77,13 +77,18 @@ class Information:
         print("id: " + str(self.id))
         print("destinataire: " + str(self.destinataire))
         print("passeurs: " + str(self.passeurs))
-        print("Info: " + self.info)
+        print("Info: " + self.infotxt)
      
-    def _set_information(self, id, destinataire, info):
+    def _set_information(self, id, destinataire, infotxt):
         _set_id(self, id)
         _set_destinataire(self, destinataire)
-        _set_info(self, info)
-
+        _set_info(self, infotxt)
+    
+    def copy(self):
+        """Renvoie une information identique (pour éviter les problèmes d'alias)."""
+        infocopy =  Information(self.id, self.destinataire, self.infotxt)
+        infocopy.passeurs = [x for x in self.passeurs]
+        return infocopy
     
 
 
