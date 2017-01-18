@@ -60,3 +60,23 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
         print("  ----  ")
         net._get_agent(i).prinfo()
         
+def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
+    """ Génère un réseau en aléatoire de taille n, avec nb_tun tunnels partant 
+    de chaque noeud, avec p attaquants. (p<n)
+    """
+    ##Problèmes !
+    
+    ##Initialisation
+    net = md.reseau_aleatoire(n, nb_tun)
+    for i in range(p):
+            net._get_agent(i).strategie = "attaque"
+    
+    info = md.Information(0, destinataire, "vrai")
+    
+    ##Diffusion
+    boucle_diffusion(net, emetteur, info)
+    
+    ##Affichage des résultats
+    for i in range(n):
+        print("  ----  ")
+        net._get_agent(i).prinfo()

@@ -1,5 +1,6 @@
 """TIPE"""
 
+import random
 
 class Agent:
     """Les agents sont les noeuds du réseau (utilisateurs)."""
@@ -248,4 +249,14 @@ def reseau_complet(n):
         for j in range(n):
             if i !=j:
                 net._set_tunnel_double(i,j)
+    return net
+
+def reseau_aleatoire(n,p):
+    """Génère un réseau de taille n, avec chaque agent lié à p autres."""
+    net =reseau_sans_tunnel(n)
+    for i in range(n):
+        voisins = [random.randrange(0,1000) for j in range(p)]
+        voisins = list(set(voisins)) #permet d'éviter les doublons
+        for vois in voisins:
+            net._set_tunnel(i, vois)
     return net
