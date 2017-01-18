@@ -10,10 +10,16 @@ def boucle_diffusion(net, agent0, info):
     agent0 : int
     info : Information()
     """
+    ##Initialisation :
+    #L'id de l'émetteur est ajoutée à l'info, et l'info est ajoutée à
+    #l'émetteur.
     info._add_passeur(agent0)
     net._get_agent(agent0)._add_info(info)
     
     list_vois = net._get_voisins_emet(agent0)
     for i in list_vois:
+        
+        # Si l'agent ne possède pas encore l'information :
         if not( info1.id in net._get_agent(i)._get_list_info_id()):
-            boucle_diffusion(net, i, info)
+            #par récurrence, la diffusion est effectuée
+            boucle_diffusion(net, i, info) 
