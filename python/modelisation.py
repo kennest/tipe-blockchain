@@ -48,20 +48,25 @@ class Tunnel:
     
     
             
-class Informations:
+class Information:
     def __init__(self):
         self.id = 0
         self.passeurs = []
         self.destinataire = 0
+        self.info = "0"
         # ajouter un champ requête et un champ réponse ?
         
     def _set_id(self, inf_id):
         """Change l'id de l'information."""
         self.id = inf_id
 
-    def _add_destinataire(self, ag_id):
+    def _set_destinataire(self, ag_id):
         """ """
         self.destinataire = ag_id
+    
+    def _set_info(self, info):
+        """ info : str """
+        self.info = info
         
     def _add_passeur(self,ag_id):
         self.passeurs.append(ag_id)
@@ -70,6 +75,12 @@ class Informations:
         print("id: " + str(self.id))
         print("destinataire: " + str(self.destinataire))
         print("passeurs: " + str(self.passeurs))
+        print("Info: " + info)
+        
+    def _set_information(self, id, destinataire, info):
+        _set_id(self, id)
+        _set_destinataire(self, destinataire)
+        _set_info(self, info)
 
     
 
@@ -207,7 +218,7 @@ def conv_matrix_to_net(matrice):
     return net
 
 
-# Génération de certains types de réseau
+## Génération de certains types de réseau
 
 def reseau_sans_tunnel(n):
     net = Reseau()
