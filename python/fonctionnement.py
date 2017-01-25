@@ -1,8 +1,22 @@
 import modelisation as md
 
+##Variables utilisables pour les tests 
+
 net = md.reseau_etoile(10)
 id_ag = 1
 info1 = md.Information(0,3,"?")
+
+
+##Définition des fonctions
+
+def iteration(net):
+    """Itération d'une boucle
+    
+    A chaque boucle, tous les agents font un 'tour d'action' sur le réseau. (modèle multi-agents)"""
+    
+    agents = net._get_list_id()
+    for i in agents:
+        
 
 def boucle_diffusion(net, agent0, info):
     """ Diffuse l'information info à partir de agent0.
