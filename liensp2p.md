@@ -223,19 +223,18 @@ https://ethereum-homestead.readthedocs.org/en/latest/
 Applications basées sur Ethereum :
 http://dapps.ethercasts.com/
 http://www.augur.net/
-Boardroom : 
-http://boardroom.to/
-http://boardroom.to/BoardRoom_WhitePaper.pdf
+ * Boardroom : 
+   * http://boardroom.to/
+   * http://boardroom.to/BoardRoom_WhitePaper.pdf
 
 
-https://github.com/ethereum/wiki/wiki/White-Paper
+ * https://github.com/ethereum/wiki/wiki/White-Paper
 
 
-Namecoin (nom de domaine) :
-  https://namecoin.org/
+ * Namecoin (nom de domaine) : https://namecoin.org/
 
 
-http://www.bortzmeyer.org/ethereum.html
+ * http://www.bortzmeyer.org/ethereum.html
 
  * Emissions de gaz à effet de serre http://www.coindesk.com/carbon-footprint-bitcoin/
 
@@ -252,4 +251,4 @@ https://en.wikipedia.org/wiki/Hashcash
 Python:
 
 Réseau:
-- http://apprendre-python.com/page-reseaux-sockets-python-port
+ * http://apprendre-python.com/page-reseaux-sockets-python-port
