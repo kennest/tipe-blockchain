@@ -12,11 +12,29 @@ info1 = md.Information(0,3,"?")
 def iteration(net):
     """Itération d'une boucle
     
-    A chaque boucle, tous les agents font un 'tour d'action' sur le réseau. (modèle multi-agents)"""
+    A chaque boucle, tous les agents font un 'tour d'action' sur le réseau. 
+    (modèle multi-agents)"""
     
-    agents = net._get_list_id()
-    for i in agents:
-        
+    list_agents_id = net._get_list_id()
+    for i in list_agents_id:
+        # L'agent i envoie les informations qu'il a envie d'échanger à ses 
+        # voisins
+        # 
+        #
+        agent = net._get_agent(i)
+        list_voisins = net._get_voisins_emet(i)
+        for j in list_voisins:
+            recepteur = net._get_agent(j)
+            for k in agent._get_list_info_id():
+                info = agent._get_info(k)
+                list_voisins = net._get_voisins_emet(i)
+                envoyer_info(self, recepteur, info, list_voisins)
+    pass
+
+
+
+
+
 
 def boucle_diffusion(net, agent0, info):
     """ Diffuse l'information info à partir de agent0.

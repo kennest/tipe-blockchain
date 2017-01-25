@@ -29,6 +29,26 @@ class Agent:
             list_id.append(i.id)
         return list_id
     
+    def envoyer_info(self, recepteur, info, list_voisins):
+        """Envoie une information à un voisin.
+        
+        recepteur : Agent
+        info : Information
+        list_voisins : liste des voisins, int list"""
+        assert recepteur.id in list_voisins
+        if not info.id in recepteur._get_list_info_id():
+            # Ne pas renvoyer une information que le voisin possède déjà
+            infobis = info.copy()
+            recepteur._add_info(infobis)
+    
+    def _get_info(self, i):
+        """ Récupère l'information d'id i possédée par l'agent """
+        assert i in self._get_list_info_id()
+        for info in self.informations:
+            if info.id == i:
+                return info
+        
+    
 
 
 class Tunnel:
