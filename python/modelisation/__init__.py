@@ -35,15 +35,16 @@ class Agent:
         recepteur : Agent
         info : Information
         list_voisins : liste des voisins, int list"""
-        assert recepteur.id in list_voisins
+        assert (recepteur.id in list_voisins)
         if not info.id in recepteur._get_list_info_id():
             # Ne pas renvoyer une information que le voisin possède déjà
             infobis = info.copy()
+            infobis._add_passeur(recepteur.id)
             recepteur._add_info(infobis)
     
     def _get_info(self, i):
         """ Récupère l'information d'id i possédée par l'agent """
-        assert i in self._get_list_info_id()
+        assert (i in self._get_list_info_id())
         for info in self.informations:
             if info.id == i:
                 return info
@@ -275,7 +276,7 @@ def reseau_aleatoire(n,p):
     """Génère un réseau de taille n, avec chaque agent lié à p autres."""
     net =reseau_sans_tunnel(n)
     for i in range(n):
-        voisins = [random.randrange(0,1000) for j in range(p)]
+        voisins = [random.randrange(0,n) for j in range(p)]
         voisins = list(set(voisins)) #permet d'éviter les doublons
         for vois in voisins:
             net._set_tunnel(i, vois)

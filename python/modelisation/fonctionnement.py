@@ -81,11 +81,11 @@ def boucle(net, n):
 
 def diff_etoile(n, p, centre, emetteur, destinataire):
     """ Génère un réseau en étoile de taille n avec p attaquants. (p<n)
-    Si centre = 1, l'agent 0 sera un attaquant. Sinon, c'est un agent normal."""
+    Si centre = True, l'agent 0 sera un attaquant. Sinon, c'est un agent normal."""
     
     ##Initialisation
     net = md.reseau_etoile(n)
-    if centre == 1:
+    if centre:
         for i in range(p):
             net._get_agent(i).strategie = "attaque"
     else:
@@ -131,6 +131,6 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
 
 ##Script
 
-# net = diff_aleatoire(20,4,0,1,3)
-# mat = md.conv_net_to_matrix(net)
-# md.matrix_to_csv(mat, "res_aleat")
+net = diff_aleatoire(20,4,0,1,3)
+mat = md.conv_net_to_matrix(net)
+md.matrix_to_csv(mat, "res_aleat")
