@@ -28,21 +28,39 @@ def iteration(net):
         # 
         #
         agent = net._get_agent(i)
-        list_voisins = net._get_voisins_emet(i)
+        if agent.strategie == "attaque":
+            print(i)
+            print("Attaque !")
+            comportement_attaquant(net, agent)
         
-        for j in list_voisins:
-            recepteur = net._get_agent(j)
+        else:
+            list_voisins = net._get_voisins_emet(i)
             
-            for k in agent._get_list_info_id():
-                info = agent._get_info(k)
-                list_voisins = net._get_voisins_emet(i)
-                agent.envoyer_info(recepteur, info, list_voisins)
+            for j in list_voisins:
+                recepteur = net._get_agent(j)
+                
+                for k in agent._get_list_info_id():
+                    info = agent._get_info(k)
+                    agent.envoyer_info(recepteur, info, list_voisins)
 
 def boucle(net, n):
     """Exécute n iterations"""
     for i in range(n):
         iteration(net)
 
+def comportement_attaquant(net, attaquant):
+    """Gère le comportement d'un agent attaquant"""
+    list_voisins = net._get_voisins_emet(attaquant.id)
+    for j in list_voisins:
+        # Parcours de la liste des voisins
+        recepteur = net._get_agent(j)
+        
+        for k in attaquant._get_list_info_id():
+            # Parcours des informations
+            info = attaquant._get_info(k)
+            info.infotxt = "faux"
+            info.prinfo()
+            attaquant.envoyer_info(recepteur, info, list_voisins)
 
 
 
@@ -101,7 +119,8 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
     init_info(net, emetteur, destinataire)
     
     ##Diffusion
-    boucle(net)
+    boucle(net, 3) # Dans un réseau en étoile, un information se propage dans 
+        # le réseau en au maximum 3 itérations
     
     ##Affichage des résultats
     for i in range(n):
