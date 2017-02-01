@@ -16,7 +16,19 @@ class Interpreteur(cmd.Cmd):
         destinataire : destinataire de l'information"""
         (n, p, centre, emetteur, destinataire) = parse_nbr(arg)
         diff_etoile(n, p, centre, emetteur, destinataire)
-    
+        
+    def do_diffaleat(self, arg):
+        """Lance la diffusion sur un réseau aléatoire
+        
+        Paramètres :
+        n : Nombre d'agents
+        nb_tun : nombre de tunnels
+        p : nombre d'attaquants (p<=n)
+        emetteur : emetteur de l'information
+        destinataire : destinataire de l'information"""
+        (n, nb_tun, p, emetteur, destinataire) = parse_nbr(arg)
+        diff_aleatoire(n, nb_tun, p, emetteur, destinataire)
+        
     def do_quitter(self, arg):
         """Quitte le programme"""
         print("Au revoir\n")
