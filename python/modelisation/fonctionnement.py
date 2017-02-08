@@ -143,9 +143,11 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     boucle(net, n) #S'il y a n agents, en n tours, l'informations sera arrivée
     
     ##Affichage des résultats
-    for i in range(n):
-        print("  ----  ")
-        net._get_agent(i).prinfo()
+    # for i in range(n):
+    #     print("  ----  ")
+    #     net._get_agent(i).prinfo()
+        
+    ## Retourne le réseau
     return net
     
     
