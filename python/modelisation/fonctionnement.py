@@ -28,21 +28,39 @@ def iteration(net):
         # 
         #
         agent = net._get_agent(i)
-        list_voisins = net._get_voisins_emet(i)
+        if agent.strategie == "attaque":
+            print(i)
+            print("Attaque !")
+            comportement_attaquant(net, agent)
         
-        for j in list_voisins:
-            recepteur = net._get_agent(j)
+        else:
+            list_voisins = net._get_voisins_emet(i)
             
-            for k in agent._get_list_info_id():
-                info = agent._get_info(k)
-                list_voisins = net._get_voisins_emet(i)
-                agent.envoyer_info(recepteur, info, list_voisins)
+            for j in list_voisins:
+                recepteur = net._get_agent(j)
+                
+                for k in agent._get_list_info_id():
+                    info = agent._get_info(k)
+                    agent.envoyer_info(recepteur, info, list_voisins)
 
 def boucle(net, n):
     """Exécute n iterations"""
     for i in range(n):
         iteration(net)
 
+def comportement_attaquant(net, attaquant):
+    """Gère le comportement d'un agent attaquant"""
+    list_voisins = net._get_voisins_emet(attaquant.id)
+    for j in list_voisins:
+        # Parcours de la liste des voisins
+        recepteur = net._get_agent(j)
+        
+        for k in attaquant._get_list_info_id():
+            # Parcours des informations
+            info = attaquant._get_info(k)
+            info.infotxt = "faux"
+            info.prinfo()
+            attaquant.envoyer_info(recepteur, info, list_voisins)
 
 
 
@@ -79,6 +97,12 @@ def boucle(net, n):
 #                 infobis.infotxt = "faux"
 #                 boucle_diffusion(net, i, infobis)
 
+def init_info(net, emetteur, destinataire):
+    info = md.Information(0, destinataire, "vrai")
+    info._add_passeur(emetteur)
+    agent_emet = net._get_agent(emetteur)
+    agent_emet._add_info(info)
+    
 def diff_etoile(n, p, centre, emetteur, destinataire):
     """ Génère un réseau en étoile de taille n avec p attaquants. (p<n)
     Si centre = True, l'agent 0 sera un attaquant. Sinon, c'est un agent normal."""
@@ -92,10 +116,11 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
         for i in range(1,p+1):
             net._get_agent(i).strategie = "attaque"
     
-    info = md.Information(0, destinataire, "vrai")
+    init_info(net, emetteur, destinataire)
     
     ##Diffusion
-    boucle_diffusion(net, emetteur, info)
+    boucle(net, 3) # Dans un réseau en étoile, un information se propage dans 
+        # le réseau en au maximum 3 itérations
     
     ##Affichage des résultats
     for i in range(n):
@@ -106,17 +131,13 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     """ Génère un réseau en aléatoire de taille n, avec nb_tun tunnels partant 
     de chaque noeud, avec p attaquants. (p<n)
     """
-    ##Problèmes !
     
     ##Initialisation
     net = md.reseau_aleatoire(n, nb_tun)
     for i in range(p):
             net._get_agent(i).strategie = "attaque"
     
-    info = md.Information(0, destinataire, "vrai")
-    info._add_passeur(emetteur)
-    agent_emet = net._get_agent(emetteur)
-    agent_emet._add_info(info)
+    init_info(net, emetteur, destinataire)
     
     ##Diffusion
     boucle(net, n) #S'il y a n agents, en n tours, l'informations sera arrivée
@@ -130,7 +151,7 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     
 
 ##Script
-
-net = diff_aleatoire(20,4,0,1,3)
-mat = md.conv_net_to_matrix(net)
-md.matrix_to_csv(mat, "res_aleat")
+# 
+# net = diff_aleatoire(20,4,0,1,3)
+# mat = md.conv_net_to_matrix(net)
+# md.matrix_to_csv(mat, "res_aleat")
