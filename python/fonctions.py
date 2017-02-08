@@ -2,16 +2,24 @@ import modelisation as mod
 import random
 
 
-def est_connexe(net) :
+def est_connexe(net):
     """Retourne True si le graphe est connexe, False sinon."""
     M = mod.conv_net_to_matrix(net)
-    for i in range(len(M[0])) :
-        n = 0
-        for k in range(len(M[0])) :
-            n = n + M[k][i]
-        if n == 0 :
-            return False
-    return True
+    Noeuds_visités = [0]*len(M)
+    Noeuds_à_visiter = [0]*len(M)
+
+    t = [0]
+    for k in range(len(M)) :
+        r = t.copy()
+        for n in r :
+            Noeuds_visités[n] = 2
+            if Noeuds_visités == [2]*len(M) :
+                return True
+            t.pop(n)
+            for i in range(len(M)) :
+                if M[n][i] == 1 :
+                    t.append(i)
+    return False
 
 
 
