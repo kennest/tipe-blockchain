@@ -250,22 +250,39 @@ def conv_matrix_to_net(matrice):
 
 def est_connexe(net):
     """Retourne True si le graphe est connexe, False sinon."""
-    M = mod.conv_net_to_matrix(net)
+    M = conv_net_to_matrix(net)
     Noeuds_visités = [0]*len(M)
-    Noeuds_à_visiter = [0]*len(M)
+    #Noeuds_à_visiter = [0]*len(M)
 
-    t = [0]
+    t = [0] #noeuds à visiter
     for k in range(len(M)) :
         r = t.copy()
         for n in r :
             Noeuds_visités[n] = 2
             if Noeuds_visités == [2]*len(M) :
                 return True
-            t.pop(n)
+            t.pop(t.index(n))
             for i in range(len(M)) :
                 if M[n][i] == 1 :
                     t.append(i)
     return False
+    
+# def est_connexe(net):
+#     n = len(net.agents)
+#     visite = [False for i in range(n)]
+#     
+#     q = [0]
+#     while q != []:
+#         visite[q[0]] = 1
+#         voisins = net._get_voisins_emet(q[0])
+#         for v in voisins:
+#             if visite[v] == 0:
+#                 q.append(v)
+#         q.pop(0)
+#     
+#     if visite == [1]*n:
+#         return True
+#     return False
 
 def reseau_sans_tunnel(n):
     net = Reseau()
@@ -300,6 +317,7 @@ def reseau_aleatoire(n,p):
         voisins = list(set(voisins)) #permet d'éviter les doublons
         for vois in voisins:
             net._set_tunnel(i, vois)
+            
     if not(est_connexe(net)):
         net = reseau_aleatoire(n, p)
     return net

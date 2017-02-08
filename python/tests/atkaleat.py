@@ -12,14 +12,16 @@ def test_atkaleat(n, nb_tun):
             vrai = 0
             faux = 0
             for agent in net.agents:
-                agent.prinfo()
-                info = agent.informations[0]
-                assert info.id == 0 
-                if info.infotxt == 'faux':
-                    faux += 1
-                elif info.infotxt == 'vrai':
-                    vrai += 1
-                else:
-                    print("Erreur !")
+                try:
+                    info = agent.informations[0]
+                    assert info.id == 0 
+                    if info.infotxt == 'faux':
+                        faux += 1
+                    elif info.infotxt == 'vrai':
+                        vrai += 1
+                    else:
+                        print("Erreur !")
+                except:
+                    print("Erreur, {} agents et {} attaquants ({} tunnels)".format(n, p, nb_tun))
             resultats.append((p, vrai, faux))
     return resultats
