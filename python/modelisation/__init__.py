@@ -151,11 +151,11 @@ class Reseau:
         """Ajoute un tunnel entre l'émetteur d'id id_emetteur et
         le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
         list_tunnels = self._get_list_tunnels()
-        if not((id_emetteur,id_recepteur) in list_tunnels):
-            t = Tunnel(id_emetteur, id_recepteur)
-            t._set_emetteur(id_emetteur)
-            t._set_recepteur(id_recepteur)
-            self.tunnels.append(t)
+        #if not((id_emetteur,id_recepteur) in list_tunnels):
+        t = Tunnel(id_emetteur, id_recepteur)
+        t._set_emetteur(id_emetteur)
+        t._set_recepteur(id_recepteur)
+        self.tunnels.append(t)
 
     def _set_tunnel_double(self, id_1, id_2):
         self._set_tunnel(id_1, id_2)
@@ -247,7 +247,48 @@ def conv_matrix_to_net(matrice):
 
 ## Génération de certains types de réseau
 
+
+def est_connexe(net):
+    """Retourne True si le graphe est connexe, False sinon."""
+    M = conv_net_to_matrix(net)
+    Noeuds_visités = [0]*len(M)
+    #Noeuds_à_visiter = [0]*len(M)
+
+    t = [0] #noeuds à visiter
+    for k in range(len(M)) :
+        r = t.copy()
+        for n in r :
+            Noeuds_visités[n] = 2
+            if Noeuds_visités == [2]*len(M) :
+                return True
+            t.pop(t.index(n))
+            for i in range(len(M)) :
+                if M[n][i] == 1 :
+                    t.append(i)
+    return False
+
+
+##Fonction fausse ?
+# def est_connexe(net):
+#     n = len(net.agents)
+#     visite = [False for i in range(n)]
+#     
+#     q = [0]
+#     while q != []:
+#         k = q.pop()
+#         visite[k] = 1
+#         voisins = net._get_voisins_emet(k)
+#         for v in voisins:
+#             if visite[v] == 0:
+#                 q.append(v)
+#         
+#     
+#     if visite == [True for i in range(n)]:
+#         return True
+#     return False
+
 def reseau_sans_tunnel(n):
+    """Génère un réseau de n noeuds, sans tunnels pour les relier."""
     net = Reseau()
     liste = [i for i in range(n)]
     net._set_list_agents(liste)
@@ -272,12 +313,27 @@ def reseau_complet(n):
                 net._set_tunnel_double(i,j)
     return net
 
+def gen_ens_aleat(n,m,M):
+    """Génère un ensemble à n éléments, compris entre m (inclus) et M (exclus)."""
+    if M-m < n:
+        raise IntervalError("""Les bornes de l'intervalle sont trop rapprochées
+        par rapport au nombre d'éléments""")
+    ens = []
+    while len(ens) < n:
+        x = random.randint(m, M-1)
+        if not (x in ens):
+            ens.append(x)
+    return ens
+
+
 def reseau_aleatoire(n,p):
     """Génère un réseau de taille n, avec chaque agent lié à p autres."""
     net =reseau_sans_tunnel(n)
     for i in range(n):
-        voisins = [random.randrange(0,n) for j in range(p)]
-        voisins = list(set(voisins)) #permet d'éviter les doublons
+        voisins = gen_ens_aleat(p, 0, n)
         for vois in voisins:
             net._set_tunnel(i, vois)
+            
+    if not(est_connexe(net)):
+        net = reseau_aleatoire(n, p)
     return net

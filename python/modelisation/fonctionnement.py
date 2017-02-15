@@ -29,8 +29,8 @@ def iteration(net):
         #
         agent = net._get_agent(i)
         if agent.strategie == "attaque":
-            print(i)
-            print("Attaque !")
+            # print(i)
+            # print("Attaque !")
             comportement_attaquant(net, agent)
         
         else:
@@ -59,7 +59,7 @@ def comportement_attaquant(net, attaquant):
             # Parcours des informations
             info = attaquant._get_info(k)
             info.infotxt = "faux"
-            info.prinfo()
+            #info.prinfo()
             attaquant.envoyer_info(recepteur, info, list_voisins)
 
 
@@ -134,6 +134,9 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     
     ##Initialisation
     net = md.reseau_aleatoire(n, nb_tun)
+    if not(md.est_connexe(net)):
+        print("Graphe non connexe !")
+
     for i in range(p):
             net._get_agent(i).strategie = "attaque"
     
@@ -143,9 +146,15 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     boucle(net, n) #S'il y a n agents, en n tours, l'informations sera arrivée
     
     ##Affichage des résultats
-    for i in range(n):
-        print("  ----  ")
-        net._get_agent(i).prinfo()
+    # for i in range(n):
+    #     print("  ----  ")
+    #     net._get_agent(i).prinfo()
+
+    ##Test si toutes les informations sont non vides
+    for agent in net.agents:
+        if agent.informations == []:
+            print("Erreur, la liste de l'agent {} est vide !".format(agent.id))
+    ## Retourne le réseau
     return net
     
     

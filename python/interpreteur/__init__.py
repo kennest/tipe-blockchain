@@ -1,5 +1,7 @@
 import cmd
+import argparse
 from modelisation.fonctionnement import *
+from tests.atkaleat import test_atkaleat
 
 class Interpreteur(cmd.Cmd):
     intro = "\nReseaux\n======="
@@ -26,9 +28,28 @@ class Interpreteur(cmd.Cmd):
         p : nombre d'attaquants (p<=n)
         emetteur : emetteur de l'information
         destinataire : destinataire de l'information"""
+        
+        # def parse(arg):
+        #     """Traite les arguments de la fonction"""
+        #     parser = argparse.ArgumentParser()
+        #     parser.add_argument("echo")
+        #     parser.parse_args()
+        
         (n, nb_tun, p, emetteur, destinataire) = parse_nbr(arg)
         diff_aleatoire(n, nb_tun, p, emetteur, destinataire)
         
+    def do_testatkaleat(self, arg):
+        """Créé une fonction permettant de simuler un grand nombre de diffusion aléatoires à n et nb_tun fixés, en faisant varier p. Ensuite, trace une courbe représentant le nombre de 'vrais' par rapport aux 'faux'.
+        
+        Paramètres :
+        n = nombre d'agents
+        nb_tunnels : nombre de tunnels
+        """
+        (n, nb_tun) = parse_nbr(arg)
+        r = test_atkaleat(n, nb_tun)
+        print(r)
+        print("Done")
+    
     def do_quitter(self, arg):
         """Quitte le programme"""
         print("Au revoir\n")
