@@ -27,7 +27,7 @@ def test_atkaleat(n, nb_tun):
                     elif info.infotxt == 'vrai':
                         vrai += 1
                     else:
-                        raise InfoError("Erreur ! Le texte de l'information est invalide !")
+                        print("Erreur ! Le texte de l'information est invalide !")
                 except:
                     print("Erreur, {} agents et {} attaquants ({} tunnels)".format(n, p, nb_tun))
                     print(est_connexe(net))
