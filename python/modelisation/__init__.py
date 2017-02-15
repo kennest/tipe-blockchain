@@ -151,11 +151,11 @@ class Reseau:
         """Ajoute un tunnel entre l'émetteur d'id id_emetteur et
         le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
         list_tunnels = self._get_list_tunnels()
-        if not((id_emetteur,id_recepteur) in list_tunnels):
-            t = Tunnel(id_emetteur, id_recepteur)
-            t._set_emetteur(id_emetteur)
-            t._set_recepteur(id_recepteur)
-            self.tunnels.append(t)
+        #if not((id_emetteur,id_recepteur) in list_tunnels):
+        t = Tunnel(id_emetteur, id_recepteur)
+        t._set_emetteur(id_emetteur)
+        t._set_recepteur(id_recepteur)
+        self.tunnels.append(t)
 
     def _set_tunnel_double(self, id_1, id_2):
         self._set_tunnel(id_1, id_2)
@@ -288,6 +288,7 @@ def est_connexe(net):
 #     return False
 
 def reseau_sans_tunnel(n):
+    """Génère un réseau de n noeuds, sans tunnels pour les relier."""
     net = Reseau()
     liste = [i for i in range(n)]
     net._set_list_agents(liste)
@@ -312,12 +313,24 @@ def reseau_complet(n):
                 net._set_tunnel_double(i,j)
     return net
 
+def gen_ens_aleat(n,m,M):
+    """Génère un ensemble à n éléments, compris entre m (inclus) et M (exclus)."""
+    if M-m < n:
+        raise IntervalError("""Les bornes de l'intervalle sont trop rapprochées
+        par rapport au nombre d'éléments""")
+    ens = []
+    while len(ens) < n:
+        x = random.randint(m, M-1)
+        if not (x in ens):
+            ens.append(x)
+    return ens
+
+
 def reseau_aleatoire(n,p):
     """Génère un réseau de taille n, avec chaque agent lié à p autres."""
     net =reseau_sans_tunnel(n)
     for i in range(n):
-        voisins = [random.randrange(0,n) for j in range(p)]
-        voisins = list(set(voisins)) #permet d'éviter les doublons
+        voisins = gen_ens_aleat(p, 0, n)
         for vois in voisins:
             net._set_tunnel(i, vois)
             

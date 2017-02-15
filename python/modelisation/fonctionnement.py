@@ -135,7 +135,8 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     ##Initialisation
     net = md.reseau_aleatoire(n, nb_tun)
     if not(md.est_connexe(net)):
-        print("Graphe non connexe !")
+        raise NonConnexe("Graphe non connexe !")
+
     for i in range(p):
             net._get_agent(i).strategie = "attaque"
     
@@ -152,7 +153,7 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     ##Test si toutes les informations sont non vides
     for agent in net.agents:
         if agent.informations == []:
-            print("Erreur, la liste de l'agent {} est vide !".format(agent.id))
+            raise InfoValidityError("Erreur, la liste de l'agent {} est vide !".format(agent.id))
     ## Retourne le réseau
     return net
     
