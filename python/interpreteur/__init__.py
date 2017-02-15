@@ -46,7 +46,8 @@ class Interpreteur(cmd.Cmd):
         nb_tunnels : nombre de tunnels
         """
         (n, nb_tun) = parse_nbr(arg)
-        test_atkaleat(n, nb_tun)
+        r = test_atkaleat(n, nb_tun)
+        print(r)
         print("Done")
     
     def do_quitter(self, arg):

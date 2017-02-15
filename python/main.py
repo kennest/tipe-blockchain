@@ -1,3 +1,3 @@
 from interpreteur import launch
-
-launch()
+from tests.tes_connexite import *
+#launch()

@@ -266,21 +266,24 @@ def est_connexe(net):
                 if M[n][i] == 1 :
                     t.append(i)
     return False
-    
+
+
+##Fonction fausse ?
 # def est_connexe(net):
 #     n = len(net.agents)
 #     visite = [False for i in range(n)]
 #     
 #     q = [0]
 #     while q != []:
-#         visite[q[0]] = 1
-#         voisins = net._get_voisins_emet(q[0])
+#         k = q.pop()
+#         visite[k] = 1
+#         voisins = net._get_voisins_emet(k)
 #         for v in voisins:
 #             if visite[v] == 0:
 #                 q.append(v)
-#         q.pop(0)
+#         
 #     
-#     if visite == [1]*n:
+#     if visite == [True for i in range(n)]:
 #         return True
 #     return False
 
