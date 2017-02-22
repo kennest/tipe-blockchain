@@ -64,7 +64,7 @@ for i in range(1):
         actions_agent(agent)
 
 for i in range(10):
-    net.agents[i].prinfo()
+    print(net.agents[i])
     print('---')
 
 

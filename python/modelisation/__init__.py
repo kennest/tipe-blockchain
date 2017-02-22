@@ -17,11 +17,11 @@ class Agent:
         """Ajoute une information au noeud."""
         self.informations.append(info)
 
-    def prinfo(self):
+    def _str_(self):
         print("id: " + str(self.id))
         print("Informations:")
         for i in self.informations:
-            i.prinfo()
+            print(i)
             
     def _get_list_info_id(self):
         list_id = []
@@ -94,7 +94,7 @@ class Information:
         """ Ajoute l'agent d'id ag_id à la liste des passeurs."""
         self.passeurs.append(ag_id)
 
-    def prinfo(self):
+    def _str_(self):
         print("id: " + str(self.id))
         print("destinataire: " + str(self.destinataire))
         print("passeurs: " + str(self.passeurs))

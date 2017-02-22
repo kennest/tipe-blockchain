@@ -59,7 +59,7 @@ def comportement_attaquant(net, attaquant):
             # Parcours des informations
             info = attaquant._get_info(k)
             info.infotxt = "faux"
-            #info.prinfo()
+            #print(info)
             attaquant.envoyer_info(recepteur, info, list_voisins)
 
 
@@ -125,7 +125,7 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
     ##Affichage des résultats
     for i in range(n):
         print("  ----  ")
-        net._get_agent(i).prinfo()
+        print(net._get_agent(i))
 
 
 def diff_aleatoire_init(n, nb_tun, p, emetteur, destinataire):
@@ -154,7 +154,7 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
     ##Affichage des résultats
     # for i in range(n):
     #     print("  ----  ")
-    #     net._get_agent(i).prinfo()
+    #     print(net._get_agent(i))
 
     ##Test si toutes les informations sont non vides
     for agent in net.agents:
