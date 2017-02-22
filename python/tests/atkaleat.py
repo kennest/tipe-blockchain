@@ -1,5 +1,5 @@
 from modelisation.fonctionnement import diff_aleatoire
-from modelisation import est_connexe
+from modelisation import est_connexe, conv_net_to_matrix
 
 def test_atkaleat(n, nb_tun):
     """Lance une batterie de tests sur des réseaux générés aléatoirement, en 
@@ -30,6 +30,7 @@ def test_atkaleat(n, nb_tun):
                         print("Erreur ! Le texte de l'information est invalide !")
                 except:
                     print("Erreur, {} agents et {} attaquants ({} tunnels)".format(n, p, nb_tun))
-                    print(est_connexe(net))
+                    print("Connexe : " + str(est_connexe(net)))
+                    print(net)
             resultats.append((p, vrai, faux))
     return resultats

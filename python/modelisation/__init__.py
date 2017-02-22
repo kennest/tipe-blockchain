@@ -63,9 +63,8 @@ class Tunnel:
     def _set_recepteur(self,id_recepteur):
         self.recepteur = id_recepteur
 
-    def prinfo(self):
-        print("Récepteur : "+str(self.recepteur))
-        print("Emetteur : "+str(self.emetteur))
+    def _str_(self):
+        print("(" + str(self.emetteur) + "> " + str(self.recepteur) + ")")
 
     
     
@@ -119,9 +118,10 @@ class Reseau:
         self.agents = []
         self.tunnels = []
 
-    def prinfo(self):
+    def _str_(self):
         """Affiche la liste des agents du réseau."""
         print([ag.id for ag in self.agents])
+        print(tunnel for i in self.tunnels)
 
     def _get_list_id(self):
         """Récupère la liste des agents du réseau."""
@@ -247,45 +247,47 @@ def conv_matrix_to_net(matrice):
 
 ## Génération de certains types de réseau
 
-
-def est_connexe(net):
-    """Retourne True si le graphe est connexe, False sinon."""
-    M = conv_net_to_matrix(net)
-    Noeuds_visités = [0]*len(M)
+##Fonction fausse
+#def est_connexe(net):
+#    """Retourne True si le graphe est connexe, False sinon."""
+#    M = conv_net_to_matrix(net)
+#    Noeuds_visités = [0]*len(M)
     #Noeuds_à_visiter = [0]*len(M)
 
-    t = [0] #noeuds à visiter
-    for k in range(len(M)) :
-        r = t.copy()
-        for n in r :
-            Noeuds_visités[n] = 2
-            if Noeuds_visités == [2]*len(M) :
-                return True
-            t.pop(t.index(n))
-            for i in range(len(M)) :
-                if M[n][i] == 1 :
-                    t.append(i)
+#    t = [0] #noeuds à visiter
+#    for k in range(len(M)) :
+#        r = t.copy()
+#        for n in r :
+#            Noeuds_visités[n] = 2
+#            if Noeuds_visités == [2]*len(M) :
+#                return True
+#            t.pop(t.index(n))
+#            for i in range(len(M)) :
+#                if M[n][i] == 1 :
+#                    t.append(i)
+#    return False
+
+
+
+def est_connexe(net):
+    n = len(net.agents)
+
+    for j in range(n):
+        visite = [False for i in range(n)]
+
+        q = [j]
+        while q != []:
+            k = q.pop()
+            visite[k] = 1
+            voisins = net._get_voisins_emet(k)
+            for v in voisins:
+                if visite[v] == 0:
+                    q.append(v)
+        
+    
+    if visite == [True for i in range(n)]:
+        return True
     return False
-
-
-##Fonction fausse ?
-# def est_connexe(net):
-#     n = len(net.agents)
-#     visite = [False for i in range(n)]
-#     
-#     q = [0]
-#     while q != []:
-#         k = q.pop()
-#         visite[k] = 1
-#         voisins = net._get_voisins_emet(k)
-#         for v in voisins:
-#             if visite[v] == 0:
-#                 q.append(v)
-#         
-#     
-#     if visite == [True for i in range(n)]:
-#         return True
-#     return False
 
 def reseau_sans_tunnel(n):
     """Génère un réseau de n noeuds, sans tunnels pour les relier."""

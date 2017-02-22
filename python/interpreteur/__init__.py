@@ -3,6 +3,7 @@ import argparse
 from modelisation.fonctionnement import *
 from tests.atkaleat import test_atkaleat
 
+
 class Interpreteur(cmd.Cmd):
     intro = "\nReseaux\n======="
     prompt = "} "
@@ -54,7 +55,7 @@ class Interpreteur(cmd.Cmd):
         """Quitte le programme"""
         print("Au revoir\n")
         return True
-    
+
 def parse_nbr(arg):
     """Retourne un tuple d'entiers avec un argument sous forme de chaîne 
     de caractères."""

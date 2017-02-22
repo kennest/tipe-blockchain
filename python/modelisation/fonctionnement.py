@@ -126,13 +126,11 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
     for i in range(n):
         print("  ----  ")
         net._get_agent(i).prinfo()
-        
-def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
-    """ Génère un réseau en aléatoire de taille n, avec nb_tun tunnels partant 
-    de chaque noeud, avec p attaquants. (p<n)
-    """
+
+
+def diff_aleatoire_init(n, nb_tun, p, emetteur, destinataire):
+    """Initialise le réseau afin de lancer une diffusion aléatoire."""
     
-    ##Initialisation
     net = md.reseau_aleatoire(n, nb_tun)
     if not(md.est_connexe(net)):
         print("Graphe non connexe !")
@@ -141,7 +139,15 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
             net._get_agent(i).strategie = "attaque"
     
     init_info(net, emetteur, destinataire)
+    return net
+
     
+def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
+    """ Génère un réseau en aléatoire de taille n, avec nb_tun tunnels partant 
+    de chaque noeud, avec p attaquants. (p<n)
+    """
+
+    net = diff_aleatoire_init(n, nb_tun, p, emetteur, destinataire)
     ##Diffusion
     boucle(net, n) #S'il y a n agents, en n tours, l'informations sera arrivée
     
