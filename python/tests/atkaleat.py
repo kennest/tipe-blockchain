@@ -1,7 +1,7 @@
 from modelisation.fonctionnement import diff_aleatoire
 from modelisation import est_connexe, conv_net_to_matrix
 from modelisation.fichiers import ecrit_csv
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt #voir http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
 import numpy as np
 
 iterations = 10 #nombre de passages pour un même nombre d'attaquants
@@ -57,6 +57,9 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     plt.clf()
     plt.plot(les_x, les_vrais)
     plt.plot(les_x, les_faux)
+    plt.title("Tracé avec " + str(n) + " agents et " + str(nb_tun) + " tunnels")
+    plt.xlabel("p Nombre d'attaquants")
+    plt.ylabel("Nombre de réponses vraies/fausses")
     plt.show()
     plt.savefig(nom_fichier + ".png")
     
