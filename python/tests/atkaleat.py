@@ -1,7 +1,8 @@
 from modelisation.fonctionnement import diff_aleatoire
 from modelisation import est_connexe, conv_net_to_matrix
+from modelisation.fichiers import ecrit_csv
 
-def test_atkaleat(n, nb_tun):
+def test_atkaleat(n, nb_tun, nbr_fichier):
     """Lance une batterie de tests sur des réseaux générés aléatoirement, en 
     faisant varier le nombre d'attaquants."""
     
@@ -33,4 +34,7 @@ def test_atkaleat(n, nb_tun):
                     print("Connexe : " + str(est_connexe(net)))
                     print(net)
             resultats.append((p, vrai, faux))
+            ecrit_csv(resultats, "atkaleat-" + str(n) +"-"+ str(nb_tun) +"-"+ str(nbr_fichier))
     return resultats
+
+

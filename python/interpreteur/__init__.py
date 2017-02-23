@@ -45,11 +45,11 @@ class Interpreteur(cmd.Cmd):
         Paramètres :
         n = nombre d'agents
         nb_tunnels : nombre de tunnels
+        nbr_fichier : nombre ajouté au nom de fichier
         """
-        (n, nb_tun) = parse_nbr(arg)
-        r = test_atkaleat(n, nb_tun)
+        (n, nb_tun, nbr_fichier) = parse_nbr(arg)
+        r = test_atkaleat(n, nb_tun, nbr_fichier)
         print(r)
-        print("Done")
     
     def do_quitter(self, arg):
         """Quitte le programme"""
