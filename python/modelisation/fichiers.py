@@ -9,3 +9,10 @@ def ecrit_csv(tableau, nom):
             for j in i:
                 listtext.append(str(j))
             writer.writerow(listtext)
+
+def lit_csv(fichier):
+    """Retourne un tableau à doubles-entrées"""
+    with open(fichier + ".csv", 'r', newline='') as fichiercsv:
+        reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in reader:
+            print(', '.join(row))
