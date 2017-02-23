@@ -268,7 +268,7 @@ def conv_matrix_to_net(matrice):
 #    return False
 
 
-
+##A optimiser si possible
 def est_connexe(net):
     n = len(net.agents)
 
@@ -328,6 +328,7 @@ def gen_ens_aleat(n,m,M):
     return ens
 
 
+## A optimiser, il faudrait générer un réseau valide du premier coup !
 def reseau_aleatoire(n,p):
     """Génère un réseau de taille n, avec chaque agent lié à p autres."""
     net =reseau_sans_tunnel(n)
