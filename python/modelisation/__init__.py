@@ -17,7 +17,7 @@ class Agent:
         """Ajoute une information au noeud."""
         self.informations.append(info)
 
-    def _str_(self):
+    def __str__(self):
         print("id: " + str(self.id))
         print("Informations:")
         for i in self.informations:
@@ -63,7 +63,7 @@ class Tunnel:
     def _set_recepteur(self,id_recepteur):
         self.recepteur = id_recepteur
 
-    def _str_(self):
+    def __str__(self):
         print("(" + str(self.emetteur) + "> " + str(self.recepteur) + ")")
 
     
@@ -94,7 +94,7 @@ class Information:
         """ Ajoute l'agent d'id ag_id à la liste des passeurs."""
         self.passeurs.append(ag_id)
 
-    def _str_(self):
+    def __str__(self):
         print("id: " + str(self.id))
         print("destinataire: " + str(self.destinataire))
         print("passeurs: " + str(self.passeurs))
@@ -118,7 +118,7 @@ class Reseau:
         self.agents = []
         self.tunnels = []
 
-    def _str_(self):
+    def __str__(self):
         """Affiche la liste des agents du réseau."""
         print([ag.id for ag in self.agents])
         print(tunnel for i in self.tunnels)
