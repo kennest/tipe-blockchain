@@ -119,7 +119,7 @@ def diff_etoile(n, p, centre, emetteur, destinataire):
     init_info(net, emetteur, destinataire)
     
     ##Diffusion
-    boucle(net, 3) # Dans un réseau en étoile, un information se propage dans 
+    boucle(net, 3) # Dans un réseau en étoile, une information se propage dans 
         # le réseau en au maximum 3 itérations
     
     ##Affichage des résultats
@@ -132,8 +132,8 @@ def diff_aleatoire_init(n, nb_tun, p, emetteur, destinataire):
     """Initialise le réseau afin de lancer une diffusion aléatoire."""
     
     net = md.reseau_aleatoire(n, nb_tun)
-    if not(md.est_connexe(net)):
-        print("Graphe non connexe !")
+#    if not(md.est_connexe(net)):
+#        print("Graphe non connexe !")
 
     for i in range(p):
             net._get_agent(i).strategie = "attaque"
@@ -149,7 +149,7 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
 
     net = diff_aleatoire_init(n, nb_tun, p, emetteur, destinataire)
     ##Diffusion
-    boucle(net, n) #S'il y a n agents, en n tours, l'informations sera arrivée
+    boucle(net, n) #S'il y a n agents, en n tours, l'information sera arrivée
     
     ##Affichage des résultats
     # for i in range(n):

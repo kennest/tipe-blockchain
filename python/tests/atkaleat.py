@@ -1,4 +1,4 @@
-from modelisation.fonctionnement import diff_aleatoire
+from modelisation.fonctionnement import diff_aleatoire, init_info
 from modelisation import est_connexe, conv_net_to_matrix
 from modelisation.fichiers import ecrit_csv
 import matplotlib.pyplot as plt #voir http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
@@ -13,10 +13,15 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     nom_fichier = "atkaleat-" + str(n) +"-"+ str(nb_tun) +"-"+ str(nbr_fichier)
     resultats = [] # tableau contenant les résultats de la simulation
     
-    for p in range(n): #avec p attaquants
-        for k in range(iterations): #nombre de tests avec p attaquants
+    for k in range(iterations):
+        #nombre de tests avec p attaquants
+        net = reseau_aleatoire(n, nb_tun)
+        init_info(net, n-1, n-2)
+		for p in range(n): #avec p attaquants
             # n-1 sera le dernier agent non attaquant, n-2 l'avant-dernier
-            net = diff_aleatoire(n, nb_tun, p, n-1, n-2)
+			net_b = net.copy()
+			
+			# Ensuite, nous initialisations p agents qui seront attaquants
             
             
             

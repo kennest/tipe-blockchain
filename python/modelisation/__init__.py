@@ -22,7 +22,13 @@ class Agent:
         print("Informations:")
         for i in self.informations:
             print(i)
-            
+    
+    def copy(self):
+		""" Retourne un agent ayant les mêmes caractéristiques, en 
+		évitant les problèmes d'alias."""
+		
+		
+		
     def _get_list_info_id(self):
         list_id = []
         for i in self.informations:
@@ -122,6 +128,12 @@ class Reseau:
         """Affiche la liste des agents du réseau."""
         print([ag.id for ag in self.agents])
         print(tunnel for i in self.tunnels)
+    
+    def copy(self):
+		"""Retourne un réseau identique, en évitant les problèmes d'alias."""
+		agents = [a.copy() for a in self.agents]
+		tunnels = self.tunnels
+		net = Reseau(agents, tunnels)
 
     def _get_list_id(self):
         """Récupère la liste des agents du réseau."""
@@ -330,7 +342,7 @@ def gen_ens_aleat(n,m,M):
 
 def reseau_aleatoire(n,p):
     """Génère un réseau de taille n, avec chaque agent lié à p autres."""
-    net =reseau_sans_tunnel(n)
+    net = reseau_sans_tunnel(n)
     for i in range(n):
         voisins = gen_ens_aleat(p, 0, n)
         for vois in voisins:
