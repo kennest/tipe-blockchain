@@ -280,7 +280,7 @@ def conv_matrix_to_net(matrice):
 #    return False
 
 
-
+##A optimiser si possible
 def est_connexe(net):
     n = len(net.agents)
 
@@ -327,24 +327,25 @@ def reseau_complet(n):
                 net._set_tunnel_double(i,j)
     return net
 
-def gen_ens_aleat(n,m,M):
-    """Génère un ensemble à n éléments, compris entre m (inclus) et M (exclus)."""
+def gen_ens_aleat(n, m, M, y):
+    """Génère un ensemble à n éléments, compris entre m (inclus) et M (exclus), diff�rents de x."""
     if M-m < n:
         raise IntervalError("""Les bornes de l'intervalle sont trop rapprochées
         par rapport au nombre d'éléments""")
     ens = []
     while len(ens) < n:
         x = random.randint(m, M-1)
-        if not (x in ens):
+        if not (x in ens) and x != y:
             ens.append(x)
     return ens
 
 
+## A optimiser, il faudrait générer un réseau valide du premier coup !
 def reseau_aleatoire(n,p):
     """Génère un réseau de taille n, avec chaque agent lié à p autres."""
     net = reseau_sans_tunnel(n)
     for i in range(n):
-        voisins = gen_ens_aleat(p, 0, n)
+        voisins = gen_ens_aleat(p, 0, n, i)
         for vois in voisins:
             net._set_tunnel(i, vois)
             
