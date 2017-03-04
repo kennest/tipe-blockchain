@@ -1,2 +1,3 @@
-git push github master
 git push framagit master
+git push github master
+
