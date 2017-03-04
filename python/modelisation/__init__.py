@@ -359,3 +359,13 @@ def reseau_aleatoire(n,p):
     if not(est_connexe(net)):
         net = reseau_aleatoire(n, p)
     return net
+
+def scale_free(n):
+    """Génère un réseau invariant d'échelle (scale-free network)."""
+    net = reseau_sans_tunnel(n)
+    # Soit uni-, (soit bidirectionnel)
+    # [0, ... , n] noeuds
+    # pour chacun, génère nombre de liens avec bonne proba
+    # puis génère voisins
+
+    # http://stackoverflow.com/questions/10622401/implementing-barabasi-albert-method-for-creating-scale-free-networks?answertab=votes#tab-top
