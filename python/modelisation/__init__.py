@@ -24,12 +24,9 @@ class Agent:
             print(i)
     
     def copy(self):
-		""" Retourne un agent ayant les mêmes caractéristiques, en 
-		évitant les problèmes d'alias."""
-        ag = Agent(self.id, self.strategie, [i.copy() for i in self.informations)
-		
-		
-		
+        ag = Agent(self.id, self.strategie, [i.copy() for i in self.informations])
+        return ag
+                   
     def _get_list_info_id(self):
         list_id = []
         for i in self.informations:
@@ -131,10 +128,11 @@ class Reseau:
         print(tunnel for i in self.tunnels)
     
     def copy(self):
-		"""Retourne un réseau identique, en évitant les problèmes d'alias."""
-		agents = [a.copy() for a in self.agents]
-		tunnels = self.tunnels
-		net = Reseau(agents, tunnels)
+        """ """
+        agents = [a.copy() for a in self.agents]
+        tunnels = self.tunnels
+        net = Reseau(agents, tunnels)
+        return net
 
     def _get_list_id(self):
         """Récupère la liste des agents du réseau."""
@@ -329,10 +327,9 @@ def reseau_complet(n):
     return net
 
 def gen_ens_aleat(n, m, M, y):
-    """Génère un ensemble à n éléments, compris entre m (inclus) et M (exclus), diff�rents de x."""
+    """ """
     if M-m < n:
-        raise IntervalError("""Les bornes de l'intervalle sont trop rapprochées
-        par rapport au nombre d'éléments""")
+        raise IntervalError(""" """) #Les bornes de l'intervalle sont trop rapproch�es par rapport au nombre d'�l�ments""")
     ens = []
     while len(ens) < n:
         x = random.randint(m, M-1)

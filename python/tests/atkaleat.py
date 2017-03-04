@@ -1,8 +1,12 @@
 from modelisation.fonctionnement import diff_aleatoire, init_info
-from modelisation import est_connexe, conv_net_to_matrix
+from modelisation import est_connexe, conv_net_to_matrix, reseau_aleatoire
 from modelisation.fichiers import ecrit_csv
-import matplotlib.pyplot as plt #voir http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
-import numpy as np
+try:
+    import matplotlib.pyplot as plt #voir http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
+except ModuleNotFoundError:
+    pass
+
+#import numpy as np
 
 iterations = 10 #nombre de passages pour un même nombre d'attaquants
 
@@ -17,11 +21,10 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
         #nombre de tests avec p attaquants
         net = reseau_aleatoire(n, nb_tun)
         init_info(net, n-1, n-2)
-		for p in range(n): #avec p attaquants
-            # n-1 sera le dernier agent non attaquant, n-2 l'avant-dernier
-			net_b = net.copy()
-			
-			# Ensuite, nous initialisations p agents qui seront attaquants
+        for p in range(n): #avec p attaquants, n-1 sera le dernier agent non attaquant, n-2 l'avant-dernier
+            net_b = net.copy()
+	    
+	    # Ensuite, nous initialisations p agents qui seront attaquants
             
             
             
