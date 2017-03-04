@@ -29,7 +29,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
         init_info(net_init, n-1, n-2)
         for p in range(n): #avec p attaquants, n-1 sera le dernier agent non attaquant, n-2 l'avant-dernier
             net = net_init.copy()
-	    
+	   
 	    # Ensuite, nous initialisations p agents qui seront attaquants
             for i in range(p):
                 ag = net._get_agent(i)
@@ -55,6 +55,10 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
                     print("Connexe : " + str(est_connexe(net)))
                     print(net)
             resultats.append((p, vrai, faux))
+
+    print("Temps écoulé : " + str(t.monotonic() - temps_init))
+    print("Progression : " + str(k/iterations * 100) + "%")
+
     ecrit_csv(resultats, nom_fichier)
     # Trace un graphe avec matplotlib
     les_x = [i for i in range(n)]
