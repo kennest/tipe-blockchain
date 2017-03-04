@@ -40,7 +40,12 @@ dans un grand réseau, est-ce la même chose ?
        + puis boucle sur *n*, avec gen_ens_aleat en O(f(n, p))
        environ 0(1) si *p* << *n*
        + Création des tunnels en *O(1)*
-       + Vérification de la connexité : **???** éventuellement, boucle...
+       + Vérification de la connexité : **???** éventuellement, 
+       boucle..., donc en *O(1)* si *p* !<< *n*, et *O(n)* sinon ?
+    - Donc, génération en O(n)
+    - propagation en *O(n^2)*
+    
+    - Total : *O(n^2)*
 O(n^3) ?
 
 ###Améliorer :
