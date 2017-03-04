@@ -66,4 +66,4 @@ O(n^3) ?
 
  * réseau **homogène**, chaque agent à *nb_tun* tunnels sortant
  * **scale-free network**, beaucoup d'agents sont peu reliés, quelques
- uns sont plus centraux
+ uns sont plus centraux : https://fr.wikipedia.org/wiki/R%C3%A9seau_invariant_d'%C3%A9chelle
