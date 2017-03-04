@@ -1,0 +1,60 @@
+#Discussion
+
+##Qu'est-il possible de faire varier ?
+
+ * Proportion d'attaquants sur le réseau : 10% dans un petit réseau, 10%
+dans un grand réseau, est-ce la même chose ?
+
+ * position des attaquants, nb de liens, ... 
+
+ * forme du réseau :
+	- *scale-free network* : un peu d'agents avec beaucoup de liens, 
+	beaucoup avec peu de liens
+
+
+##Mode d'attaque
+
+ * réseau formé au préalable, et choix par les attaquants des nœuds sur lesquels se placer
+ * vrai / faux
+ * transforme en faux avec une certaine proba
+ * modification d'une information continue
+
+
+##Opinions :
+ - un agent reçoit des informations justes et fausses. Comment choisir
+   entre les deux ? 
+   * moyenne, s'appuie sur les informations reçues, sans accorder plus
+     de confiance à un agent en particulier
+   * indice de confiance, suivant quels paramètres ?
+   * compter le nombre de passeurs, et accorder plus de confiance à une 
+     information plus transmise (a priori très stabilisateur)
+   * faire varier le poids par un aléa (température)
+
+
+##Complexité du test :
+ * testatkaleat (*n* agents, *p* liens chacun) :
+    - *k* iterations, dans chacune, 1 génération de réseau, et *n* 
+    propagations
+    - Génération du réseau :
+       + reseau_sans_tunnel : *O(n)*
+       + puis boucle sur *n*, avec gen_ens_aleat en O(f(n, p))
+       environ 0(1) si *p* << *n*
+       + Création des tunnels en *O(1)*
+       + Vérification de la connexité : **???** éventuellement, boucle...
+O(n^3) ?
+
+###Améliorer :
+
+ 1. générer un réseau
+ 2. faire varier le nombre d'attaquants (soit les *p* premiers, soit *p* 
+ aléatoires)
+ 3. répéter cela dix fois
+ 
+ Cela devrait être plus rapide. De plus, il serait enviseageable de 
+ stocker les réseaux après leur génération (*pickle* ?)
+
+##Forme du réseau
+
+ * réseau **homogène**, chaque agent à *nb_tun* tunnels sortant
+ * **scale-free network**, beaucoup d'agents sont peu reliés, quelques
+ uns sont plus centraux

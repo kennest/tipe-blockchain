@@ -49,7 +49,7 @@ class Interpreteur(cmd.Cmd):
         """
         (n, nb_tun, nbr_fichier) = parse_nbr(arg)
         r = test_atkaleat(n, nb_tun, nbr_fichier)
-        print(r)
+        #print(r)
     
     def do_quitter(self, arg):
         """Quitte le programme"""

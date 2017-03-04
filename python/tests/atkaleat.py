@@ -1,4 +1,4 @@
-from modelisation.fonctionnement import diff_aleatoire, init_info
+from modelisation.fonctionnement import diff_aleatoire, init_info, boucle
 from modelisation import est_connexe, conv_net_to_matrix, reseau_aleatoire
 from modelisation.fichiers import ecrit_csv
 try:
@@ -18,15 +18,18 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     resultats = [] # tableau contenant les résultats de la simulation
     
     for k in range(iterations):
+        print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
-        net = reseau_aleatoire(n, nb_tun)
-        init_info(net, n-1, n-2)
+        net_init = reseau_aleatoire(n, nb_tun)
+        init_info(net_init, n-1, n-2)
         for p in range(n): #avec p attaquants, n-1 sera le dernier agent non attaquant, n-2 l'avant-dernier
-            net_b = net.copy()
+            net = net_init.copy()
 	    
 	    # Ensuite, nous initialisations p agents qui seront attaquants
-            
-            
+            for i in range(p):
+                ag = net._get_agent(i)
+                ag.strategie = "attaque"
+            boucle(net, n)
             
             # Calcul du nombre de 'vrai' et de 'faux'
             #
@@ -50,24 +53,23 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     ecrit_csv(resultats, nom_fichier)
     # Trace un graphe avec matplotlib
     les_x = [i for i in range(n)]
-    les_vrais = []
-    les_faux = []
+    les_vrais = [0 for i in range(n)]
+    les_faux = [0 for i in range(n)]
     k = 0 # Compteur utilisé pour les deux boucles suivantes
+    for t in resultats:
+        (p, v, f) = t
+        les_vrais[p] += v
+        les_faux[p] += f
     for i in range(n):
-        sum = [0,0]
-        for j in range(iterations):
-            sum[0] = sum[0] + resultats[k][1]
-            sum[1] = sum[1] + resultats[k][2]
-            k += 1
-        les_vrais.append(sum[0]/iterations)
-        les_faux.append(sum[1]/iterations)
-    
+        les_vrais[i] = les_vrais[i]/iterations
+        les_faux[i] = les_faux[i]/iterations
+ 
     plt.clf()
-    plt.plot(les_x, les_vrais)
+    #plt.plot(les_x, les_vrais)
     plt.plot(les_x, les_faux)
     plt.title("Tracé avec " + str(n) + " agents et " + str(nb_tun) + " tunnels")
     plt.xlabel("p Nombre d'attaquants")
-    plt.ylabel("Nombre de réponses vraies/fausses")
+    plt.ylabel("Nombre de réponses fausses")
     plt.show()
     plt.savefig(nom_fichier + ".png")
     

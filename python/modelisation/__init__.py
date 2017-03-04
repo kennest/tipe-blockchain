@@ -3,7 +3,7 @@
 import random
 
 class Agent:
-    """Les agents sont les noeuds du réseau (utilisateurs)."""
+    """Les agents sont les noeuds du réseau (utilisateurs). Leur stratégie peuvent être "normal" ou "attaque"."""
     def __init__(self, id, strategie = "normal"):
         self.id = id
         self.strategie = strategie
@@ -22,11 +22,16 @@ class Agent:
         print("Informations:")
         for i in self.informations:
             print(i)
-    
+
     def copy(self):
-        ag = Agent(self.id, self.strategie, [i.copy() for i in self.informations])
+        id = self.id
+        strategie = self.strategie
+        informations = [i.copy() for i in self.informations]
+        ag = Agent(id, strategie)
+        for i in informations:
+            ag._add_info(i)
         return ag
-                   
+ 
     def _get_list_info_id(self):
         list_id = []
         for i in self.informations:
@@ -124,14 +129,18 @@ class Reseau:
 
     def __str__(self):
         """Affiche la liste des agents du réseau."""
+	#Bug : ne renvoie pas une str, mais agit par effet de bord
         print([ag.id for ag in self.agents])
         print(tunnel for i in self.tunnels)
+        return ''
     
     def copy(self):
-        """ """
+        """Copie le réseau """
         agents = [a.copy() for a in self.agents]
         tunnels = self.tunnels
-        net = Reseau(agents, tunnels)
+        net = Reseau()
+        net.agents = agents
+        net.tunnels = tunnels
         return net
 
     def _get_list_id(self):
