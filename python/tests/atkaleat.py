@@ -1,3 +1,5 @@
+import time as t
+
 from modelisation.fonctionnement import diff_aleatoire, init_info, boucle
 from modelisation import est_connexe, conv_net_to_matrix, reseau_aleatoire
 from modelisation.fichiers import ecrit_csv
@@ -16,8 +18,11 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
 
     nom_fichier = "atkaleat-" + str(n) +"-"+ str(nb_tun) +"-"+ str(nbr_fichier)
     resultats = [] # tableau contenant les résultats de la simulation
+
+    temps_init = t.monotonic()
     
     for k in range(iterations):
+	print("Temps écoulé : " + str(t.monotonic() - temps_init))
         print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
         net_init = reseau_aleatoire(n, nb_tun)
@@ -36,7 +41,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
             vrai = 0
             faux = 0
             for agent in net.agents:
-                try:
+                try: # En principe, le try est inutile, mais intéressant pour faire des tests
                     info = agent.informations[0]
                     assert info.id == 0 # l'information transmise a pour id 0
                     if info.infotxt == 'faux':

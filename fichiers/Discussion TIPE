@@ -43,7 +43,11 @@ dans un grand réseau, est-ce la même chose ?
        + Vérification de la connexité : **???** éventuellement, 
        boucle..., donc en *O(1)* si *p* !<< *n*, et *O(n)* sinon ?
     - Donc, génération en O(n)
-    - propagation en *O(n^2)*
+    - propagation en *O(n^2)* :
+       + *n* iterations
+       + `_get_list_id` : *O(n)*
+       + for fait *n* fois avec
+          * éventuellement `get_voisins_emet` en *O(n)*
     
     - Total : *O(n^2)*
 O(n^3) ?
