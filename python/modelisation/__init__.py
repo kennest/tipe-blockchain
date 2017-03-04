@@ -26,6 +26,7 @@ class Agent:
     def copy(self):
 		""" Retourne un agent ayant les mêmes caractéristiques, en 
 		évitant les problèmes d'alias."""
+        ag = Agent(self.id, self.strategie, [i.copy() for i in self.informations)
 		
 		
 		
