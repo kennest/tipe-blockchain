@@ -5,7 +5,7 @@ from modelisation import est_connexe, conv_net_to_matrix, reseau_aleatoire
 from modelisation.fichiers import ecrit_csv
 try:
     import matplotlib.pyplot as plt #voir http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
-except ModuleNotFoundError:
+except ModuleNotFoundError: ##Si jamais exécuté sur un ordinateur n'ayant pas matplotlib
     pass
 
 #import numpy as np
@@ -16,21 +16,21 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     """Lance une batterie de tests sur des réseaux générés aléatoirement, en 
     faisant varier le nombre d'attaquants."""
 
-    nom_fichier = "atkaleat-" + str(n) +"-"+ str(nb_tun) +"-"+ str(nbr_fichier)
+    nom_fichier = "../resultats/atkaleat/" + "atkaleat-" + str(n) +"-"+ str(nb_tun) +"-"+ str(nbr_fichier)
     resultats = [] # tableau contenant les résultats de la simulation
 
     temps_init = t.monotonic()
     
     for k in range(iterations):
-	print("Temps écoulé : " + str(t.monotonic() - temps_init))
+        print("Temps écoulé : " + str(t.monotonic() - temps_init) + " s")
         print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
         net_init = reseau_aleatoire(n, nb_tun)
         init_info(net_init, n-1, n-2)
         for p in range(n): #avec p attaquants, n-1 sera le dernier agent non attaquant, n-2 l'avant-dernier
             net = net_init.copy()
-	   
-	    # Ensuite, nous initialisations p agents qui seront attaquants
+        
+        # Ensuite, nous initialisations p agents qui seront attaquants
             for i in range(p):
                 ag = net._get_agent(i)
                 ag.strategie = "attaque"
@@ -55,8 +55,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
                     print("Connexe : " + str(est_connexe(net)))
                     print(net)
             resultats.append((p, vrai, faux))
-
-    print("Temps écoulé : " + str(t.monotonic() - temps_init))
+    print("Temps écoulé : " + str(t.monotonic() - temps_init) + " s")
     print("Progression : " + str(k/iterations * 100) + "%")
 
     ecrit_csv(resultats, nom_fichier)
@@ -65,8 +64,8 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     les_vrais = [0 for i in range(n)]
     les_faux = [0 for i in range(n)]
     k = 0 # Compteur utilisé pour les deux boucles suivantes
-    for t in resultats:
-        (p, v, f) = t
+    for res in resultats:
+        (p, v, f) = res
         les_vrais[p] += v
         les_faux[p] += f
     for i in range(n):
@@ -79,8 +78,8 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     plt.title("Tracé avec " + str(n) + " agents et " + str(nb_tun) + " tunnels")
     plt.xlabel("p Nombre d'attaquants")
     plt.ylabel("Nombre de réponses fausses")
-    plt.show()
     plt.savefig(nom_fichier + ".png")
+    plt.show()
     
     return resultats
 

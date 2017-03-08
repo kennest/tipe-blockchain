@@ -1,0 +1,13 @@
+\frametitle{Réalisation}
+\begin{itemize}
+\item Code Python
+\item 1 module pour calculer l'état des $n$ utilisateurs après $t$~itérations
+\item PoW avec fonction SHA256 ; nombre zéros en première position
+\item Pour chaque utilisateur : \verb+[blockchain_i, puissance, solde, date de création]+ \\
+%avec 1000 la puissance, 100 le solde et 1466768000 la date de création
+\end{itemize}
+%\item Résultats
+% \begin{itemize}
+% \item Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la difficulté : plus la difficulté est grande, moins il y a de diversité des blockchains
+% \item Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la puissance d'un utilisateur
+% \end{itemize}
