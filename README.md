@@ -15,7 +15,7 @@ Les comptes-rendus en pdf, avec les sources Tex.
 
 ### MPSI
 
-Le travail de premier année. Le programme python fonctionne plus ou moins.
+Le travail de premier année. Le programme python fonctione plus ou moins.
 
 
 ### Python
@@ -23,5 +23,6 @@ Le travail de premier année. Le programme python fonctionne plus ou moins.
 Le programme Python de seconde année :
  * modelisation.py comprend les définitions des objets utilisés
  * djikstra.py comprend l'algorithme de recherche de chemin dans le réseau
- * test1000.py est la modélisation d'un réseau de taille 1000
- * testa.py est la modélisation d'un réseau de taille 1à, pour les premiers tests
+ * tests: différents tests
+    + test1000.py est la modélisation d'un réseau de taille 1000
+    + testa.py est la modélisation d'un réseau de taille 1à, pour les premiers tests
