@@ -1,0 +1,305 @@
+
+%%% changer le document class comme suit pour faire une version imprimée - si possible changer aussi le theme ci-dessous  %%
+%\documentclass[11pt, gray, handout]{beamer}
+											 % on peut utiliser les tailles 14, 17, 20 pt
+% CLASSE DE DOCUMENT
+\documentclass[12pt,compress]{beamer}
+%\documentclass[11pt, gray, handout]{beamer}  % pour faire une version imprimée %%
+%\setbeameroption{show notes}
+
+% LES PACKAGES
+\usepackage[ansinew]{inputenc} % pour les caractères accentués
+\usepackage{lmodern}           % pour utiliser des polices de qualité vectorielle
+\usepackage{graphics}          % pour les graphiques
+\usepackage{eurosym}           % pour le symbole euros
+\usepackage{amsmath,amssymb,tabularx}
+\usepackage[sc]{mathpazo}
+
+\makeatletter
+\def\verbatim@font{\footnotesize\ttfamily}
+\makeatother
+
+\AtBeginSection[]{\subsection{}}
+
+\mode<presentation>
+\usepackage{pdfpages}    %%% for notes
+{
+%\usecolortheme{seahorse}
+%\usetheme{Singapore}
+%\usecolortheme{dolphin}
+\setbeamercovered{transparent}
+%\useoutertheme[subsection=false]{miniframes} % modifie le theme Warsaw pour avoir le menu des sections en mode horizontal
+%\useoutertheme{infolines} % modifie le theme Warsaw pour avoir le menu des sections en mode horizontal
+\usecolortheme{beaver}
+}
+
+
+\setbeamersize{text margin left=0.5cm}
+
+
+\setbeamertemplate{footline}
+{%
+\begin{beamercolorbox}[ht=4ex]{section  in  head/foot}
+\hspace{0.2cm} \insertshortauthor \hspace{2cm} \insertshorttitle \hspace{2cm} \vspace{0.1cm}
+%\hspace{0.2cm} \insertshortauthor \hspace{2cm} \insertshorttitle \hspace{2cm} \insertframenumber/16 \vspace{0.1cm}
+\end{beamercolorbox}%
+}
+
+%\setbeamertemplate{section in head/foot shaded}[default][80]   % a voir pour modifier la couleur de la barre de navigation (serait mieux en noir comme ds Warsaw default)
+
+% LE THEME
+\usetheme{Berlin}
+\usecolortheme{dolphin}
+%\useoutertheme[subsection=false]{smoothbars}
+%\useoutertheme[subsection=false]{miniframes} % modifie le theme Warsaw pour avoir le menu des sections en mode horizontal
+%\usecolortheme{beaver}
+%\setbeamercolor{titlelike}{parent=structure,fg=white,bg=blue!60!black}
+%\setbeamercolor{titlelike}{parent=structure,fg=lightgray,bg=blue!60!black}
+%\insertnavigation{\width}
+
+%XXXXXXXXXXXXXXXXXXX            Pour en savoir plus sur les thèmes et perdre du temps : https://www.hartwork.org/beamer-theme-matrix/
+
+%\setbeamertemplate{itemize item}[circle]
+%\setbeamercolor{itemize item}{fg=red!60!black}
+
+
+\begin{document}
+
+%\title[Quantifying Spatial Mismatch]{Spatial Mismatch: Theory, Empirics, and Policies}
+\title[Comment optimiser l'architecture d'un réseau pour résister aux attaques]{Comment optimiser l'architecture d'un réseau pour résister aux attaques}
+
+\author[Matthias Goffette, MP*, Lycée La Martinière Monplaisir]{Matthias Goffette}
+
+\date{\\[1ex] {\small \structure{Lycée La Martinière Monplaisir} \\ Lyon, 15 Mars 2017}}
+
+%\titlegraphic{\pgfimage[height=1cm]{Logo_GATE}}
+%\institute{$^{*}$ CNRS, GATE LS-E, Université de Lyon \\ \vspace{0.3cm}
+%           $^{**}$ Duke University}
+
+%includegraphics
+%\pgfdeclareimage[3cm]{logo}{Logo_GATE.pdf}
+%\logo{\pgfuseimage{Logo_GATE.pdf}}
+%\logo{\includegraphics[height=1cm]{Logo_GATE}}
+%\insertlogo
+
+\frame[plain]{
+\vspace{2cm}
+\titlepage } 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% SECTION INTRO  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+%\stepcounter{subsection}
+
+%%%%% DIAPO MOTIVATION %%%%%
+\begin{frame} \frametitle{Motivations et objectifs}
+\begin{itemize}
+\item Réseaux dans tous les domaines : informatique, biologie, sociologie
+\item Sécuriser les réseau est un point primordial
+		\begin{itemize}
+		\item Utilisés dans des systèmes critiques (finance, réseaux informatique d'entreprises...)
+		\item De plus en plus d'attaques pour récupérer les données des utilisateurs
+		\item Un réseau doit pouvoir être résistant
+		\end{itemize}
+\item Objectifs du TIPE 
+	\begin{itemize}
+	\item Modéliser des réseaux
+	\item Simuler des attaques, et en faisant varier certains paramètres, étudier la vulnérabilité
+	\end{itemize}
+\end{itemize}
+\end{frame}
+%
+%\begin{frame} \frametitle{Principes d'une cryptomonnaie}
+%\begin{itemize}
+%\item Possibilité de réaliser des transactions (Alice envoie à Bob 10~BTC)
+%\item Réseau de n\oe uds, possédant un historique des transactions (\textit{blockchain}) et réalisant des opérations de vérification des nouvelles transactions (\textit{Proof Of Work}) par des calculs (\textit{minage})
+%\item Problème 
+%	\begin{itemize}
+%	\item Alice envoie 10 BTC à un marchand, retarde l'heure de son ordinateur,  puis renvoie ces 10 BTC à elle-même
+%	\end{itemize}
+%\end{itemize}
+%\end{frame}
+
+%\note[enumerate]{\large
+%\item Ici c'est pour les trous de mémoires
+%}
+
+
+\begin{frame} \frametitle{Sommaire}
+\begin{enumerate}
+\item \structure{Modélisation}
+	\begin{enumerate}
+%  	\item Caractéristiques d'une cryptomonnaie
+	\item Les objets du réseau (\emph{Agent}, \emph{Information}, \emph{Tunnel}, \emph{Réseau})
+	\item Fonctionnement général
+	\item Les types de réseau (en étoile, homogène, scale-free)
+	\end{enumerate} 
+\item \structure{Résultats}
+	\begin{enumerate}
+  	\item Sur un réseau homogène
+	\item Seconde modélisation
+	\end{enumerate}  
+\item \structure{Conclusion}
+\end{enumerate}
+\end{frame}
+\note[enumerate]{\large
+\item Blablabla
+}
+
+
+\section{Modélisation}
+
+\begin{frame} \frametitle{Les objets du réseau}
+\begin{itemize}
+\item Agent : \texttt{(id, strategie, informations)}
+\item Tunnel : \texttt{(emetteur récepteur)}
+\item Information : \texttt{(id, destinataire, texte, passeurs)}
+\item Réseau : \texttt{(liste d'agents, liste de tunnels)}
+\vspace*{-0.4cm} 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame} \frametitle{Fonctionnement général}
+\begin{itemize}
+\item Fonctionnement multi-agents, en effectuant de multiples \emph{itérations} sur le réseau
+\item Itération :
+	\begin{itemize}
+	\item Parcours des agents un à un
+	\item Si \emph{normal} : passe son information à tous les voisins qui ne la possèdent pas
+	\item Si \emph{attaquant} : envoie à tous ses voisins qui ne possèdent pas encore l'information une information de même \texttt{id}, mais fausse
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame} \frametitle{Les types de réseaux}
+\begin{itemize}
+\item \emph{En étoile} : Un noeud est connecté avec tous les autres
+\item \textit{Blockchain} lourde (71 Go en juin 2016)
+\item Croissance exponentielle de la \textit{blockchain} et du nombre de calculs à réaliser lors de la PoW
+\item[]
+\item \textit{Proof of Stake} : fonction de vérification qui nécessite moins de calculs car se base sur des critères comme le solde de l'utilisateur ou son ancienneté selon la monnaie
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modélisations réalisées}
+%\stepcounter{subsection}
+
+\subsection{Première modélisation}
+
+\begin{frame} \frametitle{Première modélisation}
+\begin{itemize}
+\item Objectif : programmer une cryptomonnaie simplifiée
+\item Principe : 
+	\begin{itemize}
+	\item 2 utilisateurs qui réalisent des transactions entre eux 
+	\item Calculent des PoW, les ajoutent à la blockchain, comparent les blockchains pour mettre à jour l'historique
+	\end{itemize}
+\item Réalisation
+	\begin{itemize}
+	\item Code Python 
+		\begin{itemize}
+		\item Module \textit{blockchain}, module \textit{PoW} (fonction SHA256, librairie Python), module utilisateurs		
+		\end{itemize}
+	\item Fonction SHA256 : fonction cryptographique ayant une grande résistance à la collision
+	\end{itemize}
+\item Résultats
+	\begin{itemize}
+	\item Conception de l'architecture d'une cryptomonnaie
+%	\item Amène à devoir définir clairement la représentation des objets
+	\item Vérification de la validité d'un bloc de la \textit{blockchain}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%\begin{frame}[fragile] \frametitle{Représentation de la blockchain}
+%%\hspace{-2cm}
+%\begin{itemize}
+%\item[-] \verb+< hash précédent > +
+%\item[-] \verb!< hash du bloc actuel >!
+%\item[-] \verb!< timestamp >!
+%\item[-] \verb!(< clef publique alice donneur > ;  !
+%\item[] \verb!              < clef publique bob receveur > ; valeur) !
+%\item[-] \verb!(< clef publique cedric > ; < clef publique dylan > ; valeur) !
+%\item[-] \verb!(< clef publique etienne > ; < cle fpublique fanny > ; valeur) !
+%\item[-] \verb!< clef publique alice  >::42!    \# Solde d'Alice
+%\item[-] \verb!< clef publique bob >::17!
+%\item[-] \verb!< clef publique cedric >::87!
+%\item[-] \verb!< ... >!
+%\end{itemize}
+%\end{frame}
+
+\subsection{Seconde modélisation}
+
+\begin{frame}[fragile] \frametitle{Seconde modélisation : objectifs et principes}
+\begin{itemize}
+\item Objectifs
+	\begin{itemize}
+	\item Comparer les méthodes de \textit{PoW} et \textit{PoS}
+	\item Etudier la vitesse de remplissage de la \textit{blockchain} et la rapidité de diffusion au sein du réseau d'utilisateurs en fonction des paramètres 
+		\begin{itemize}
+		\item nb d'utilisateurs, nb de tours de boucle, difficulté
+		\end{itemize}
+	\end{itemize}
+\item Principes
+	\begin{itemize}
+	\item $n$ utilisateurs regroupés dans une liste
+	\item Chaque tour, pour chaque utilisateur : 
+		\begin{itemize}
+		\item PoW ou PoS 
+		\item Comparaison de la \textit{blockchain} avec 10 utilisateurs choisis au hasard
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile] \frametitle{Réalisation}
+\begin{itemize}
+	\item Code Python
+	\item 1 module pour calculer l'état des $n$ utilisateurs après $t$~itérations
+	\item PoW avec fonction SHA256 ; nombre zéros en première position
+	\item Pour chaque utilisateur : \verb+[blockchain_i, puissance, solde, date de création]+ \\
+%avec 1000 la puissance, 100 le solde et 1466768000 la date de création
+	\end{itemize}
+%\item Résultats 
+%	\begin{itemize}
+%	\item Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la difficulté : plus la difficulté est grande, moins il y a de diversité des blockchains
+%	\item Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la puissance d'un utilisateur
+%	\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile] \frametitle{Résultats : Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la difficulté}
+
+\end{frame}
+
+
+
+\section{Conclusion}
+
+\begin{frame} \frametitle{Conclusion}
+\begin{itemize}
+\item Premiers résultats
+	\begin{itemize}
+		\item Diffusion plus importante si la difficulté est plus élevée
+	\item Dans notre modèle, si la puissance d'un seul utilisateur est plus élevée que celle des autres, sa \textit{blockchain} a tendance à prédominer
+		\end{itemize}
+	\item Suites du travail 
+		\begin{itemize}
+		\item Comparer la \textit{Proof of Work} et la \textit{Proof of Stake}
+		\item Quels sont les paramètres de PoS les plus économes tout en conservant la sécurité de la PoW
+		\end{itemize}
+\end{itemize} 
+\end{frame}
+
+
+
+\end{document}
