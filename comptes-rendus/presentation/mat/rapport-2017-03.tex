@@ -161,14 +161,40 @@
 \end{frame}
 
 
-\begin{frame} \frametitle{Les types de réseaux}
+\begin{frame} \frametitle{Les types de réseaux - En étoile}
 % Images !
 \begin{itemize}
 \item \emph{En étoile} : Un noeud est connecté avec tous les autres. C'est l'architecture d'un système client-serveur.
-\item \emph{Homogène} : Chaque noeud possède un même nombre \texttt{nb\_tun} d'arètes pointant vers un autre noeud.
-\item \emph{Scale-free} : Le nombre d'arètes par noeud suit une loi de puissance : $ P(k) \sim k^{-\gamma}$. Le réseau Internet est de ce type.
 \end{itemize}
+\begin{center}
+\includegraphics[scale=0.2]{star-network.png}
+\end{center}
 \end{frame}
+
+
+\begin{frame} \frametitle{Les types de réseaux - Homogène}
+% Images !
+\begin{itemize}
+\item \emph{Homogène} : Chaque noeud possède un même nombre \texttt{nb\_tun} d'arètes pointant vers un autre noeud.
+\end{itemize}
+
+\begin{center}
+\includegraphics[scale=0.4]{homogene.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame} \frametitle{Les types de réseaux - Reseau invariant d'échelle}
+% Images !
+\begin{itemize}
+\item \emph{Scale-free, ou invariant d'échelle} : Le nombre d'arètes par noeud suit une loi de puissance : $ P(k) \sim k^{-\gamma}$. Le réseau Internet est de ce type.
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.25]{scale-free.png}
+\includegraphics[scale=0.15]{power-law.png} 
+\end{center}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Résultats}
@@ -176,7 +202,7 @@
 
 \subsection{Sur un réseau homogène}
 
-\begin{frame} \frametitle{Variation du nombre de tunnels}
+\begin{frame} \frametitle{Variation du nombre de noeuds}
 
 \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-10-3-4.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} 
 
@@ -189,12 +215,12 @@
 
 
 
-\begin{frame}
+\begin{frame} \frametitle{Variation du nombre d'arètes}
 \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-20-1.png} 
 
 \begin{itemize}
 	\item Variation du nombre de tunnels par agent
-	\item Courbe se divise en deux parties, affines
+	\item Courbe se divise en deux parties, la seconde affines
 	\item A l'arrivée sur la dernière partie, tous les agents ayant une information vraie sont voisins de l'émetteur
 \end{itemize}
 \end{frame}
