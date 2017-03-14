@@ -111,21 +111,6 @@
 	\end{itemize}
 \end{itemize}
 \end{frame}
-%
-%\begin{frame} \frametitle{Principes d'une cryptomonnaie}
-%\begin{itemize}
-%\item Possibilité de réaliser des transactions (Alice envoie à Bob 10~BTC)
-%\item Réseau de n\oe uds, possédant un historique des transactions (\textit{blockchain}) et réalisant des opérations de vérification des nouvelles transactions (\textit{Proof Of Work}) par des calculs (\textit{minage})
-%\item Problème 
-%	\begin{itemize}
-%	\item Alice envoie 10 BTC à un marchand, retarde l'heure de son ordinateur,  puis renvoie ces 10 BTC à elle-même
-%	\end{itemize}
-%\end{itemize}
-%\end{frame}
-
-%\note[enumerate]{\large
-%\item Ici c'est pour les trous de mémoires
-%}
 
 
 \begin{frame} \frametitle{Sommaire}
@@ -177,109 +162,52 @@
 
 
 \begin{frame} \frametitle{Les types de réseaux}
+% Images !
 \begin{itemize}
-\item \emph{En étoile} : Un noeud est connecté avec tous les autres
-\item \textit{Blockchain} lourde (71 Go en juin 2016)
-\item Croissance exponentielle de la \textit{blockchain} et du nombre de calculs à réaliser lors de la PoW
-\item[]
-\item \textit{Proof of Stake} : fonction de vérification qui nécessite moins de calculs car se base sur des critères comme le solde de l'utilisateur ou son ancienneté selon la monnaie
+\item \emph{En étoile} : Un noeud est connecté avec tous les autres. C'est l'architecture d'un système client-serveur.
+\item \emph{Homogène} : Chaque noeud possède un même nombre \texttt{nb\_tun} d'arètes pointant vers un autre noeud.
+\item \emph{Scale-free} : Le nombre d'arètes par noeud suit une loi de puissance : $ P(k) \sim k^{-\gamma}$. Le réseau Internet est de ce type.
 \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Modélisations réalisées}
+\section{Résultats}
 %\stepcounter{subsection}
 
-\subsection{Première modélisation}
+\subsection{Sur un réseau homogène}
 
-\begin{frame} \frametitle{Première modélisation}
+\begin{frame} \frametitle{Variation du nombre de tunnels}
+
+\includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-10-3-4.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} 
+
 \begin{itemize}
-\item Objectif : programmer une cryptomonnaie simplifiée
-\item Principe : 
-	\begin{itemize}
-	\item 2 utilisateurs qui réalisent des transactions entre eux 
-	\item Calculent des PoW, les ajoutent à la blockchain, comparent les blockchains pour mettre à jour l'historique
-	\end{itemize}
-\item Réalisation
-	\begin{itemize}
-	\item Code Python 
-		\begin{itemize}
-		\item Module \textit{blockchain}, module \textit{PoW} (fonction SHA256, librairie Python), module utilisateurs		
-		\end{itemize}
-	\item Fonction SHA256 : fonction cryptographique ayant une grande résistance à la collision
-	\end{itemize}
-\item Résultats
-	\begin{itemize}
-	\item Conception de l'architecture d'une cryptomonnaie
-%	\item Amène à devoir définir clairement la représentation des objets
-	\item Vérification de la validité d'un bloc de la \textit{blockchain}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%\begin{frame}[fragile] \frametitle{Représentation de la blockchain}
-%%\hspace{-2cm}
-%\begin{itemize}
-%\item[-] \verb+< hash précédent > +
-%\item[-] \verb!< hash du bloc actuel >!
-%\item[-] \verb!< timestamp >!
-%\item[-] \verb!(< clef publique alice donneur > ;  !
-%\item[] \verb!              < clef publique bob receveur > ; valeur) !
-%\item[-] \verb!(< clef publique cedric > ; < clef publique dylan > ; valeur) !
-%\item[-] \verb!(< clef publique etienne > ; < cle fpublique fanny > ; valeur) !
-%\item[-] \verb!< clef publique alice  >::42!    \# Solde d'Alice
-%\item[-] \verb!< clef publique bob >::17!
-%\item[-] \verb!< clef publique cedric >::87!
-%\item[-] \verb!< ... >!
-%\end{itemize}
-%\end{frame}
-
-\subsection{Seconde modélisation}
-
-\begin{frame}[fragile] \frametitle{Seconde modélisation : objectifs et principes}
-\begin{itemize}
-\item Objectifs
-	\begin{itemize}
-	\item Comparer les méthodes de \textit{PoW} et \textit{PoS}
-	\item Etudier la vitesse de remplissage de la \textit{blockchain} et la rapidité de diffusion au sein du réseau d'utilisateurs en fonction des paramètres 
-		\begin{itemize}
-		\item nb d'utilisateurs, nb de tours de boucle, difficulté
-		\end{itemize}
-	\end{itemize}
-\item Principes
-	\begin{itemize}
-	\item $n$ utilisateurs regroupés dans une liste
-	\item Chaque tour, pour chaque utilisateur : 
-		\begin{itemize}
-		\item PoW ou PoS 
-		\item Comparaison de la \textit{blockchain} avec 10 utilisateurs choisis au hasard
-		\end{itemize}
-	\end{itemize}
+\item Variation de la taille du réseau
+\item Semble tendre vers une exponentielle
+\item Effet de cascade : les noeuds proches de l'émetteur ont une plus grand inlunce
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile] \frametitle{Réalisation}
+
+\begin{frame}
+\includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-20-1.png} 
+
 \begin{itemize}
-	\item Code Python
-	\item 1 module pour calculer l'état des $n$ utilisateurs après $t$~itérations
-	\item PoW avec fonction SHA256 ; nombre zéros en première position
-	\item Pour chaque utilisateur : \verb+[blockchain_i, puissance, solde, date de création]+ \\
-%avec 1000 la puissance, 100 le solde et 1466768000 la date de création
-	\end{itemize}
-%\item Résultats 
-%	\begin{itemize}
-%	\item Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la difficulté : plus la difficulté est grande, moins il y a de diversité des blockchains
-%	\item Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la puissance d'un utilisateur
-%	\end{itemize}
+	\item Variation du nombre de tunnels par agent
+	\item Courbe se divise en deux parties, affines
+	\item A l'arrivée sur la dernière partie, tous les agents ayant une information vraie sont voisins de l'émetteur
+\end{itemize}
 \end{frame}
 
+\subsection{Sur un scale-free network}%\emph{scale-free network}}
 
-
-
-\begin{frame}[fragile] \frametitle{Résultats : Diffusion des \textit{blockchains} au sein des utilisateurs en fonction de la difficulté}
-
+\begin{frame}[fragile] \frametitle{Sur un scale-free network}
+\begin{itemize}
+	\item Plus réaliste
+	\item Courbe plus raide au début ?
+\end{itemize}
 \end{frame}
+
 
 
 
@@ -287,16 +215,15 @@
 
 \begin{frame} \frametitle{Conclusion}
 \begin{itemize}
-\item Premiers résultats
+	\item Premiers résultats
 	\begin{itemize}
-		\item Diffusion plus importante si la difficulté est plus élevée
-	\item Dans notre modèle, si la puissance d'un seul utilisateur est plus élevée que celle des autres, sa \textit{blockchain} a tendance à prédominer
-		\end{itemize}
-	\item Suites du travail 
-		\begin{itemize}
-		\item Comparer la \textit{Proof of Work} et la \textit{Proof of Stake}
-		\item Quels sont les paramètres de PoS les plus économes tout en conservant la sécurité de la PoW
-		\end{itemize}
+		\item Courbe non linéaire comme attendue
+		\item Division en deux parties affines
+	\end{itemize}
+	\item Poursuite du travail
+	\begin{itemize}
+		\item Etude des réseaux \emph{scale-free}
+	\end{itemize}
 \end{itemize} 
 \end{frame}
 
