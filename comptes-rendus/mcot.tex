@@ -53,8 +53,7 @@ literate=
 morekeywords={len,input,range}}         
 
 
-\title{Mise en cohérence des objectifs du TIPE}
-%
+\title{Mise en cohérence des objectifs du TIPE --- Réseau de transmission d'information : Architecture, vitesse et fiabilité}
 %
 % Propagation des informations dans un réseau pair-à-pair
 %
@@ -63,10 +62,6 @@ morekeywords={len,input,range}}
 \author{Dimitri Granger \and Matthias Goffette}
 
 \begin{document}
-
-\newshadetheorem{defin}{Définition}
-\newshadetheorem{theo}{Théorème}
-
 \maketitle
 
 
@@ -87,36 +82,57 @@ morekeywords={len,input,range}}
 %
 
 \begin{it}
-Graphe
-Système multi-agent
-Réseau robuste
-Connectivité
-Transmission de l'information
+\begin{itemize}
+	\item Graphe | Graph
+	\item Système multi-agent | Agent-based systm
+	\item Réseau robuste | Robust network
+	\item Connectivité | Connectivity
+	\item Transmission de l'information | Data transmission
+\end{itemize}
 \end{it}
 
 
 \section{Bibliographie commentée}
 
-		Ici\cite{goyal14}, il semble qu'un réseau en étoile, c'est-à-dire ressemblant à l'architecture client-serveur, permet au \emph{Designer} de protéger plus facilement le réseau. Cet article utilise des probabilités pour mesurer qui est le vainqueur. Il semble intéressant de reproduire cette expérience, et en modifier les paramètres, de manière à observer des différences en terme de stratégie optimale. En effet, il nous semblait, avant de lire cet article, qu'un réseau en forme de \emph{graphe complet} (chaque noeud est lié à tous les autres) aurait été le meilleur. Ceci dépend vraisemblablement du but de l'attaquant (corrompre un noeud précis, s'emparer de la totalité du réseau...) et des paramètres utilisés pour la modélisation.
+
+
+	Les réseaux, qu'ils soient physiques ou informatiques, sont vulnérables aux des attaques, qu'elles soient intelligentes ou non. Il convient donc de chercher comment protéger les protéger de telles attaques. Les réseaux permettant la circulation d'informations et de biens, le but de la défense est de garantir, dans un réseau informatique, la véracité des informations qui circulent, et, de manière générale, la connexité du réseau, pour qu'il reste possible de le parcourir. Notre modélisation retient deux sortes d'attaques : la première étant celle d'un utilisateur malveillant qui chercherait à prendre le contrôle d'un réseau informatique pour répandre de fausses informations, la seconde étant la suppression d'arêtes ou de noeuds composant le réseau.
+
+	La structure même d'un réseau peut être mise en danger, par exemple par une catastrophe naturelle qui détruirait les câbles ou les centrales électriques. La question est alors de trouver comment organiser un réseau pour qu'il reste fonctionnel, c'est à dire connexe, même après la destruction de certains de ses composants, tout en minimisant le prix de sa construction. La modélisation de ce problème prend souvent la forme d'un jeu\cite{goyal14} entre deux participants. L'un construit un réseau, avec ses noeuds et ses arêtes, et protège certains de noeuds ou arêtes, ces actions ayant un coût. L'autre participant, l'attaquant, choisit certains noeuds ou arêtes et les supprime s'ils ne sont pas protégés. Dans une modélisation plus fine, les noeuds et arêtes protégés peuvent aussi être supprimés, avec une certaine probabilité [Bravard-Charroin]. Les résultats montrent que si la protection d'un noeud est peu coûteuse par rapport à la création de liens, le réseau optimal est prend la forme d'une étoile dont le centre est protégé.  Au contraire, si la création de liens est moins chère, le réseau optimal sera très dense\cite{goyal14}. Le nombre minimal d'arête pour rendre k-connecté un réseau à $n$ noeuds est $\lceil(k * n) / 2\rceil$ selon une démonstration de Frank Harary\cite{harary}.
+
+	
+	Gueye\cite{gueye} introduit des mesures de vulnérabilité d'un réseau en étudiant la connexité de ce réseau après le retrait d'une arête. Cela lui permet d'étudier le comportement d'un attaquant du réseau et d'un défenseur avec la théorie des jeux.
+	Il est nécessaire de classer les différents types de réseaux. La classification actuelle \cite{XXX} nous permet d'observer les avantages et inconvéniants de certains réseaux. En particulier, les \emph{scale-free networks}, modèle présnt dans de nombreuses situation, sont efficaces pour propager rapidement des données, mais les n{\oe}uds ayant une connectivité fort, les serveurs, sont assez vulnérables aux attaques. selon ce même article, les réseaux \emph{bimodaux}, dont les n{\oe}uds ont soit $x$, soit $y$ arêtes sortantes sont ceux qui permettent de présenter le meilleur compromis à ce problème.
+	
+	 Lorsqu'un membre d'un réseaux reçoit plusieurs informations contradictoire, laquelle privilégier ?
 
 
 
 
 \section{Problématique retenue}
 
-Plusieurs problématiques s'offrent à nous :
-\begin{itemize}
-	\item Quelle architecture du réseau permet la meilleure résistance aux attaques, tout en gardant de bonnes vitesses de propagation des données ?
-	\item \textbf{Comment rechercher efficacement une information sur un réseau ? Application : Moteur de recherche décentralisé.}
-	\begin{itemize}
-		\item Comment s'assurer que les informations reçues sont \emph{de confiance}, c'est-à-dire vraie et correspondant à une réponse à ce qui a été demandé ?
-	\end{itemize}
+% Réseau de transmission d'information : Architecture, vitesse et fiabilité
+
+%	"""Nous avons cherché à déterminer quelles architectures pemettent de diminuer la vulnérabilité d'un réseau. Pour cela, nous allons étudier deux types d'attaques. """
+
+	Les réseaux sont suscptibles de subir deux types d'attaques. Les unes détruisent des composants du réseau, les autres cherchent à propager de fausses informations. 
 	
-	\item (Comment organiser le partage de fichiers efficacement (cas d'un iso \emph{linux}) ? Rajouter des contraintes : combien de noeuds maximum ?)
-	
-\end{itemize}
+	Quelle architecture choisir pour rendre un réseau le moins vulnérable possible à ces deux types d'attaques ?   
+%
+%\begin{itemize}
+%	\item Quelle architecture du réseau permet la meilleure résistance aux attaques, tout en gardant de bonnes vitesses de propagation des données ?
+%	\item \textbf{Comment rechercher efficacement une information sur un réseau ? Application : Moteur de recherche décentralisé.}
+%	\begin{itemize}
+%		\item Comment s'assurer que les informations reçues sont \emph{de confiance}, c'est-à-dire vraie et correspondant à une réponse à ce qui a été demandé ?
+%	\end{itemize}
+%	
+%	\item (Comment organiser le partage de fichiers efficacement (cas d'un iso \emph{linux}) ? Rajouter des contraintes : combien de n{\oe}uds maximum ?)
+%	
+%\end{itemize}
 
 \section{Objectifs du TIPE}
+
+% Personnel
 
 Notre but consiste à créer un réseau permettant une transmission des informations rapides, tout en résistant efficacement aux attaques, lors desquelles un attaquant prendrait possession de plusieurs n{\oe}uds.
 
@@ -141,5 +157,6 @@ Notre but consiste à créer un réseau permettant une transmission des informat
 
 \bibliographystyle{plain}
 \bibliography{bib/goyal14} 
-
+% Goyal ; Harary ; Bravard ; Dziusbynski ; Suto ; Gueye
+% Designing P2P Networks Tolerant to Attacks and Faults Based on Bimodal Degree Distribution,” Journal of Communications, SI on Security and Privacy in Communication Systems and Networks, vol. 7, no. 8, pp.587-595, Aug. 2012.
 \end{document}
