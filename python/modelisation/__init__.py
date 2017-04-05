@@ -1,6 +1,7 @@
 """TIPE"""
 
 import random
+import math
 
 class Agent:
     """Les agents sont les noeuds du réseau (utilisateurs). Leur stratégie peuvent être "normal" ou "attaque"."""
@@ -338,7 +339,8 @@ def reseau_complet(n):
 def gen_ens_aleat(n, m, M, y):
     """ """
     if M-m < n:
-        raise IntervalError(""" """) #Les bornes de l'intervalle sont trop rapproch�es par rapport au nombre d'�l�ments""")
+        raise IntervalError(""" """) #Les bornes de l'intervalle sont trop 
+        #rapproch�es par rapport au nombre d'�l�ments""")
     ens = []
     while len(ens) < n:
         x = random.randint(m, M-1)
@@ -383,4 +385,10 @@ def scale_free(n):
     
     # If X ~ Exp(λ) then e^(−X) / k ∼ PowerLaw(k, λ)
     for i in range(n):
-        nbr_noeuds = random.expovariate(
+        x = random.expovariate(lambd)
+        nbr_noeuds = math.exp(x) / k
+        
+    ### Change strategy :
+    #
+    # x = random.randint(...)
+    # nbr_noeuds = int()
