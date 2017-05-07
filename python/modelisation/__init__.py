@@ -387,8 +387,10 @@ def scale_free(n):
     for i in range(n):
         x = random.expovariate(lambd)
         nbr_noeuds = math.exp(x) / k
-        
     ### Change strategy :
     #
     # x = random.randint(...)
-    # nbr_noeuds = int()
+    # nbr_noeuds = int(
+
+
+    # Voir pour une distribution géométrique...
