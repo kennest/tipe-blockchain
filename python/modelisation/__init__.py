@@ -5,7 +5,9 @@ import math
 
 class Agent:
     """Les agents sont les noeuds du réseau (utilisateurs). Leur stratégie peuvent être "normal" ou "attaque"."""
+    
     def __init__(self, id, strategie = "normal"):
+        """Rien de bien sorcier, on défini les attributs d'un Agent."""
         self.id = id
         self.strategie = strategie
         self.informations = []
@@ -19,12 +21,14 @@ class Agent:
         self.informations.append(info)
 
     def __str__(self):
+        """Pour convertir l'objet Agent en str."""
         print("id: " + str(self.id))
         print("Informations:")
         for i in self.informations:
             print(i)
 
     def copy(self):
+        """Retourne un agent identique, mais pas le même alias."""
         id = self.id
         strategie = self.strategie
         informations = [i.copy() for i in self.informations]
@@ -34,6 +38,7 @@ class Agent:
         return ag
  
     def _get_list_info_id(self):
+        """Retourne la liste des ids des infos de l'Agent."""
         list_id = []
         for i in self.informations:
             list_id.append(i.id)
@@ -64,22 +69,32 @@ class Agent:
 
 class Tunnel:
     def __init__(self, emet, recep):
+        """Un tunnel est un couple emetteur - recepteur (ces derniers étant des int, et non des Agents !)."""
         self.emetteur = emet
         self.recepteur = recep
 
     def _set_emetteur(self,id_emetteur):
+        """Change l'emetteur."""
         self.emetteur = id_emetteur
 
     def _set_recepteur(self,id_recepteur):
+        """Change le récepteur."""
         self.recepteur = id_recepteur
 
     def __str__(self):
-        print("(" + str(self.emetteur) + "> " + str(self.recepteur) + ")")
+        """Pour la conversion d'un tunnel en str."""
+        return "(" + str(self.emetteur) + ">" + str(self.recepteur) + ")"
 
     
     
             
 class Information:
+    """Une information a pour attributs
+id : int (identifiant l'information)
+passeurs : list.Agent.id la liste des Agents ayant fait circulé l'information
+destinataire : int l'id de l'Agent auxquel est destiné l'information. Cet attribut est inutilisé pour le moment.
+infotxt : champ de texte, contenu de l'information
+ """
 
     def __init__(self, id, destinataire, infotxt):
         self.id = id
@@ -87,13 +102,14 @@ class Information:
         self.destinataire = destinataire
         self.infotxt = infotxt
         # ajouter un champ requête et un champ réponse ?
+        # semble peu utile (au pire un truc du type question + "\n" + reponse)
         
     def _set_id(self, inf_id):
         """Change l'id de l'information."""
         self.id = inf_id
 
     def _set_destinataire(self, ag_id):
-        """ """
+        """Change le destinataire de l'information."""
         self.destinataire = ag_id
     
     def _set_info(self, infotxt):
@@ -105,17 +121,20 @@ class Information:
         self.passeurs.append(ag_id)
 
     def __str__(self):
+        """Converti l'objet en un str."""
         print("id: " + str(self.id))
         print("destinataire: " + str(self.destinataire))
         print("passeurs: " + str(self.passeurs))
         print("Info: " + self.infotxt)
      
-    def _set_information(self, id, destinataire, infotxt):
-        _set_id(self, id)
-        _set_destinataire(self, destinataire)
-        _set_info(self, infotxt)
+#    def _set_information(self, id, destinataire, infotxt):
+#        """Créé l'objet. Utile nulle part"""
+#        _set_id(self, id)
+#        _set_destinataire(self, destinataire)
+#        _set_info(self, infotxt)
     
     def copy(self):
+        """Renvoie une information identique, qui n'est pas un alias !"""
         """Renvoie une information identique (pour éviter les problèmes d'alias)."""
         infocopy =  Information(self.id, self.destinataire, self.infotxt)
         infocopy.passeurs = [x for x in self.passeurs]
@@ -125,15 +144,18 @@ class Information:
 
 class Reseau:
     def __init__(self):
+        """Un réseau est un couple de :
+ * une liste d'Agents
+ * une liste de tunnels
+"""
         self.agents = []
         self.tunnels = []
 
     def __str__(self):
         """Affiche la liste des agents du réseau."""
-	#Bug : ne renvoie pas une str, mais agit par effet de bord
-        print([ag.id for ag in self.agents])
-        print(tunnel for i in self.tunnels)
-        return ''
+        agents = [str(ag.id) for ag in self.agents]
+        tunnels = [str(t) for t in self.tunnels]
+        return str(agents) + "\n" +str(tunnels)
     
     def copy(self):
         """Copie le réseau """
@@ -396,6 +418,7 @@ def scale_free(n, lambd):
     for i in range(n):
         x = min(int(random.expovariate(lambd))+1,n)
         voisins = [int(random.randrange(n)) for j in range(x)]
+        # Bug : peut créer tunnel vers soi-même...
         for v in voisins:
             net._set_tunnel(i,v)
 

@@ -4,3 +4,11 @@ from interpreteur import launch
 
 
 launch()
+
+
+
+"""
+from modelisation import scale_free
+net = scale_free(10, 1/3)
+print(net)
+"""
