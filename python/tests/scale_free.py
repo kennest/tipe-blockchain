@@ -1,7 +1,7 @@
 import time as t
 
 from modelisation.fonctionnement import diff_aleatoire, init_info, boucle
-from modelisation import est_connexe, conv_net_to_matrix, reseau_aleatoire
+from modelisation import est_connexe, conv_net_to_matrix, scale_free
 from modelisation.fichiers import ecrit_csv
 try:
     import matplotlib.pyplot as plt # voir
@@ -14,12 +14,14 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 iterations = 10 #nombre de passages pour un même nombre d'attaquants
 
-def test_atkaleat(n, nb_tun, nbr_fichier):
+
+
+def test_atk_scale_free(n, lambd, nbr_fichier):
     """Lance une batterie de tests sur des réseaux générés 
     aléatoirement, en faisant varier le nombre d'attaquants."""
 
-    nom_fichier = "../resultats/atkaleat/" + "atkaleat-" + str(n) +\
-                  "-"+ str(nb_tun) +"-"+ str(nbr_fichier)
+    nom_fichier = "../resultats/scale-free/" + "sf-" + str(n) +\
+                  "-"+ str(lambd) +"-"+ str(nbr_fichier)
     resultats = [] # tableau contenant les résultats de la simulation
 
     temps_init = t.monotonic()
@@ -29,11 +31,11 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
               " s")
         print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
-        net_init = reseau_aleatoire(n, nb_tun)
-        init_info(net_init, n-1, n-2)
         for p in range(n): #avec p attaquants, n-1 sera le
             #        dernier agent non attaquant, n-2 l'avant-dernier
-            net = net_init.copy()
+            net = scale_free(n, lambd)
+            
+            init_info(net, n-1, n-2)
         
         # Ensuite, nous initialisations p agents qui seront attaquants
             for i in range(p):
@@ -58,7 +60,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
                     else:
                         print("Erreur ! Le texte de l'information est invalide !")
                 except:
-                    print("Erreur, {} agents et {} attaquants ({} tunnels)".format(n, p, nb_tun))
+                    print("Erreur, {} agents et {} attaquants ({} lambda)".format(n, p, lambd))
                     print("Connexe : " + str(est_connexe(net)))
                     print(net)
             resultats.append((p, vrai, faux))
@@ -82,12 +84,11 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     plt.clf()
     #plt.plot(les_x, les_vrais)
     plt.plot(les_x, les_faux)
-    plt.title("Tracé avec " + str(n) + " agents et " + str(nb_tun) +\
-              " tunnels")
+    plt.title("Tracé avec " + str(n) + " agents et " + str(lambd) +\
+              " lambda")
     plt.xlabel("p Nombre d'attaquants")
     plt.ylabel("Nombre de réponses fausses")
     plt.savefig(nom_fichier + ".png")
     plt.show()
     
     return resultats
-

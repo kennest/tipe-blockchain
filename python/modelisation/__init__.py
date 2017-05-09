@@ -362,9 +362,8 @@ def reseau_aleatoire(n,p):
         net = reseau_aleatoire(n, p)
     return net
 
-def scale_free(n):
+def scale_free(n, lambd):
     """Génère un réseau invariant d'échelle (scale-free network)."""
-    net = reseau_sans_tunnel(n)
     # Soit uni-, (soit bidirectionnel)
     # [0, ... , n] noeuds
     # pour chacun, génère nombre de liens avec bonne proba
@@ -384,9 +383,7 @@ def scale_free(n):
     # random.gammavariate(alpha, beta)
     
     # If X ~ Exp(λ) then e^(−X) / k ∼ PowerLaw(k, λ)
-    for i in range(n):
-        x = random.expovariate(lambd)
-        nbr_noeuds = math.exp(x) / k
+    
     ### Change strategy :
     #
     # x = random.randint(...)
@@ -394,3 +391,14 @@ def scale_free(n):
 
 
     # Voir pour une distribution géométrique...
+
+    net = reseau_sans_tunnel(n)
+    for i in range(n):
+        x = min(int(random.expovariate(lambd))+1,n)
+        voisins = [int(random.randrange(n)) for j in range(x)]
+        for v in voisins:
+            net._set_tunnel(i,v)
+
+    if not(est_connexe(net)):
+        net = scale_free(n, lambd)
+    return net

@@ -14,11 +14,13 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 iterations = 10 #nombre de passages pour un même nombre d'attaquants
 
-def test_atkaleat(n, nb_tun, nbr_fichier):
+
+
+def test_atk_scale_free(n, nb_tun, nbr_fichier):
     """Lance une batterie de tests sur des réseaux générés 
     aléatoirement, en faisant varier le nombre d'attaquants."""
 
-    nom_fichier = "../resultats/atkaleat/" + "atkaleat-" + str(n) +\
+    nom_fichier = "../resultats/scale-free/" + "sf-" + str(n) +\
                   "-"+ str(nb_tun) +"-"+ str(nbr_fichier)
     resultats = [] # tableau contenant les résultats de la simulation
 
@@ -29,7 +31,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
               " s")
         print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
-        net_init = reseau_aleatoire(n, nb_tun)
+        net_init = gen_ens_aleat(n, m, M, y):
         init_info(net_init, n-1, n-2)
         for p in range(n): #avec p attaquants, n-1 sera le
             #        dernier agent non attaquant, n-2 l'avant-dernier
@@ -90,4 +92,3 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     plt.show()
     
     return resultats
-
