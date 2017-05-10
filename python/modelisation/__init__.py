@@ -359,10 +359,10 @@ def reseau_complet(n):
     return net
 
 def gen_ens_aleat(n, m, M, y):
-    """ """
+    """Pour un réseau aléatoire"""
     if M-m < n:
         raise IntervalError(""" """) #Les bornes de l'intervalle sont trop 
-        #rapproch�es par rapport au nombre d'�l�ments""")
+        #rapprochées par rapport au nombre d'éléments""")
     ens = []
     while len(ens) < n:
         x = random.randint(m, M-1)
@@ -416,9 +416,10 @@ def scale_free(n, lambd):
 
     net = reseau_sans_tunnel(n)
     for i in range(n):
-        x = min(int(random.expovariate(lambd))+1,n)
+        x = min(int(random.expovariate(lambd))+1,n-1)
+        # le +1, c'est parce que sinon, ça commence avec 0 tunnels. le -1, c'est parce que sinon, ça compte lui-même
         voisins = [int(random.randrange(n)) for j in range(x)]
-        # Bug : peut créer tunnel vers soi-même...
+        # Bug : peut créer tunnel vers soi-même, et plusieurs tunnels vers un mêmeagent, faire un truc comme gen_ens_aleat !
         for v in voisins:
             net._set_tunnel(i,v)
 

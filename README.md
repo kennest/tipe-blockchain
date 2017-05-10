@@ -29,3 +29,8 @@ Le programme Python de seconde année :
     + testa.py est la modélisation d'un réseau de taille 1à, pour les premiers tests
     + atkaleat : simule une attaque sur un *réseau aléatoire*, c'est-à-dire que chaque agent a le même nombre de tunnels sortants
     + scale-free : sur un réseau *scale-free*
+
+
+## A faire :
+
+ * vérifier le comportement de *testsf* : est-ce bien un noeud au moins qui est voisin (pas plus ?)

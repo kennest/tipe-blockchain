@@ -63,40 +63,6 @@ def comportement_attaquant(net, attaquant):
             attaquant.envoyer_info(recepteur, info, list_voisins)
 
 
-
-# def boucle_diffusion(net, agent0, info):
-#     """ Diffuse l'information info à partir de agent0.
-#     net : Reseau()
-#     agent0 : int
-#     info : Information()
-#     """
-#     ##A faire
-#     #Modifier pour intégrer le comportement d'un attaquant
-#     
-#     ##Initialisation :
-#     #L'id de l'émetteur est ajoutée à l'info, et l'info est ajoutée à
-#     #l'émetteur.
-#     info._add_passeur(agent0)
-#     net._get_agent(agent0)._add_info(info)
-#     
-#     ##Diffusion vers les voisins
-#     list_vois = net._get_voisins_emet(agent0)
-#     for i in list_vois:
-#         
-#         agent_i = net._get_agent(i)
-#         # Si l'agent ne possède pas encore l'information :
-#         if not( info.id in agent_i._get_list_info_id()):
-#             if agent_i.strategie == "normal":
-#                 #copie pour éviter les problèmes d'alias sur la liste
-#                 #des destinataires
-#                 infobis = info.copy()
-#                 #par récurrence, la diffusion est effectuée
-#                 boucle_diffusion(net, i, infobis)
-#             elif agent_i.strategie == "attaque":
-#                 infobis = info.copy()
-#                 infobis.infotxt = "faux"
-#                 boucle_diffusion(net, i, infobis)
-
 def init_info(net, emetteur, destinataire):
     info = md.Information(0, destinataire, "vrai")
     info._add_passeur(emetteur)
