@@ -397,35 +397,27 @@ ag_id : agent pour lequel a lieu la génération """
     return voisins
     
 def scale_free(n, lambd):
-    """Génère un réseau invariant d'échelle (scale-free network)."""
-    # Soit uni-, (soit bidirectionnel)
-    # [0, ... , n] noeuds
-    # pour chacun, génère nombre de liens avec bonne proba
-    # puis génère voisins
-    # P(k) = k^(-γ)
-    
+    """Génère un réseau invariant d'échelle (scale-free network).
+Soit uni-, (soit bidirectionnel)
+[0, ... , n] noeuds
+pour chacun, génère nombre de liens avec bonne proba
+puis génère voisins
+P(k) = k^(-γ)
+    """
     # http://stackoverflow.com/questions/10622401/implementing-barabasi-albert-method-for-creating-scale-free-networks?answertab=votes#tab-top
-    
-    
+
+    ## De la bibliothèque random :
     # random.expovariate(lambd)
     #   Exponential distribution. lambd is 1.0 divided by the desired mean. It 
     #   should be nonzero. (The parameter would be called “lambda”, but that is a 
     #   reserved word in Python.) Returned values range from 0 to positive 
     #   infinity if lambd is positive, and from negative infinity to 0 if lambd 
     #   is negative.
-    #
-    # random.gammavariate(alpha, beta)
     
     # If X ~ Exp(λ) then e^(−X) / k ∼ PowerLaw(k, λ)
+
+    # Voir aussi la distribution de Pareto ?
     
-    ### Change strategy :
-    #
-    # x = random.randint(...)
-    # nbr_noeuds = int(
-
-
-    # Voir pour une distribution géométrique...
-
     net = reseau_sans_tunnel(n)
     for i in range(n):
         x = min(int(random.expovariate(lambd))+1,n-1)
