@@ -384,6 +384,18 @@ def reseau_aleatoire(n,p):
         net = reseau_aleatoire(n, p)
     return net
 
+
+def gen_ens_sf(n, p, ag_id):
+    """n: taille du réseau
+p: nombre de voisins
+ag_id : agent pour lequel a lieu la génération """
+    voisins = []
+    while len(voisins) < p:
+        x = int(random.randrange(n))
+        if x != ag_id and not(x in voisins):
+            voisins.append(x)
+    return voisins
+    
 def scale_free(n, lambd):
     """Génère un réseau invariant d'échelle (scale-free network)."""
     # Soit uni-, (soit bidirectionnel)
@@ -418,8 +430,7 @@ def scale_free(n, lambd):
     for i in range(n):
         x = min(int(random.expovariate(lambd))+1,n-1)
         # le +1, c'est parce que sinon, ça commence avec 0 tunnels. le -1, c'est parce que sinon, ça compte lui-même
-        voisins = [int(random.randrange(n)) for j in range(x)]
-        # Bug : peut créer tunnel vers soi-même, et plusieurs tunnels vers un mêmeagent, faire un truc comme gen_ens_aleat !
+        voisins = gen_ens_sf(n, x, i)
         for v in voisins:
             net._set_tunnel(i,v)
 
