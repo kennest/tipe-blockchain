@@ -20,17 +20,13 @@ def iteration(net):
     A chaque boucle, tous les agents font un 'tour d'action' sur le réseau. 
     (modèle multi-agents)
     """
-    
     list_agents_id = net._get_list_id()
     for i in list_agents_id:
         # L'agent i envoie les informations qu'il a envie d'échanger à ses 
         # voisins
-        # 
-        #
+        
         agent = net._get_agent(i)
         if agent.strategie == "attaque":
-            # print(i)
-            # print("Attaque !")
             comportement_attaquant(net, agent)
         
         else:
@@ -59,7 +55,6 @@ def comportement_attaquant(net, attaquant):
             # Parcours des informations
             info = attaquant._get_info(k)
             info.infotxt = "faux"
-            #print(info)
             attaquant.envoyer_info(recepteur, info, list_voisins)
 
 
@@ -68,7 +63,10 @@ def init_info(net, emetteur, destinataire):
     info._add_passeur(emetteur)
     agent_emet = net._get_agent(emetteur)
     agent_emet._add_info(info)
-    
+
+
+## Les fonctions suivants auraient plus leur place dans le module test
+
 def diff_etoile(n, p, centre, emetteur, destinataire):
     """ Génère un réseau en étoile de taille n avec p attaquants. (p<n)
     Si centre = True, l'agent 0 sera un attaquant. Sinon, c'est un agent normal."""
@@ -115,13 +113,7 @@ def diff_aleatoire(n, nb_tun, p, emetteur, destinataire):
 
     net = diff_aleatoire_init(n, nb_tun, p, emetteur, destinataire)
     ##Diffusion
-    boucle(net, n) #S'il y a n agents, en n tours, l'information sera arrivée
-    
-    ##Affichage des résultats
-    # for i in range(n):
-    #     print("  ----  ")
-    #     print(net._get_agent(i))
-
+    boucle(net, n) #S'il y a n agents, en n tours, l'information sera transmise en au plus n tours
     ##Test si toutes les informations sont non vides
     for agent in net.agents:
         if agent.informations == []:

@@ -12,7 +12,7 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 #import numpy as np
 
-iterations = 10 #nombre de passages pour un même nombre d'attaquants
+iterations = 1 #nombre de passages pour un même nombre d'attaquants
 
 
 
@@ -31,9 +31,10 @@ def test_atk_scale_free(n, lambd, nbr_fichier):
               " s")
         print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
+        net_init = scale_free(n, lambd)
         for p in range(n): #avec p attaquants, n-1 sera le
             #        dernier agent non attaquant, n-2 l'avant-dernier
-            net = scale_free(n, lambd)
+            net = net_init.copy()
             
             init_info(net, n-1, n-2)
         
