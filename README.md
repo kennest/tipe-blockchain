@@ -30,22 +30,3 @@ Le programme Python de seconde année :
     + atkaleat : simule une attaque sur un *réseau aléatoire*, c'est-à-dire que chaque agent a le même nombre de tunnels sortants
     + scale-free : sur un réseau *scale-free*
 
-
-## A faire :
-
- * vérifier le comportement de *testsf* : est-ce bien un noeud au moins qui est voisin (pas plus ?)
- * afficher toutes les courbes pour chaque itération
-
-
-## A lire :
- * The Law of The Few - Goyal
-
-## Notes :
-
- * attaques sur les liens
- * diffusion, contagion dans un réseau
- * le réseau créé, avec cette transmission, est un arbre !
- * représenter réseaux en LaTeX
- * pour avoir moins de problèmes de connexité (donc accélère la génération) : réseau multi-directionnel
- * agents hétérogènes (différents types, tendance *homophilique* : se connectent plutôt avec des agents du même type)
- * donc modifint la propagation

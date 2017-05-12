@@ -12,7 +12,7 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 #import numpy as np
 
-iterations = 1 #nombre de passages pour un même nombre d'attaquants
+iterations = 10 #nombre de passages pour un même nombre d'attaquants
 
 
 

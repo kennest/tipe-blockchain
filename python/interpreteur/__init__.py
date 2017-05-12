@@ -68,10 +68,18 @@ nbr_fichier : nombre ajouté au fichier"""
         print("Au revoir\n")
         return True
 
+
 def parse_nbr(arg):
     """Retourne un tuple d'entiers avec un argument sous forme de chaîne 
     de caractères."""
     return tuple(map(float, arg.split()))
+
+def parse_testsf(arg):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("n", help="Number of agents", type = float)
+    parser.add_argument("lambd", help="lambd = 1/(mean of leaving tunnels for an agent", type = float, default = 0.25)
+    parser.add_argument("filenumber", help="Number of the file", type = int)
+    arg.split(" ")
 
 def launch():
     c = Interpreteur()
