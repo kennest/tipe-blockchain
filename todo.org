@@ -1,0 +1,51 @@
+* Notes diverses
+
+** TODO [1/7]
+ - [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
+ - [ ] Passer en bidirectionnel :: plus en accord avec la littérature
+ - [ ] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
+   + [ ] Unifier les graphes :: ajouter les fonctions en rappot dans le module graphe
+   + [ ] Ajouter une option pour afficher ls graphes correspondants à chaque itération
+ - [ ] Génération du scale-free selon un vrai algorithme
+ - [ ] Optimiser les fonctions ::
+ - [ ] Présentation :: voir Notes bis
+   + [ ] Français
+   + [ ] Graphes en LaTeX
+ - [ ] Parsing :: faire un vrai parsing des arguments
+
+** A lire
+ - The Law of The Few - Goyal
+
+** Notes
+ - attaques sur les liens
+ - diffusion, contagion dans un réseau
+ - le réseau créé, avec cette transmission, est un *arbre* !
+ - représenter réseaux en LaTeX
+ - pour avoir moins de problèmes de connexité (donc accélère la génération) : réseau multi-directionnel
+ - agents hétérogènes (différents types, tendance *homophilique* : se connectent plutôt avec des agents du même type)
+ - donc modifient la propagation
+   
+** Notes bis
+ - Les motivations sont importantes !
+ - Sommaire :
+   + Faire disparaître le mot *homogène*, non défini pour le moment
+ - Ne pas mettre la slide les objets du réseau :: dire «J'ai modélisé le réseau avec des objets Python.»
+ - Les arêtes, tunnels sont des canaux de diffusion de l'information.
+ - Ne pas mettre le slide «en étoile». De manière générale, enlever tout ce qui est présent «pour raisons historiques»
+ - Homogène :: représentation avec LaTeX
+ - Scale-free ::
+   + faire disparaître le terme «random network», non défini.
+   + Remplacer les images de graphes par des trucs LaTeX
+   + Afficher un graphe abscisses : Degré total des attaquants, ordonnée : nombre d'attaquants
+ - Variation du nombre de noeuds ::
+   + afficher les courbes sur un même graphe (abscisse et ordonnées en %)
+   + «semble tendre vers une exponentielle» :: *NON*, ne pas affirmer de choses sans fondements. Par contre, expliquer (formellement, ou avec des raisons fortes) pourquoi c'est croissant : *OUI* 
+   + de même, dire que la dérivée seconde est décroissante : les attaquants tentent de contaminer des agents déjà infectés.
+ - Variation du nombre d'arêtes ::
+   + Pour le second graphe, la première partie n'est a priori pas de pente plus élevé
+ - Conclusion :: revenir un peu sur les motivations
+ - Général ::
+   + Faire une moyenne sur un grand nombre de réseaux. Pour cela, optimiser
+   + Pour les attaquants, ne pas prendre les p derniers/premiers noeuds, mais les tirer au hasard
+   + Génération du scale-free :: implémenter l'algorithme de Albert-... (premier sur W)
+   + Passer en bidirectionnel
