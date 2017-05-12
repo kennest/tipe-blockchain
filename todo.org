@@ -1,8 +1,8 @@
 * Notes diverses
 
-** TODO [1/7]
+** TODO [2/7]
  - [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
- - [ ] Passer en bidirectionnel :: plus en accord avec la littérature
+ - [X] Passer en bidirectionnel :: plus en accord avec la littérature
  - [ ] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
    + [ ] Unifier les graphes :: ajouter les fonctions en rappot dans le module graphe
    + [ ] Ajouter une option pour afficher ls graphes correspondants à chaque itération
