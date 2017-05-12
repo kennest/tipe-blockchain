@@ -378,7 +378,7 @@ def reseau_aleatoire(n,p):
     for i in range(n):
         voisins = gen_ens_aleat(p, 0, n, i)
         for vois in voisins:
-            net._set_tunnel(i, vois)
+            net._set_tunnel_double(i, vois)
             
     if not(est_connexe(net)):
         net = reseau_aleatoire(n, p)
@@ -424,7 +424,7 @@ P(k) = k^(-γ)
         # le +1, c'est parce que sinon, ça commence avec 0 tunnels. le -1, c'est parce que sinon, ça compte lui-même
         voisins = gen_ens_sf(n, x, i)
         for v in voisins:
-            net._set_tunnel(i,v)
+            net._set_tunnel_double(i,v)
 
     if not(est_connexe(net)):
         net = scale_free(n, lambd)
