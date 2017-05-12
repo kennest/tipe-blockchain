@@ -16,9 +16,13 @@ iterations = 10 #nombre de passages pour un même nombre d'attaquants
 
 
 
-def test_atk_scale_free(n, lambd, nbr_fichier):
+def test_atk_scale_free(n, lambd, nbr_fichier, showall):
     """Lance une batterie de tests sur des réseaux générés 
-    aléatoirement, en faisant varier le nombre d'attaquants."""
+    aléatoirement, en faisant varier le nombre d'attaquants.
+n: int
+lambd: float
+nbr_fichier: int
+showall: bool"""
 
     nom_fichier = "../resultats/scale-free/" + "sf-" + str(n) +\
                   "-"+ str(lambd) +"-"+ str(nbr_fichier)
