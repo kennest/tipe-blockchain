@@ -59,7 +59,7 @@ Paramètres :
 n : nombre d'agents
 lambd :
 nbr_fichier : nombre ajouté au fichier"""
-        (n, lambd, nbr_fichier) = parse_nbr(arg)
+        (n, lambd, nbr_fichier) = parse(arg) ###A modifier
         n = int(n)
         r = test_atk_scale_free(n, lambd, nbr_fichier)
     
@@ -78,8 +78,9 @@ def parse_testsf(arg):
     parser = argparse.ArgumentParser()
     parser.add_argument("n", help="Number of agents", type = float)
     parser.add_argument("lambd", help="lambd = 1/(mean of leaving tunnels for an agent", type = float, default = 0.25)
-    parser.add_argument("filenumber", help="Number of the file", type = int)
-    arg.split(" ")
+    parser.add_argument("filenumber", help="Number of the file", type = int, default = -1)
+    parser.add_argument("--showall", "-s", help="Show all curves of iterations", action = "store_true")
+    ags = parser.parse_args(arg.split(" "))
 
 def launch():
     c = Interpreteur()
