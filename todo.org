@@ -4,15 +4,19 @@
  - [X] Génération du scale-free selon un vrai algorithme
  - [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
  - [X] Passer en bidirectionnel :: plus en accord avec la littérature
- - [ ] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
-   + [ ] Unifier les graphes :: ajouter les fonctions en rappot dans le module graphe
-   + [ ] Ajouter une option pour afficher ls graphes correspondants à chaque itération
+ - [-] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
+   + [-] Unifier les graphes :: ajouter les fonctions en rapport dans le module graphe
+     * [ ] Pour un réseau homogène
+     * [X] Pour un scale-free
+   + [X] Ajouter une option pour afficher les graphes correspondants à chaque itération
+   + [ ] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants
  - [-] Optimiser les fonctions ::
  - [ ] Présentation :: voir Notes bis
    + [ ] Français
    + [ ] Graphes en LaTeX
  - [-] Parsing :: faire un vrai parsing des arguments
-   + Première étape faite pour testsf. La suit viendra après ce qui est plus important.
+   + [-] Pour testsf. La suite viendra après ce qui est plus important.
+   + [ ] Pour un réseau homogène
      
 ** A lire
  - The Law of The Few - Goyal

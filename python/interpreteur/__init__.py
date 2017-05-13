@@ -57,11 +57,12 @@ class Interpreteur(cmd.Cmd):
 
 Paramètres :
 n : nombre d'agents
-lambd :
-nbr_fichier : nombre ajouté au fichier"""
-        n, nbr_fichier, showall = parse_testsf(arg)
+filenbr: nombre ajouté au fichier
+-i <iterations>: int
+-s: showall: flag"""
+        n, nbr_fichier, showall, iterations = parse_testsf(arg)
         
-        r = test_atk_scale_free(n, nbr_fichier, showall)
+        r = test_atk_scale_free(n, nbr_fichier, showall, iterations)
     
     def do_quitter(self, arg):
         """Quitte le programme"""
@@ -78,9 +79,10 @@ def parse_testsf(arg):
     parser = argparse.ArgumentParser()
     parser.add_argument("n", help="Number of agents", type = int)
     parser.add_argument("filenumber", help="Number of the file", type = int, default = -1)
+    parser.add_argument("--iterations", "-i", help="Nombre d'itérations", type=int, default = 1)
     parser.add_argument("--showall", "-s", help="Show all curves of iterations", action = "store_true")
     args = parser.parse_args(arg.split(" "))
-    return args.n, args.filenumber, args.showall
+    return args.n, args.filenumber, args.showall, args.iterations
 
     
 def launch():
