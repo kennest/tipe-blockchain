@@ -16,10 +16,6 @@ class Agent:
         """Change l'id de l'agent."""
         self.id = ag_id
 
-    def _add_info(self, info):
-        """Ajoute une information au noeud."""
-        self.informations.append(info)
-
     def __str__(self):
         """Pour convertir l'objet Agent en str."""
         print("id: " + str(self.id))
@@ -36,13 +32,15 @@ class Agent:
         for i in informations:
             ag._add_info(i)
         return ag
- 
+
+
+    def _add_info(self, info):
+        """Ajoute une information au noeud."""
+        self.informations.append(info)
+
     def _get_list_info_id(self):
         """Retourne la liste des ids des infos de l'Agent."""
-        list_id = []
-        for i in self.informations:
-            list_id.append(i.id)
-        return list_id
+        return [info.id for info in self.informations]
     
     def envoyer_info(self, recepteur, info, list_voisins):
         """Envoie une information à un voisin.
@@ -63,7 +61,9 @@ class Agent:
         for info in self.informations:
             if info.id == i:
                 return info
-        
+
+    def _get_nbr_infos(self):
+        return len(self._get_list_info_id())
     
 
 
@@ -193,11 +193,7 @@ class Reseau:
     def _set_tunnel(self,id_emetteur,id_recepteur):
         """Ajoute un tunnel entre l'émetteur d'id id_emetteur et
         le récepteur d'id id_recepteur. Echoue si ce tunnel existe déjà."""
-        list_tunnels = self._get_list_tunnels()
-        #if not((id_emetteur,id_recepteur) in list_tunnels):
         t = Tunnel(id_emetteur, id_recepteur)
-        t._set_emetteur(id_emetteur)
-        t._set_recepteur(id_recepteur)
         self.tunnels.append(t)
 
     def _set_tunnel_double(self, id_1, id_2):
@@ -217,6 +213,7 @@ class Reseau:
         """Récupère la liste des tunnels du réseau."""
         return [(t.emetteur,t.recepteur) for t in self.tunnels]
 
+
     def _get_voisins_emet(self,ag_id):
         """Retourne la liste des voisins vers lesquels peut émettre
     l'agent d'id ag_id."""
@@ -226,6 +223,11 @@ class Reseau:
             if i[0] == ag_id :
                 voisins_emet.append(i[1])
         return voisins_emet
+
+    def _get_nbr_tun(self, ag_id):
+        """Retourne le nombre de tunnels sortants de l'agent d'id ag_id."""
+        l = self._get_voisins_emet(ag_id)
+        return len(l)
         
     def _get_voisins_recep(self,ag_id):
         """Retourne la liste des voisins depuis lesquels peut recevoir
@@ -237,7 +239,11 @@ class Reseau:
                 voisins_recep.append(i[0])
         return voisins_recep
 
-
+    def _get_nbr_infos(self, ag_id):
+        for x in self.agents:
+            if x.id == ag_id:
+                return x._get_nbr_infos()
+                   
 ## Liens avec csv et matrices
         
 def conv_net_to_matrix(net):
@@ -386,7 +392,8 @@ def reseau_aleatoire(n,p):
 
 
 def gen_ens_sf(n, p, ag_id):
-    """n: taille du réseau
+    """[UNUSED]
+n: taille du réseau
 p: nombre de voisins
 ag_id : agent pour lequel a lieu la génération """
     voisins = []
@@ -396,36 +403,37 @@ ag_id : agent pour lequel a lieu la génération """
             voisins.append(x)
     return voisins
     
-def scale_free(n, lambd):
+def scale_free(n):
     """Génère un réseau invariant d'échelle (scale-free network).
 Soit uni-, (soit bidirectionnel)
 [0, ... , n] noeuds
 pour chacun, génère nombre de liens avec bonne proba
 puis génère voisins
-P(k) = k^(-γ)
-    """
-    # http://stackoverflow.com/questions/10622401/implementing-barabasi-albert-method-for-creating-scale-free-networks?answertab=votes#tab-top
-
-    ## De la bibliothèque random :
-    # random.expovariate(lambd)
-    #   Exponential distribution. lambd is 1.0 divided by the desired mean. It 
-    #   should be nonzero. (The parameter would be called “lambda”, but that is a 
-    #   reserved word in Python.) Returned values range from 0 to positive 
-    #   infinity if lambd is positive, and from negative infinity to 0 if lambd 
-    #   is negative.
-    
-    # If X ~ Exp(λ) then e^(−X) / k ∼ PowerLaw(k, λ)
-
-    # Voir aussi la distribution de Pareto ?
-    
+P(k) = k^(-γ), gamma ~ 3
+"""
     net = reseau_sans_tunnel(n)
-    for i in range(n):
-        x = min(int(random.expovariate(lambd))+1,n-1)
-        # le +1, c'est parce que sinon, ça commence avec 0 tunnels. le -1, c'est parce que sinon, ça compte lui-même
-        voisins = gen_ens_sf(n, x, i)
-        for v in voisins:
-            net._set_tunnel_double(i,v)
-
-    if not(est_connexe(net)):
-        net = scale_free(n, lambd)
+    # on initialise le réseau avec un coeur
+    net._set_tunnel_double(0,1)
+    tmp = random.random()
+    if tmp < 0.33:
+        net._set_tunnel_double(0,2)
+    elif tmp < 0.66:
+        net._set_tunnel_double(1,2)
+    else:
+        net._set_tunnel_double(0,2)
+        net._set_tunnel_double(1,2)
+    sum_nbr_liens_k = 6
+    # et la, on ajoute des noeuds
+    for i in range(3,n):
+        tmpcount = 0
+        while tmpcount == 0: # ceci assure d'avoir chaque noeud connecté
+        # au reste du réseau, et donc la connexité.
+            for j in range(i):
+                x = random.random()
+                nbr_liens_j = net._get_nbr_tun(j)
+                p = nbr_liens_j / sum_nbr_liens_k
+                if x < p:
+                    tmpcount += 1
+                    net._set_tunnel_double(i, j)
+        sum_nbr_liens_k += tmpcount
     return net

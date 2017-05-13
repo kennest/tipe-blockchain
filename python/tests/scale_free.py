@@ -16,7 +16,7 @@ iterations = 10 #nombre de passages pour un même nombre d'attaquants
 
 
 
-def test_atk_scale_free(n, lambd, nbr_fichier, showall):
+def test_atk_scale_free(n, nbr_fichier, showall):
     """Lance une batterie de tests sur des réseaux générés 
     aléatoirement, en faisant varier le nombre d'attaquants.
 n: int
@@ -24,8 +24,7 @@ lambd: float
 nbr_fichier: int
 showall: bool"""
 
-    nom_fichier = "../resultats/scale-free/" + "sf-" + str(n) +\
-                  "-"+ str(lambd) +"-"+ str(nbr_fichier)
+    nom_fichier = "../resultats/scale-free/" + "sf-" + str(n) +"-"+ str(nbr_fichier)
     resultats = [] # tableau contenant les résultats de la simulation
 
     temps_init = t.monotonic()
@@ -35,7 +34,7 @@ showall: bool"""
               " s")
         print("Progression : " + str(k/iterations * 100) + "%")
         #nombre de tests avec p attaquants
-        net_init = scale_free(n, lambd)
+        net_init = scale_free(n)
         for p in range(n): #avec p attaquants, n-1 sera le
             #        dernier agent non attaquant, n-2 l'avant-dernier
             net = net_init.copy()
@@ -65,9 +64,9 @@ showall: bool"""
                     else:
                         print("Erreur ! Le texte de l'information est invalide !")
                 except:
-                    print("Erreur, {} agents et {} attaquants ({} lambda)".format(n, p, lambd))
+                    """print("Erreur, {} agents et {} attaquants ({} lambda)".format(n, p, lambd))"""
                     print("Connexe : " + str(est_connexe(net)))
-                    print(net)
+                    """print(net)"""
             resultats.append((p, vrai, faux))
     print("Temps écoulé : " + str(t.monotonic() - temps_init) + " s")
     print("Progression : " + str(k/iterations * 100) + "%")
@@ -87,11 +86,9 @@ showall: bool"""
         les_faux[i] = les_faux[i]/iterations
  
     plt.clf()
-    #plt.plot(les_x, les_vrais)
     plt.plot(les_x, les_faux)
-    plt.title("Tracé avec " + str(n) + " agents et " + str(lambd) +\
-              " lambda")
-    plt.xlabel("p Nombre d'attaquants")
+    plt.title("Tracé avec " + str(n) + " agents")
+    plt.xlabel("Nombre d'attaquants")
     plt.ylabel("Nombre de réponses fausses")
     plt.savefig(nom_fichier + ".png")
     plt.show()

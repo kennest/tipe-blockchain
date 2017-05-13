@@ -41,9 +41,17 @@ def iteration(net):
 
 def boucle(net, n):
     """Exécute n iterations"""
-    for i in range(n):
+    b = False
+    i = 0
+    while not(b) and i<n:
         iteration(net)
-
+        i += 1
+        b = True
+        for j in range(n):
+            if not(net._get_nbr_infos(j) > 0):
+                b = False
+                break
+        
 def comportement_attaquant(net, attaquant):
     """Gère le comportement d'un agent attaquant"""
     list_voisins = net._get_voisins_emet(attaquant.id)
