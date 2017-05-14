@@ -9,7 +9,7 @@
      * [ ] Pour un réseau homogène
      * [X] Pour un scale-free
    + [X] Ajouter une option pour afficher les graphes correspondants à chaque itération
-   + [ ] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants
+   + [X] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants CLOCK: [2017-05-14 dim. 14:35]--[2017-05-14 dim. 15:00] =>  0:25
  - [-] Optimiser les fonctions ::
  - [ ] Présentation :: voir Notes bis
    + [ ] Français
@@ -17,6 +17,7 @@
  - [-] Parsing :: faire un vrai parsing des arguments
    + [-] Pour testsf. La suite viendra après ce qui est plus important.
    + [ ] Pour un réseau homogène
+   + [ ] Afficher l'aide correctement
      
 ** A lire
  - The Law of The Few - Goyal

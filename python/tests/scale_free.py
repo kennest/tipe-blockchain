@@ -3,7 +3,7 @@ import time as t
 from modelisation.fonctionnement import diff_aleatoire, init_info, boucle
 from modelisation import est_connexe, conv_net_to_matrix, scale_free
 from modelisation.fichiers import ecrit_csv
-from graphes import graphe, graphe_full
+from graphes import graphe, graphe_full, graphe_deg_nbr
 try:
     import matplotlib.pyplot as plt # voir
     # http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
@@ -17,7 +17,7 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 
 
-def test_atk_scale_free(n, nbr_fichier, showall, iterations):
+def test_atk_scale_free(n, nbr_fichier, showall, iterations, gtype):
     """Lance une batterie de tests sur des réseaux générés 
     aléatoirement, en faisant varier le nombre d'attaquants.
 n: int
@@ -48,10 +48,12 @@ showall: bool"""
                 ag.strategie = "attaque"
             boucle(net, n)
             
-            # Calcul du nombre de 'vrai' et de 'faux'
-            #
+            # Calcul du nombre de 'vrai' et de 'faux', et de la
+            # somme des degrés des noeuds attaquants
+            
             vrai = 0
             faux = 0
+            deg = 0
             for agent in net.agents:
                 try: # En principe, le try est inutile, mais
                      # intéressant pour faire des tests
@@ -68,37 +70,50 @@ showall: bool"""
                     """print("Erreur, {} agents et {} attaquants ({} lambda)".format(n, p, lambd))"""
                     print("Connexe : " + str(est_connexe(net)))
                     """print(net)"""
-            resultats.append((p, vrai, faux))
+                if agent.strategie == "attaque":
+                    deg += net._get_nbr_tun(agent.id)   
+            resultats.append((p, vrai, faux, deg))
     print("Temps écoulé : " + str(t.monotonic() - temps_init) + " s")
     print("Progression : " + str(k/iterations * 100) + "%")
 
     ecrit_csv(resultats, savename)
     
     # Trace un graphe avec matplotlib
-    les_x = [i/n for i in range(n)]
+    if gtype == 1:
+        les_x = [i/n for i in range(n)]
 
-    title = "Scale-free, " + str(n) + " agents"
-    xlabel = "Proportion d'attaquants"
-    ylabel = "Proportion de réponses fausses"
-    if showall:
-        les_faux = [[0 for i in range(n)] for j in range(iterations)]
-        k = 0
-        for res in resultats:
+        title = "Scale-free, " + str(n) + " agents"
+        xlabel = "Proportion d'attaquants"
+        ylabel = "Proportion de réponses fausses"
+        if showall:
+            les_faux = [[0 for i in range(n)] for j in range(iterations)]
+            k = 0
+            for res in resultats:
             # p in range(n)
-            p, v, f = res
-            les_faux[k][p] += f/n
-            if p == n-1:
-                k += 1
-        graphe_full(les_x, les_faux, savename, title, xlabel, ylabel)
+                p, v, f, d = res
+                les_faux[k][p] += f/n
+                if p == n-1:
+                    k += 1
+            graphe_full(les_x, les_faux, savename, title, xlabel, ylabel)
             
             
-    else:
-        les_faux = [0 for i in range(n)]
-        for res in resultats:
-            (p, v, f) = res
-            les_faux[p] += f/n
-        for i in range(n):
-            les_faux[i] = les_faux[i]/iterations
+        else:
+            les_faux = [0 for i in range(n)]
+            for res in resultats:
+                (p, v, f, d) = res
+                les_faux[p] += f/n
+            for i in range(n):
+                les_faux[i] = les_faux[i]/iterations
  
-        graphe(les_x, les_faux, savename, title, xlabel, ylabel)   
+            graphe(les_x, les_faux, savename, title, xlabel, ylabel)
+            
+    elif gtype == 2: #on va faire un scatter_plot
+        points = []
+        for res in resultats:
+            p, v, f, d = res
+            points.append((d, p))
+        title = "Scale-free, {} agents".format(str(n))
+        xlabel = "Somme des degrés des noeuds attaquants"
+        ylabel = "Nombre d'attaquants"
+        graphe_deg_nbr(savename, points, title, xlabel, ylabel)
     return resultats

@@ -10,27 +10,19 @@ class Interpreteur(cmd.Cmd):
     prompt = "} "
     
     def do_diffetoile(self, arg):
-        """Lance la diffusion en étoile
-        
+        (n, p, centre, emetteur, destinataire) = parse_nbr(arg)
+        diff_etoile(n, p, centre, emetteur, destinataire)
+
+    def help_diffetoile(self):
+        print("""Lance la diffusion en étoile
         Paramètres :
         n : Nombre d'agents
         p : nombre d'attaquants (p<=n)
         centre : 1 si le centre est attaquant, 0 sinon
         emetteur : emetteur de l'information
-        destinataire : destinataire de l'information"""
-        (n, p, centre, emetteur, destinataire) = parse_nbr(arg)
-        diff_etoile(n, p, centre, emetteur, destinataire)
+        destinataire : destinataire de l'information""")
         
     def do_diffaleat(self, arg):
-        """Lance la diffusion sur un réseau aléatoire
-        
-        Paramètres :
-        n : Nombre d'agents
-        nb_tun : nombre de tunnels
-        p : nombre d'attaquants (p<=n)
-        emetteur : emetteur de l'information
-        destinataire : destinataire de l'information"""
-        
         # def parse(arg):
         #     """Traite les arguments de la fonction"""
         #     parser = argparse.ArgumentParser()
@@ -39,6 +31,17 @@ class Interpreteur(cmd.Cmd):
         
         (n, nb_tun, p, emetteur, destinataire) = parse_nbr(arg)
         diff_aleatoire(n, nb_tun, p, emetteur, destinataire)
+
+    def help_diffaleat(self, arg):
+        print("""Lance la diffusion sur un réseau aléatoire
+        
+        Paramètres :
+        n : Nombre d'agents
+        nb_tun : nombre de tunnels
+        p : nombre d'attaquants (p<=n)
+        emetteur : emetteur de l'information
+        destinataire : destinataire de l'information""")
+
         
     def do_testatkaleat(self, arg):
         """Créé une fonction permettant de simuler un grand nombre de diffusion aléatoires à n et nb_tun fixés, en faisant varier p. Ensuite, trace une courbe représentant le nombre de 'vrais' par rapport aux 'faux'.
@@ -60,10 +63,18 @@ n : nombre d'agents
 filenbr: nombre ajouté au fichier
 -i <iterations>: int
 -s: showall: flag"""
-        n, nbr_fichier, showall, iterations = parse_testsf(arg)
         
-        r = test_atk_scale_free(n, nbr_fichier, showall, iterations)
-    
+        args = parser.parse_args(arg.split(" "))
+        n, nbr_fichier, showall, iterations, gtype = args.n, args.filenumber, args.showall, args.iterations, args.gtype
+        
+        r = test_atk_scale_free(n, nbr_fichier, showall, iterations, gtype)
+
+    def help_testsf(self):
+        print("""Simule un grand nombre d'itérations sur des réseaux scale-free.
+
+Paramètres :
+        {n}""".format(n=sf_n_help))
+        
     def do_quitter(self, arg):
         """Quitte le programme"""
         print("Au revoir\n")
@@ -75,16 +86,21 @@ def parse_nbr(arg):
     de caractères."""
     return tuple(map(float, arg.split()))
 
-def parse_testsf(arg):
-    parser = argparse.ArgumentParser()
-    parser.add_argument("n", help="Number of agents", type = int)
-    parser.add_argument("filenumber", help="Number of the file", type = int, default = -1)
-    parser.add_argument("--iterations", "-i", help="Nombre d'itérations", type=int, default = 1)
-    parser.add_argument("--showall", "-s", help="Show all curves of iterations", action = "store_true")
-    args = parser.parse_args(arg.split(" "))
-    return args.n, args.filenumber, args.showall, args.iterations
+sf_n_help = "Number of agents"
+sf_filenumber_help = "Number of the file"
+sf_iterations_help = "Number of iterations"
+sf_showall_help = "Show all curves of iterations"
+sf_gtype_help = "Graph type\n1-Normal\n2-Scatter plot"
 
-    
+#parser for sf function
+parsersf = argparse.ArgumentParser()
+parsersf.add_argument("n", help=sf_n_help, type = int)
+parsersf.add_argument("filenumber", help=sf_filenumber_help, type = int, default = -1)
+parsersf.add_argument("--iterations", "-i", help=sf_iterations_help, type=int, default = 1)
+parsersf.add_argument("--showall", "-s", help=sf_showall_help, action = "store_true")
+parsersf.add_argument("--gtype", "-g", help=sf_gtype_help, type=int, default=1)
+
+
 def launch():
     c = Interpreteur()
     c.cmdloop()
