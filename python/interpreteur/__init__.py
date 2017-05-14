@@ -64,7 +64,7 @@ filenbr: nombre ajouté au fichier
 -i <iterations>: int
 -s: showall: flag"""
         
-        args = parser.parse_args(arg.split(" "))
+        args = parsersf.parse_args(arg.split(" "))
         n, nbr_fichier, showall, iterations, gtype = args.n, args.filenumber, args.showall, args.iterations, args.gtype
         
         r = test_atk_scale_free(n, nbr_fichier, showall, iterations, gtype)

@@ -115,5 +115,5 @@ showall: bool"""
         title = "Scale-free, {} agents".format(str(n))
         xlabel = "Somme des degrés des noeuds attaquants"
         ylabel = "Nombre d'attaquants"
-        graphe_deg_nbr(savename, points, title, xlabel, ylabel)
+        graphe_deg_nbr(savename, points, n, title, xlabel, ylabel)
     return resultats
