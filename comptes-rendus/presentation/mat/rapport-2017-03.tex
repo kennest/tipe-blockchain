@@ -14,6 +14,9 @@
 \usepackage{eurosym}           % pour le symbole euros
 \usepackage{amsmath,amssymb,tabularx}
 \usepackage[sc]{mathpazo}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+%\usetikzlibrary{?list of libraries separated by commas?}
 
 \makeatletter
 \def\verbatim@font{\footnotesize\ttfamily}
@@ -118,13 +121,13 @@
 \item \structure{Modélisation}
 	\begin{enumerate}
 %  	\item Caractéristiques d'une cryptomonnaie
-	\item Les objets du réseau (\emph{Agent}, \emph{Information}, \emph{Tunnel}, \emph{Réseau})
+	\item Les objets du réseau
 	\item Fonctionnement général
-	\item Les types de réseau (en étoile, homogène, scale-free)
+	\item Les types de réseaux
 	\end{enumerate} 
 \item \structure{Résultats}
 	\begin{enumerate}
-  	\item Sur un réseau homogène
+  	\item Première modélisation
 	\item Seconde modélisation
 	\end{enumerate}  
 \item \structure{Conclusion}
@@ -139,10 +142,8 @@
 
 \begin{frame} \frametitle{Les objets du réseau}
 \begin{itemize}
-\item Agent : \texttt{(id, strategie, informations)}
-\item Tunnel : \texttt{(emetteur récepteur)}
-\item Information : \texttt{(id, destinataire, texte, passeurs)}
-\item Réseau : \texttt{(liste d'agents, liste de tunnels)}
+\item Objets Python
+\item Agent, Tunnel, Information, Réseau
 \vspace*{-0.4cm} 
 \end{itemize}
 \end{frame}
@@ -178,9 +179,37 @@
 \item \emph{Homogène} : Chaque noeud possède un même nombre \texttt{nb\_tun} d'arètes pointant vers un autre noeud.
 \end{itemize}
 
-\begin{center}
-\includegraphics[scale=0.4]{homogene.png}
-\end{center}
+%%%
+%\begin{tikzpicture}[scale=1]
+%	\node[dotted](test){bla};
+%	\path[draw]?);
+%\end{tikzpicture}
+
+
+
+%\tikzstyle{cblue}=[circle, draw, thin,fill=cyan!20, scale=0.8]
+
+\begin{tikzpicture}[scale = 0.5, thick]
+	\node[fill=lightgray,draw=black,text=black] (zero) at (0, 0) {0};
+	\node[fill=lightgray,draw=black,text=black] (un) at (2,3) {1};
+	\node[fill=lightgray,draw=black,text=black] (deux) at (5,3) {2};
+	\node[fill=lightgray,draw=black,text=black] (trois) at (7, 0) {3};
+	\node[fill=lightgray,draw=black,text=black] (quatre) at (3, -1) {4};
+	\draw[->] (zero) -- (un);
+	\draw[->] (zero) -- (quatre);
+	\draw[->] (un) -- (quatre);
+	\draw[->] (un) -- (deux);
+	\draw[->] (deux) -- (trois);
+	\draw[->] (deux) -- (un);
+	\draw[->] (trois) -- (deux);
+	\draw[->] (trois) -- (quatre);
+	\draw[->] (quatre) -- (zero);
+	\draw[->] (quatre) -- (un);
+\end{tikzpicture}
+%
+%\begin{center}
+%\includegraphics[scale=0.4]{homogene.png}
+%\end{center}
 \end{frame}
 
 

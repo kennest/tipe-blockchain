@@ -1,5 +1,5 @@
 * Notes diverses
-
+  
 ** TODO [3/7]
  - [X] Génération du scale-free selon un vrai algorithme
  - [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
@@ -14,6 +14,7 @@
  - [ ] Présentation :: voir Notes bis
    + [ ] Français
    + [ ] Graphes en LaTeX
+   + [ ] Génération des résultats
  - [-] Parsing :: faire un vrai parsing des arguments
    + [-] Pour testsf. La suite viendra après ce qui est plus important.
    + [ ] Pour un réseau homogène
