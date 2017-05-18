@@ -379,7 +379,20 @@ def gen_ens_aleat(n, m, M, y):
 
 ## A optimiser, il faudrait générer un réseau valide du premier coup !
 def reseau_aleatoire(n,p):
-    """Génère un réseau de taille n, avec chaque agent lié à p autres."""
+    """Génère un réseau homogène de taille n, avec chaque agent lié à p autres."""
+    """Draft pour du bidimensionnel :
+tableau nbr_tun = [[id agents ayant k tunnels] for k in range(p+1)]
+
+Ensuite, on prend des agents ayant le même nombre minimal de tunnels, et on les lie. On rcommence jusqu'à avoir le truc kivabien
+MAIS
+est-ce que connexité ?
+réseau trop particulier ?
+est-ce que l'algo fonctionne ?
+
+-OU-
+
+On prend le noeud 0, on le connecte avec p autres
+puis pour chaque noeud i, si t_i st son nbr de tunnels, on connecte i à p-t_i autres noeuds plus loins """
     net = reseau_sans_tunnel(n)
     for i in range(n):
         voisins = gen_ens_aleat(p, 0, n, i)

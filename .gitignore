@@ -2,6 +2,7 @@
 *~
 *#
 *.swp
+.#*
 ##Latex files :
 *.aux
 *.log

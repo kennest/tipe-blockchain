@@ -73,7 +73,7 @@
 
 \author[Matthias Goffette, MP*, Lycée La Martinière Monplaisir]{Matthias Goffette}
 
-\date{\\[1ex] {\small \structure{Lycée La Martinière Monplaisir} \\ Lyon, 15 Mars 2017}}
+\date{\\[1ex] {\small \structure{Lycée La Martinière Monplaisir} \\ Lyon, 18 Mai 2017}}
 
 %\titlegraphic{\pgfimage[height=1cm]{Logo_GATE}}
 %\institute{$^{*}$ CNRS, GATE LS-E, Université de Lyon \\ \vspace{0.3cm}
@@ -103,7 +103,7 @@
 \item Réseaux dans tous les domaines : informatique, biologie, sociologie
 \item Sécuriser les réseau est un point primordial
 		\begin{itemize}
-		\item Utilisés dans des systèmes critiques (finance, réseaux informatique d'entreprises...)
+		\item Base de la communication entr ordinateurs
 		\item De plus en plus d'attaques pour récupérer les données des utilisateurs
 		\item Un réseau doit pouvoir être résistant
 		\end{itemize}
@@ -121,7 +121,7 @@
 \item \structure{Modélisation}
 	\begin{enumerate}
 %  	\item Caractéristiques d'une cryptomonnaie
-	\item Les objets du réseau
+%	\item Les objets du réseau
 	\item Fonctionnement général
 	\item Les types de réseaux
 	\end{enumerate} 
@@ -140,13 +140,13 @@
 
 \section{Modélisation}
 
-\begin{frame} \frametitle{Les objets du réseau}
-\begin{itemize}
-\item Objets Python
-\item Agent, Tunnel, Information, Réseau
-\vspace*{-0.4cm} 
-\end{itemize}
-\end{frame}
+%\begin{frame} \frametitle{Les objets du réseau}
+%\begin{itemize}
+%\item Objets Python
+%\item Agent, Tunnel, Information, Réseau
+%\vspace*{-0.4cm} 
+%\end{itemize}
+%\end{frame}
 
 
 \begin{frame} \frametitle{Fonctionnement général}
@@ -165,7 +165,8 @@
 \begin{frame} \frametitle{Les types de réseaux - En étoile}
 % Images !
 \begin{itemize}
-\item \emph{En étoile} : Un noeud est connecté avec tous les autres. C'est l'architecture d'un système client-serveur.
+\item Étoile : Un noeud est connecté avec tous les autres. C'est l'architecture d'un système client-serveur.
+\item Ce type de réseau est assz facile à étudier.
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.2]{star-network.png}
@@ -174,42 +175,32 @@
 
 
 \begin{frame} \frametitle{Les types de réseaux - Homogène}
-% Images !
 \begin{itemize}
 \item \emph{Homogène} : Chaque noeud possède un même nombre \texttt{nb\_tun} d'arètes pointant vers un autre noeud.
 \end{itemize}
 
-%%%
-%\begin{tikzpicture}[scale=1]
-%	\node[dotted](test){bla};
-%	\path[draw]?);
-%\end{tikzpicture}
 
-
-
-%\tikzstyle{cblue}=[circle, draw, thin,fill=cyan!20, scale=0.8]
-
+\begin{center}
 \begin{tikzpicture}[scale = 0.5, thick]
-	\node[fill=lightgray,draw=black,text=black] (zero) at (0, 0) {0};
-	\node[fill=lightgray,draw=black,text=black] (un) at (2,3) {1};
-	\node[fill=lightgray,draw=black,text=black] (deux) at (5,3) {2};
-	\node[fill=lightgray,draw=black,text=black] (trois) at (7, 0) {3};
-	\node[fill=lightgray,draw=black,text=black] (quatre) at (3, -1) {4};
+	\node[fill=gray!20,draw=black,text=black] (zero) at (0, 0) {0};
+	\node[fill=gray!20,draw=black,text=black] (un) at (2,3) {1};
+	\node[fill=gray!20,draw=black,text=black] (deux) at (5,3) {2};
+	\node[fill=gray!20,draw=black,text=black] (trois) at (7, 0) {3};
+	\node[fill=gray!20,draw=black,text=black] (quatre) at (3, -1) {4};
+
 	\draw[->] (zero) -- (un);
-	\draw[->] (zero) -- (quatre);
-	\draw[->] (un) -- (quatre);
-	\draw[->] (un) -- (deux);
-	\draw[->] (deux) -- (trois);
-	\draw[->] (deux) -- (un);
-	\draw[->] (trois) -- (deux);
+	\draw[->] (zero) to[bend right] (quatre);
+	\draw[->] (un) to[bend right] (quatre);
+	\draw[->] (un) to[bend right] (deux);
+	\draw[->] (deux) to[bend right] (trois);
+	\draw[->] (deux) to[bend right] (un);
+	\draw[->] (trois) to[bend right] (deux);
 	\draw[->] (trois) -- (quatre);
-	\draw[->] (quatre) -- (zero);
-	\draw[->] (quatre) -- (un);
+	\draw[->] (quatre) to[bend right] (zero);
+	\draw[->] (quatre) to[bend right] (un);
 \end{tikzpicture}
-%
-%\begin{center}
-%\includegraphics[scale=0.4]{homogene.png}
-%\end{center}
+\end{center}
+
 \end{frame}
 
 
@@ -217,7 +208,37 @@
 % Images !
 \begin{itemize}
 \item \emph{Scale-free, ou invariant d'échelle} : Le nombre d'arètes par noeud suit une loi de puissance : $ P(k) \sim k^{-\gamma}$. Le réseau Internet est de ce type.
+\item Nous utiliserons l'agorithme de Barabási-Albert, pour lequel $\gamma = 3$.
 \end{itemize}
+
+%\begin{center}
+%\begin{tikzpicture}[scale = 0.5, thick]
+%	\node[fill=gray!20,draw=black,text=black] (zero) at (0,1) {0};
+%	\node[fill=gray!20,draw=black,text=black] (un) at (0,-1) {1};
+%	\node[fill=gray!20,draw=black,text=black] (deux) at (3,0) {2};
+%	\node[fill=gray!20,draw=black,text=black] (trois) at (3,-3) {3};
+%	\node[fill=gray!20,draw=black,text=black] (quatre) at (3,3) {4};
+%	\node[fill=gray!20,draw=black,text=black] (cinq) at (6,3) {5};
+%	\node[fill=gray!20,draw=black,text=black] (six) at (6,-3) {6};
+%	\node[fill=gray!20,draw=black,text=black] (sept) at (9,0) {7};
+%	\node[fill=gray!20,draw=black,text=black] (huit) at (9,3) {8};
+%	\node[fill=gray!20,draw=black,text=black] (neuf) at (9,-3) {9};
+%	\node[fill=gray!20,draw=black,text=black] (dix) at (12,0) {10};
+%
+%	\draw (zero) -- (un)
+%	\draw (deux) -- (zero)
+%	\draw (deux) -- (un);
+%	\draw (deux) -- (trois);
+%	\draw (deux) -- (quatre);
+%	\draw (deux) -- (cinq);
+%	\draw (deux) -- (sept);
+%	\draw (sept) -- (six);
+%	\draw (sept) -- (huit);
+%	\draw (sept) -- (neuf);
+%	\draw (sept) -- (dix);
+%\end{tikzpicture}
+%\end{center}
+
 \begin{center}
 \includegraphics[scale=0.25]{scale-free.png}
 \includegraphics[scale=0.15]{power-law.png} 
@@ -237,8 +258,7 @@
 
 \begin{itemize}
 \item Variation de la taille du réseau
-\item Semble tendre vers une exponentielle
-\item Effet de cascade : les noeuds proches de l'émetteur ont une plus grand influence
+\item Croissant, mais la dérivée seconde est négative : plus il y a d'attaquants, et moins l'action d'en ajouter un nouveau est significative
 \end{itemize}
 \end{frame}
 
@@ -247,41 +267,56 @@
 \begin{frame} \frametitle{Variation du nombre d'arêtes}
 \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-20-1.png} 
 
-%
-% On va faie un truc bien, avec des \node
-%
-
 \begin{itemize}
 	\item Variation du nombre de tunnels par agent
 	\item Courbe se divise en deux parties, la seconde affines
-	\item A l'arrivée sur la dernière partie, tous les agents ayant une information vraie sont voisins de l'émetteur
+	\item A l'arrivée sur la dernière partie, les seuls agents ayant des informations vrais sont voisins de l'émetteur
 \end{itemize}
 \end{frame}
 
-\subsection{Sur un scale-free network}%\emph{scale-free network}}
+\subsection{Sur un scale-free network}
 
 \begin{frame}[fragile] \frametitle{Sur un scale-free network}
+\begin{center}
+\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-100-0-it3.png}
+\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-100-97-it100.png}
+\end{center}
+
 \begin{itemize}
-	\item Plus réaliste
-	\item Hypothèse : Courbe en escalier, plus raide qu sur un réseau homogène
+	\item Présence de paliers : noeuds ayant une forte connectivité deviennent attaquant
+	\item Assez rapidement, la quasi-totalité du réseau reçoit des informations fausses (se confirme sur un grand nombre d'essais)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Sur un scale-free network}
+\begin{center}
+\includegraphics[scale=0.3]{../../../resultats/scale-free/sf-100-2-it100.png}
+\end{center}
+\begin{itemize}
+	\item Pour avoir le même nombre de degrés attaquants, le nombre d'attaquant peut beaucoup varier (à une somme de degrés 400, entre 60 et 100 attaquants)
 \end{itemize}
 \end{frame}
 
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
 \begin{frame} \frametitle{Conclusion}
 \begin{itemize}
-	\item Premiers résultats
+	\item Résultats
 	\begin{itemize}
-		\item Courbe non linéaire comme attendue
-		\item Division en deux parties affines
+		\item Courbes non linéaires, croissantes
+		\item Pour les graphes homogènes, division en deux parties affines
+		\item Réseaux invariants d'échelle : présence de paliers
 	\end{itemize}
-	\item Poursuite du travail
+	\item Critique
 	\begin{itemize}
-		\item Etude des réseaux \emph{scale-free}
+		\item Dans le réseau scale-free, on a supposé que les noeuds ayant une forte connectivité ont la même probabilité d'être attaquants que les autres. Or en pratique, ce sont souvent des noeuds plus sécurisés.
+	\end{itemize}
+	\item en pratique
+	\begin{itemize}
+		\item Le réseau en étoile est peu vulnérable, si le noeud central est non-attaquant
+		\item Un réseau homogène et 
 	\end{itemize}
 \end{itemize} 
 \end{frame}
