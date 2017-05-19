@@ -103,14 +103,14 @@
 \item Réseaux dans tous les domaines : informatique, biologie, sociologie
 \item Sécuriser les réseau est un point primordial
 		\begin{itemize}
-		\item Base de la communication entr ordinateurs
+		\item Base de la communication entre ordinateurs
 		\item De plus en plus d'attaques pour récupérer les données des utilisateurs
 		\item Un réseau doit pouvoir être résistant
 		\end{itemize}
 \item Objectifs du TIPE 
 	\begin{itemize}
 	\item Modéliser des réseaux
-	\item Simuler des attaques, et en faisant varier certains paramètres, étudier la vulnérabilité
+	\item Simuler des attaques, et en faisant varier la topologie du réseau, étudier sa vulnérabilité
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -151,22 +151,46 @@
 
 \begin{frame} \frametitle{Fonctionnement général}
 \begin{itemize}
-\item Fonctionnement multi-agents, en effectuant de multiples \emph{itérations} sur le réseau
+\item Fonctionnement multi-agents, en effectuant de multiples itérations sur le réseau
+\item Au départ, un agent a une information
 \item Itération :
 	\begin{itemize}
 	\item Parcours des agents un à un
 	\item Si \emph{normal} : passe son information à tous les voisins qui ne la possèdent pas
-	\item Si \emph{attaquant} : envoie à tous ses voisins qui ne possèdent pas encore l'information une information de même \texttt{id}, mais fausse
+	\item Si \emph{attaquant} : envoie à tous ses voisins qui ne possèdent pas encore l'information une information fausse
 	\end{itemize}
 \end{itemize}
 \end{frame}
 
 
+\begin{frame} \frametitle{Fonctionnement général}
+\begin{center}
+\begin{tikzpicture}[scale = 0.5, thick]
+	\node[fill=green,draw=black,text=black] (zero) at (0, 0) {A};
+	\node[fill=red,draw=black,text=black] (un) at (2,3) {B};
+	\node[fill=blue,draw=black,text=white] (deux) at (5,3) {D};
+	\node[fill=blue,draw=black,text=white] (trois) at (3, -1) {C};
+
+	\draw[->] (zero) -- (un);
+	\draw[->] (zero) to[bend right] (trois);
+	\draw[->] (un) to[bend right] (trois);
+	\draw[->] (un) to[bend right] (deux);
+	\draw[->] (deux) to[bend right] (un);
+	\draw[->] (trois) to[bend right] (zero);
+	\draw[->] (trois) to[bend right] (un);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item Itération 1 : B et C reçoivent l'information vraie (B la modifie en faux)
+\item Itération 2 : D reçoit l'information, fausse, en provenance de B
+\end{itemize}
+\end{frame}
+
+
 \begin{frame} \frametitle{Les types de réseaux - En étoile}
-% Images !
 \begin{itemize}
 \item Étoile : Un noeud est connecté avec tous les autres. C'est l'architecture d'un système client-serveur.
-\item Ce type de réseau est assz facile à étudier.
+\item Ce type de réseau est assez facile à étudier.
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.2]{star-network.png}
@@ -176,7 +200,8 @@
 
 \begin{frame} \frametitle{Les types de réseaux - Homogène}
 \begin{itemize}
-\item \emph{Homogène} : Chaque noeud possède un même nombre \texttt{nb\_tun} d'arètes pointant vers un autre noeud.
+\item \emph{Homogène} : les degrés sortants de chaque noeud sont égaux
+\item nous n'étudierons que des réseaux connexes (strictement dans le cas orienté)
 \end{itemize}
 
 
@@ -207,10 +232,10 @@
 \begin{frame} \frametitle{Les types de réseaux - Reseau invariant d'échelle}
 % Images !
 \begin{itemize}
-\item \emph{Scale-free, ou invariant d'échelle} : Le nombre d'arètes par noeud suit une loi de puissance : $ P(k) \sim k^{-\gamma}$. Le réseau Internet est de ce type.
+\item \emph{Scale-free}, ou invariant d'échelle : Le nombre d'arêtes par noeud suit une loi de puissance : c'est-à-dire que la probabilité qu'un noeud ait $k$ voisins est $k^{-\gamma}$ Le réseau Internet est de ce type.
 \item Nous utiliserons l'agorithme de Barabási-Albert, pour lequel $\gamma = 3$.
 \end{itemize}
-
+%
 %\begin{center}
 %\begin{tikzpicture}[scale = 0.5, thick]
 %	\node[fill=gray!20,draw=black,text=black] (zero) at (0,1) {0};
@@ -257,7 +282,7 @@
 \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-10-3-4.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} 
 
 \begin{itemize}
-\item Variation de la taille du réseau
+\item Nombre de réponses fausses selon le nombre d'attaquants
 \item Croissant, mais la dérivée seconde est négative : plus il y a d'attaquants, et moins l'action d'en ajouter un nouveau est significative
 \end{itemize}
 \end{frame}
@@ -288,6 +313,18 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile] \frametitle{Scale-free et homogène}
+\begin{center}
+\includegraphics[scale=0.25]{../../../resultats/atkaleat.png}
+\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-100-97-it100.png}
+\end{center}
+
+\begin{itemize}
+	\item Présence de paliers : noeuds ayant une forte connectivité deviennent attaquant
+	\item Assez rapidement, la quasi-totalité du réseau reçoit des informations fausses (se confirme sur un grand nombre d'essais)
+\end{itemize}
+\end{frame}
+
 \begin{frame}[fragile] \frametitle{Sur un scale-free network}
 \begin{center}
 \includegraphics[scale=0.3]{../../../resultats/scale-free/sf-100-2-it100.png}
@@ -309,14 +346,11 @@
 		\item Pour les graphes homogènes, division en deux parties affines
 		\item Réseaux invariants d'échelle : présence de paliers
 	\end{itemize}
-	\item Critique
-	\begin{itemize}
-		\item Dans le réseau scale-free, on a supposé que les noeuds ayant une forte connectivité ont la même probabilité d'être attaquants que les autres. Or en pratique, ce sont souvent des noeuds plus sécurisés.
-	\end{itemize}
-	\item en pratique
+	\item En pratique
 	\begin{itemize}
 		\item Le réseau en étoile est peu vulnérable, si le noeud central est non-attaquant
-		\item Un réseau homogène et 
+		\item Réseau homogène difficile à mettre en place
+		\item Dans le réseau scale-free, on a supposé que les noeuds ayant une forte connectivité ont la même probabilité d'être attaquants que les autres. Or en pratique, ce sont souvent des noeuds plus sécurisés.
 	\end{itemize}
 \end{itemize} 
 \end{frame}

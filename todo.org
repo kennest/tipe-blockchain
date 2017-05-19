@@ -1,28 +1,28 @@
 * Notes diverses
   
-** TODO [3/7]
- - [X] Génération du scale-free selon un vrai algorithme
- - [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
- - [-] Passer en bidirectionnel :: plus en accord avec la littérature
+** TODO [3/8]
+ * [X] Génération du scale-free selon un vrai algorithme
+ * [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
+ * [-] Passer en bidirectionnel :: plus en accord avec la littérature
    + [X] Scale-free
-   + [ ] Homogène
+   + [ ] Homogène, algorithme plus compliqué
    + [X] En étoile
- - [-] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
+ * [-] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
    + [-] Unifier les graphes :: ajouter les fonctions en rapport dans le module graphe
-     * [ ] Pour un réseau homogène
-     * [X] Pour un scale-free
+     - [ ] Pour un réseau homogène
+     - [X] Pour un scale-free
    + [X] Ajouter une option pour afficher les graphes correspondants à chaque itération
    + [X] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants CLOCK: [2017-05-14 dim. 14:35]--[2017-05-14 dim. 15:00] =>  0:25
- - [X] Optimiser les fonctions ::
- - [-] Présentation :: voir Notes bis
-   + [ ] Français
+ * [X] Optimiser les fonctions ::
+ * [-] Présentation :: voir Notes bis [2/3]
+   + [X] Français
    + [X] Graphes en LaTeX
-   + [ ] Génération des résultats
- - [-] Parsing :: faire un vrai parsing des arguments
+   + [-] Génération des résultats
+ * [-] Parsing :: faire un vrai parsing des arguments
    + [-] Pour testsf. La suite viendra après ce qui est plus important.
    + [ ] Pour un réseau homogène
    + [ ] Afficher l'aide correctement
-     
+ * [ ] Popagation avec choix des agents (de conserver certaines informations ou pas
 ** A lire
  - The Law of The Few - Goyal
 
@@ -59,3 +59,12 @@
    + Pour les attaquants, ne pas prendre les p derniers/premiers noeuds, mais les tirer au hasard
    + Génération du scale-free :: implémenter l'algorithme de Albert-... (premier sur W)
    + Passer en bidirectionnel
+
+** Notes ter
+ * Motivations :
+   + Parler de l'évolution récente (vingt ans) ::
+     avant, banque, sécu... en intranet au mieux (assez sécurisé), maintenant sur le net (moins cher, moins safe)
+ * Réseau en étoile :: comme le minitel
+ * Scale-free :: à revoir : k^(-gamma) probabilité ? alors la somme n'est pas égale à 1. et 1^-gamma = 1...
+   + Comprendre, d'après Barabasi-Albert, pourquoi le gamma intervient
+ * Graphe somme degrés / nbr atks :: peu clair, à expliciter
