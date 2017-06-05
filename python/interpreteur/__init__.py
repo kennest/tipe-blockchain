@@ -52,7 +52,7 @@ class Interpreteur(cmd.Cmd):
         nbr_fichier : nombre ajouté au nom de fichier
         """
         (n, nb_tun, nbr_fichier) = parse_nbr(arg)
-        r = test_atkaleat(n, nb_tun, nbr_fichier)
+        r = test_atkaleat(int(n), int(nb_tun), nbr_fichier)
         #print(r)
 
     def do_testsf(self, arg):
