@@ -81,6 +81,7 @@ morekeywords={len,input,range}}
 
 \section{Corps Principal} %750 mots | 411 mots
 
+\subsection{Modalités d'action}
 	Je me suis dans un premier temps intéressé à la représentation des objets qui seront utiles pour la modélisation d'attaques sur un réseau.  Pour cela, j'ai utilisé des objets Pythons : les agents qui représentent les noeuds du réseau, les tunnels qui représentent les arêtes, et un objet qui rassemble les deux premiers, le réseau. Un dernier objet, l'information, est utilisé pour observer la propagation d'informations faussées par les attaquants. Ensuite, il a fallu définir la manière dont l'attaque allait opérer. C'est la que réside la différence avec le travail de Dimitri, qui s'est intéressé à des attaques sur les liens. Je me suis penché sur une attaque sur les noeuds. Ainsi, un noeud peut être soit normal, soit attaquant. Dans le premier cas, il transmettra toutes les informations qu'il reçoit sans les modifier à ses voisins. Mais un attaquant, avant de transmettre des informations, les faussera. 
 	
 \begin{center}
@@ -103,7 +104,7 @@ morekeywords={len,input,range}}
 	J'ai concentré mon étude sur les réseaux homogènes, et \emph{scale-free}. Pour générer des réseaux \emph{scale-free}, j'ai utilisé l'algorithme de Barabási–Albert. Il consiste à prendre un graphe initial, et à ajouter des nœuds. A chaque ajout d'un nœud $i$, on le lie à un nœud $j$ avec une probabilité proportionnelle à la connectivité de $j$. Cela créé un réseau dans lequel il y a quelques nœuds ayant une forte connectivité, et ue majorité en ayant une faible.
 	
 	
-	% Résultats :
+\subsection{Restitution des résultats}
 	On obtient des résultats intéressants sur les réseaux homogènes. En effet, conformément à nos attente, on voit que le nombre d'informations fausses dans le réseau va croître avec le nombre d'attaquants. Cependant, cette croissance ralentit, car il va y avoir une redondance d'informations fausses. Avec un grand nombre de tunnels par agent, on observe l'apparition d'une partie affine de la courbe, qui correspond à un stade où les seuls nœuds non attaquants sont voisins de l'émetteur.
 	
 \includegraphics[scale=0.3]{../resultats/atkaleat/atkaleat-50-20-1.png} 
@@ -112,7 +113,7 @@ morekeywords={len,input,range}}
 	Cependant, pour un même degré moyen, on voit que les réseaux homogènes ont en oyenne une plus petite proportion d'informations fausses. 
 
 
-	% Analyse :
+\subsection{Analyse - Exploitation - Discussion}
 	Si les résultats sur les réseaux homogènes peuvent être intéressants, ce type de réseau est peu facile à mettre en pratique. C'est un objet principalement théorique. De plus, on a supposé que la probabilité d'être attaquant ne dépend pas de la connectivité. Or en pratique, les serveurs très connectés sont de gros serveurs, généralement plus protégé que les autres. Ils devraient donc être moins souvent infecté.
 
 
