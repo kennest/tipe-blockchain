@@ -66,7 +66,7 @@ morekeywords={len,input,range}}
 
 \section{Abstract} % 100 mots | 102 mots
 
-	Nowadays, networks are everywhere, used by firms to organize themselves or by people to communicate. In computer science, network study is a central field. Networks need to be efficient, in terms of communication speed, and reliable, so that they can resist to accidents and attacks. We focus on two types of networks : homogenous and scale-free. On these, attacks are performed. The methodology is the following : an agent has an initial true information. Then, it passes it to its neighbours. If they are normal agents, they repeat the process, but if they are attackers, they falsify the information before spreading them. 
+	Networks need to be efficient, in terms of communication speed, and reliable, so that they can resist to accidents and attacks. We focus on two types of networks : homogenous and scale-free. We model the networks as a graph, each node representing an agent. On these, attacks are performed. The methodology is the following : an agent has an initial true information. Then, it passes it to its neighbours. If they are normal agents, they repeat the process, but if they are attackers, they falsify the information before spreading them. The simulation show that for the same mean degree of nodes, homogenous networks are more resiliant than scale-free networks.
 
 
 
@@ -77,11 +77,14 @@ morekeywords={len,input,range}}
 \section{Introduction} % 100 mots | 62 mots
 % Le  candidat  doit  introduire  de  façon  claire  et  synthétique  le travail  qu’il  a effectivement réalisé, en cohérence avec son préambule.
 
-	Conformément à la littérature, la modélisation prend ici la forme d'un modèle multi-agents. Je vais me pencher sur deux types de réseaux, \emph{scale-free} et \emph{homogène}. L'étude d'un réseau \emph{scale-free} est importante, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme. Je les ai ici modélisé par l'agorithme de Barabási–Albert. Cependant, j'ai comparé ce type de réseau avec des réseaux homogènes.
+	La modélisation prend ici la forme d'un modèle multi-agents. Je traite deux types de réseaux, \emph{scale-free} et \emph{homogène}. L'étude d'un réseau \emph{scale-free} est importante, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme. Je les ai ici modélisés par l'agorithme de Barabási–Albert.
+	
+	 Cependant, j'ai comparé ce type de réseau avec des réseaux homogènes.
 
 \section{Corps Principal} %750 mots | 411 mots
 
 \subsection{Modalités d'action}
+
 	Je me suis dans un premier temps intéressé à la représentation des objets qui seront utiles pour la modélisation d'attaques sur un réseau.  Pour cela, j'ai utilisé des objets Pythons : les agents qui représentent les noeuds du réseau, les tunnels qui représentent les arêtes, et un objet qui rassemble les deux premiers, le réseau. Un dernier objet, l'information, est utilisé pour observer la propagation d'informations faussées par les attaquants. Ensuite, il a fallu définir la manière dont l'attaque allait opérer. C'est la que réside la différence avec le travail de Dimitri, qui s'est intéressé à des attaques sur les liens. Je me suis penché sur une attaque sur les noeuds. Ainsi, un noeud peut être soit normal, soit attaquant. Dans le premier cas, il transmettra toutes les informations qu'il reçoit sans les modifier à ses voisins. Mais un attaquant, avant de transmettre des informations, les faussera. 
 	
 \begin{center}
@@ -91,13 +94,10 @@ morekeywords={len,input,range}}
 	\node[fill=blue,draw=black,text=white] (deux) at (5,3) {D};
 	\node[fill=blue,draw=black,text=white] (trois) at (3, -1) {C};
 
-	\draw[->] (zero) -- (un);
-	\draw[->] (zero) to[bend right] (trois);
-	\draw[->] (un) to[bend right] (trois);
-	\draw[->] (un) to[bend right] (deux);
-	\draw[->] (deux) to[bend right] (un);
-	\draw[->] (trois) to[bend right] (zero);
-	\draw[->] (trois) to[bend right] (un);
+	\draw (zero) -- (un);
+	\draw (zero) -- (trois);
+	\draw (un) -- (trois);
+	\draw (un) -- (deux);
 \end{tikzpicture}
 \end{center} 
 
