@@ -392,7 +392,9 @@ est-ce que l'algo fonctionne ?
 -OU-
 
 On prend le noeud 0, on le connecte avec p autres
-puis pour chaque noeud i, si t_i st son nbr de tunnels, on connecte i à p-t_i autres noeuds plus loins """
+puis pour chaque noeud i, si t_i est son nbr de tunnels, on connecte i à p-t_i autres noeuds plus loins, n'ayant pas déjà ce nombre de noeuds
+
+OK, mais pour les derniers noeuds ? """
     net = reseau_sans_tunnel(n)
     for i in range(n):
         voisins = gen_ens_aleat(p, 0, n, i)

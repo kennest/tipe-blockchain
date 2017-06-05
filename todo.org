@@ -22,7 +22,7 @@
    + [-] Pour testsf. La suite viendra après ce qui est plus important.
    + [ ] Pour un réseau homogène
    + [ ] Afficher l'aide correctement
- * [ ] Popagation avec choix des agents (de conserver certaines informations ou pas
+ * [ ] Popagation avec choix des agents (de conserver certaines informations ou pas)
 ** A lire
  - The Law of The Few - Goyal
 
