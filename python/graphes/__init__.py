@@ -10,11 +10,23 @@ title: str
 xlabel: str
 ylabel: str
 """
+    ## Font parameters
+    #font = {'family' : 'normal', 'weight' : 'bold', 'size'   : 30}
+    #mp.rc('font', **font)
+    #mp.rcParams.update({'font.size': 30})
+    
+    # Set the font dictionaries (for plot title and axis titles)
+    title_font = {'size':'40', 'color':'black', 'weight':'bold'} # Bottom vertical alignment for more space
+    axis_font = {'size':'30'}
+
     plt.clf()
+
+    #plt.rc("font", size=30)
+    
     plt.plot(les_x, les_y)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
+    plt.title(title, size = 'xx-large')
+    plt.xlabel(xlabel, size = 'x-large')#, **axis_font)
+    plt.ylabel(ylabel, size = 'x-large')
     plt.savefig(savename + ".png")
     plt.show()
 
@@ -30,9 +42,9 @@ ylabel: str
     plt.clf()
     for y in les_ys:
         plt.plot(les_x, y)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
+    plt.title(title, size = 'xx-large')
+    plt.xlabel(xlabel, size = 'x-large')
+    plt.ylabel(ylabel, size = 'x-large')
     plt.savefig(savename + ".png")
     plt.show()
 
@@ -52,10 +64,10 @@ So 0<=x<n**2 and 0<=y<n"""
     for i in range(n**2):
         for j in range(n):
             plt.scatter(i, j, s=(tbl[i][j]/10))
-    print("Check2")
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
+    print("Check2") #Le dessin des points prend du temps. Ce checkpoint permet de savoir si c'est ça qui est en train d'être exécuté.
+    plt.title(title, size = 'xx-large')
+    plt.xlabel(xlabel, size = 'x-large')
+    plt.ylabel(ylabel, size = 'x-large')
     plt.savefig(savename + ".png")
     plt.show()
     

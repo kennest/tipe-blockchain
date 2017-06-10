@@ -3,18 +3,21 @@
 ** TODO [3/8]
  * [X] Génération du scale-free selon un vrai algorithme
  * [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
- * [-] Passer en bidirectionnel :: plus en accord avec la littérature
+ * [-] Passer en bidirectionnel :: plus en accord avec la littérature [2/3]
    + [X] Scale-free
    + [ ] Homogène, algorithme plus compliqué
+     - [ ] Convertir un graphe networkx
    + [X] En étoile
- * [-] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
-   + [-] Unifier les graphes :: ajouter les fonctions en rapport dans le module graphe
-     - [ ] Pour un réseau homogène :: utiliser networkx
+ * [-] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi ! [4/5]
+   + [X] Unifier les graphes :: ajouter les fonctions en rapport dans le module graphe
+     - [X] Pour un réseau homogène
      - [X] Pour un scale-free
    + [X] Ajouter une option pour afficher les graphes correspondants à chaque itération
    + [X] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants CLOCK: [2017-05-14 dim. 14:35]--[2017-05-14 dim. 15:00] =>  0:25
+   + [X] Changer la taille des labels et titres
+   + [ ] Inverser abscisses et ordonnées pour le graphe des degrés
  * [X] Optimiser les fonctions ::
- * [-] Présentation :: voir Notes bis [2/3]
+ * [-] Présentation :: voir Notes bis [2/4]
    + [X] Français
    + [X] Graphes en LaTeX
    + [-] Génération des résultats

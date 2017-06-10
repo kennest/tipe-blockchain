@@ -161,11 +161,10 @@
 %\end{frame}
 
 
-\begin{frame} \frametitle{Fonctionnement général}
-  Principe de diffusion de l'information
+\begin{frame} \frametitle{Principe de diffusion de l'information}
   \begin{itemize}
   \item Au départ, un agent a une information
-  \item Itération :
+  \item Itérations jusqu'à ce que tous les nœuds aient une information
     \begin{itemize}
     \item Parcours des agents un à un
     \item Si \emph{normal} : passe son information à tous les voisins qui ne la possèdent pas
@@ -173,21 +172,8 @@
     \end{itemize}
   \end{itemize}
   
-  Plan d'expérience
-  \begin{itemize}
-  \item Pour chaque jeu de paramètres, on effectue $k$ simulations
-  \item Une simulation consiste en
-    \begin{itemize}
-    \item Génération d'un réseau, puis variation du nombre d'attaquants
-    \item Résultat de la simulation : \% d'informations fausses en fonction du nombre d'attaquants
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame} \frametitle{Fonctionnement général}
 \begin{center}
-\begin{tikzpicture}[scale = 0.5, thick]
+\begin{tikzpicture}[scale = 0.3, thick]
 	\node[fill=green,draw=black,text=black] (zero) at (0, 0) {A};
 	\node[fill=red,draw=black,text=black] (un) at (2,3) {B};
 	\node[fill=blue,draw=black,text=white] (deux) at (5,3) {D};
@@ -206,16 +192,6 @@
 \end{itemize}
 \end{frame}
 
-
-\begin{frame} \frametitle{Les types de réseaux - En étoile}
-\begin{itemize}
-\item Étoile : Un seul noeud central est connecté avec tous les autres. C'est l'architecture d'un système client-serveur.
-\item Ce type de réseau est assez facile à étudier.
-\end{itemize}
-\begin{center}
-\includegraphics[scale=0.2]{star-network.png}
-\end{center}
-\end{frame}
 
 
 \begin{frame} \frametitle{Les types de réseaux - Homogène}
@@ -256,39 +232,53 @@
 \item Nous utiliserons l'algorithme de Barabási-Albert, pour lequel $\gamma = 3$.
 \end{itemize}
 
-%\begin{center}
-%\begin{tikzpicture}[scale = 0.5, thick]
-%	\node[fill=gray!20,draw=black,text=black] (zero) at (0,1) {0};
-%	\node[fill=gray!20,draw=black,text=black] (un) at (0,-1) {1};
-%	\node[fill=gray!20,draw=black,text=black] (deux) at (3,0) {2};
-%	\node[fill=gray!20,draw=black,text=black] (trois) at (3,-3) {3};
-%	\node[fill=gray!20,draw=black,text=black] (quatre) at (3,3) {4};
-%	\node[fill=gray!20,draw=black,text=black] (cinq) at (6,3) {5};
-%	\node[fill=gray!20,draw=black,text=black] (six) at (6,-3) {6};
-%	\node[fill=gray!20,draw=black,text=black] (sept) at (9,0) {7};
-%	\node[fill=gray!20,draw=black,text=black] (huit) at (9,3) {8};
-%	\node[fill=gray!20,draw=black,text=black] (neuf) at (9,-3) {9};
-%	\node[fill=gray!20,draw=black,text=black] (dix) at (12,0) {10};
-%
-%	\draw (zero) -- (un)
-%	\draw (deux) -- (zero)
-%	\draw (deux) -- (un);
-%	\draw (deux) -- (trois);
-%	\draw (deux) -- (quatre);
-%	\draw (deux) -- (cinq);
-%	\draw (deux) -- (sept);
-%	\draw (sept) -- (six);
-%	\draw (sept) -- (huit);
-%	\draw (sept) -- (neuf);
-%	\draw (sept) -- (dix);
-%\end{tikzpicture}
-%\end{center}
-
 \begin{center}
-\includegraphics[scale=0.25]{scale-free.png}
-\includegraphics[scale=0.15]{power-law.png} 
+\begin{tikzpicture}[scale = 0.3, thick]
+	\node[fill=gray!20,draw=black,text=black] (zero) at (0,1) {0};
+	\node[fill=gray!20,draw=black,text=black] (un) at (0,-1) {1};
+	\node[fill=gray!20,draw=black,text=black] (deux) at (3,0) {2};
+	\node[fill=gray!20,draw=black,text=black] (trois) at (3,-3) {3};
+	\node[fill=gray!20,draw=black,text=black] (quatre) at (3,3) {4};
+	\node[fill=gray!20,draw=black,text=black] (cinq) at (6,3) {5};
+	\node[fill=gray!20,draw=black,text=black] (six) at (6,-3) {6};
+	\node[fill=gray!20,draw=black,text=black] (sept) at (9,0) {7};
+	\node[fill=gray!20,draw=black,text=black] (huit) at (9,3) {8};
+	\node[fill=gray!20,draw=black,text=black] (neuf) at (9,-3) {9};
+	\node[fill=gray!20,draw=black,text=black] (dix) at (12,0) {10};
+
+	\draw (zero) -- (un);
+	\draw (deux) -- (zero);
+	\draw (deux) -- (un);
+	\draw (deux) -- (trois);
+	\draw (deux) -- (quatre);
+	\draw (deux) -- (cinq);
+	\draw (deux) -- (sept);
+	\draw (sept) -- (six);
+	\draw (sept) -- (huit);
+	\draw (sept) -- (neuf);
+	\draw (sept) -- (dix);
+\end{tikzpicture}
 \end{center}
+
+%\begin{center}
+%\includegraphics[scale=0.25]{scale-free.png}
+%\includegraphics[scale=0.15]{power-law.png} 
+%\end{center}
 \end{frame}
+
+
+
+\begin{frame} \frametitle{Plan d'expérience}
+  \begin{itemize}
+  \item Pour chaque jeu de paramètres, on effectue $k$ simulations
+  \item Une simulation consiste en
+    \begin{itemize}
+    \item Génération d'un réseau, puis variation du nombre d'attaquants
+    \item Résultat de la simulation : \% d'informations fausses en fonction du nombre d'attaquants
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

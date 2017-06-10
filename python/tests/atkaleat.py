@@ -3,6 +3,7 @@ import time as t
 from modelisation.fonctionnement import diff_aleatoire, init_info, boucle
 from modelisation import est_connexe, conv_net_to_matrix, reseau_aleatoire
 from modelisation.fichiers import ecrit_csv
+from graphes import graphe
 try:
     import matplotlib.pyplot as plt # voir
     # http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
@@ -78,16 +79,9 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     for i in range(n):
         les_vrais[i] = les_vrais[i]/iterations
         les_faux[i] = les_faux[i]/iterations
- 
-    plt.clf()
-    #plt.plot(les_x, les_vrais)
-    plt.plot(les_x, les_faux)
-    plt.title("Tracé avec " + str(n) + " agents et " + str(nb_tun) +\
-              " tunnels")
-    plt.xlabel("p Nombre d'attaquants")
-    plt.ylabel("Nombre de réponses fausses")
-    plt.savefig(nom_fichier + ".png")
-    plt.show()
+
+
+    graphe(les_x, les_faux, nom_fichier, "Tracé avec "+str(n)+" agents et "+str(nb_tun)+" tunnels", "p Nombre d'attaquants", "Nombre de réponses fausses")
     
     return resultats
 

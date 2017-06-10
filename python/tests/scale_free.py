@@ -23,9 +23,11 @@ def test_atk_scale_free(n, nbr_fichier, showall, iterations, gtype):
 n: int
 lambd: float
 nbr_fichier: int
-showall: bool"""
+showall: bool
+iterations: int
+gtype: int (1: normal, 2: degrés)"""
 
-    savename = "../resultats/scale-free/" + "sf-" + str(n) +"-"+ str(nbr_fichier) +"-it" + str(iterations)
+    savename = "../resultats/scale-free/" + "sf-t"+ str(gtype) + "-n-"+ str(n) +"-"+ str(nbr_fichier) +"-it" + str(iterations)
     resultats = [] # tableau contenant les résultats de la simulation
 
     temps_init = t.monotonic()
@@ -110,10 +112,10 @@ showall: bool"""
     elif gtype == 2: #on va faire un scatter_plot
         points = []
         for res in resultats:
-            p, v, f, d = res
-            points.append((d, p))
+            p, v, f, d = res #p : nombre d'attaquants, d: somme des degrés
+            points.append((p, d))
         title = "Scale-free, {} agents".format(str(n))
-        xlabel = "Somme des degrés des noeuds attaquants"
-        ylabel = "Nombre d'attaquants"
+        xlabel = "Nombre d'attaquants"
+        ylabel = "Somme des degrés des noeuds attaquants"
         graphe_deg_nbr(savename, points, n, title, xlabel, ylabel)
     return resultats

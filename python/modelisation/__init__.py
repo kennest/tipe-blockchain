@@ -2,6 +2,7 @@
 
 import random
 import math
+import networkx
 
 class Agent:
     """Les agents sont les noeuds du réseau (utilisateurs). Leur stratégie peuvent être "normal" ou "attaque"."""
@@ -379,7 +380,7 @@ def gen_ens_aleat(n, m, M, y):
 
 ## A optimiser, il faudrait générer un réseau valide du premier coup !
 def reseau_aleatoire(n,p):
-    """Génère un réseau homogène de taille n, avec chaque agent lié à p autres."""
+    """Génère un réseau homogène/régulier de taille n, de degré p."""
     """Draft pour du bidimensionnel :
 tableau nbr_tun = [[id agents ayant k tunnels] for k in range(p+1)]
 
@@ -395,6 +396,11 @@ On prend le noeud 0, on le connecte avec p autres
 puis pour chaque noeud i, si t_i est son nbr de tunnels, on connecte i à p-t_i autres noeuds plus loins, n'ayant pas déjà ce nombre de noeuds
 
 OK, mais pour les derniers noeuds ? """
+    netx = networkx.random_regular_graph(p, n)
+
+    ### Ensuite, on le converti en un objet Reseau
+    net = Reseau()
+    
     net = reseau_sans_tunnel(n)
     for i in range(n):
         voisins = gen_ens_aleat(p, 0, n, i)
@@ -407,7 +413,7 @@ OK, mais pour les derniers noeuds ? """
 
 
 def gen_ens_sf(n, p, ag_id):
-    """[UNUSED]
+    """[INUTILE]
 n: taille du réseau
 p: nombre de voisins
 ag_id : agent pour lequel a lieu la génération """

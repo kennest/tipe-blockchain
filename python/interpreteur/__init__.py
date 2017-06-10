@@ -62,7 +62,8 @@ Paramètres :
 n : nombre d'agents
 filenbr: nombre ajouté au fichier
 -i <iterations>: int
--s: showall: flag"""
+-s: showall: flag
+-g: type de graphe"""
         
         args = parsersf.parse_args(arg.split(" "))
         n, nbr_fichier, showall, iterations, gtype = args.n, args.filenumber, args.showall, args.iterations, args.gtype
