@@ -9,7 +9,7 @@
    + [X] En étoile
  * [-] Graphes :: pour testsf au début. Il faudrait unifier tout ça aussi !
    + [-] Unifier les graphes :: ajouter les fonctions en rapport dans le module graphe
-     - [ ] Pour un réseau homogène
+     - [ ] Pour un réseau homogène :: utiliser networkx
      - [X] Pour un scale-free
    + [X] Ajouter une option pour afficher les graphes correspondants à chaque itération
    + [X] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants CLOCK: [2017-05-14 dim. 14:35]--[2017-05-14 dim. 15:00] =>  0:25
@@ -18,11 +18,12 @@
    + [X] Français
    + [X] Graphes en LaTeX
    + [-] Génération des résultats
+   + [ ] Diverses choses
  * [-] Parsing :: faire un vrai parsing des arguments
    + [-] Pour testsf. La suite viendra après ce qui est plus important.
    + [ ] Pour un réseau homogène
    + [ ] Afficher l'aide correctement
- * [ ] Popagation avec choix des agents (de conserver certaines informations ou pas)
+ * [ ] Propagation avec choix des agents (de conserver certaines informations ou pas)
 ** A lire
  - The Law of The Few - Goyal
 

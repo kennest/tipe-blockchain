@@ -108,14 +108,23 @@
 		\end{itemize}
 \item Objectifs du TIPE
 	\begin{itemize}
-		\item Quelle architecture choisir de façon à rendre un réseau le moins vulnérable
-	\end{itemize}
-\item Travail réalisé
-	\begin{itemize}
-	\item Modélisation multi-agents des réseaux de deux types de réseaux
-	\item Étudier la vulnérabilité du réseau aux attaques
+		\item Quelle architecture choisir de façon à rendre un réseau le moins vulnérable ?
 	\end{itemize}
 \end{itemize}
+\end{frame}
+
+
+\begin{frame} \frametitle{Travail réalisé}
+  \begin{itemize}
+  \item Modélisation multi-agents d'une diffusion d'information dans deux types de réseaux
+  \item Étudier la proportion d'informations fausses dans le réseau à l'issue de la diffusion
+  \item Paramètres du plan d'expérience :
+    \begin{itemize}
+    \item Type de réseau
+    \item Nombre de noeuds
+    \item Nombre d'arêtes par noeud
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 
@@ -133,11 +142,11 @@
   	\item Première modélisation
 	\item Seconde modélisation
 	\end{enumerate}  
-\item \structure{Conclusion}
+\item \structure{Conclusion et discussion}
 \end{enumerate}
 \end{frame}
 \note[enumerate]{\large
-\item Blablabla
+\item
 }
 
 
@@ -153,16 +162,26 @@
 
 
 \begin{frame} \frametitle{Fonctionnement général}
-\begin{itemize}
-\item Modélisation multi-agents, en effectuant de multiples itérations sur le réseau
-\item Au départ, un agent a une information
-\item Itération :
-	\begin{itemize}
-	\item Parcours des agents un à un
-	\item Si \emph{normal} : passe son information à tous les voisins qui ne la possèdent pas
-	\item Si \emph{attaquant} : envoie une information fausse à tous ses voisins qui ne la possèdent pas encore
-	\end{itemize}
-\end{itemize}
+  Principe de diffusion de l'information
+  \begin{itemize}
+  \item Au départ, un agent a une information
+  \item Itération :
+    \begin{itemize}
+    \item Parcours des agents un à un
+    \item Si \emph{normal} : passe son information à tous les voisins qui ne la possèdent pas
+    \item Si \emph{attaquant} : envoie une information fausse à tous ses voisins qui ne la possèdent pas encore
+    \end{itemize}
+  \end{itemize}
+  
+  Plan d'expérience
+  \begin{itemize}
+  \item Pour chaque jeu de paramètres, on effectue $k$ simulations
+  \item Une simulation consiste en
+    \begin{itemize}
+    \item Génération d'un réseau, puis variation du nombre d'attaquants
+    \item Résultat de la simulation : \% d'informations fausses en fonction du nombre d'attaquants
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 
@@ -181,7 +200,7 @@
 \end{tikzpicture}
 \end{center}
 \begin{itemize}
-\item Initialment, A possède une information vraie
+\item Initialement, A possède une information vraie
 \item Itération 1 : B et C reçoivent l'information vraie (B la modifie en faux)
 \item Itération 2 : D reçoit l'information, fausse, en provenance de B
 \end{itemize}
