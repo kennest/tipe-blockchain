@@ -396,19 +396,22 @@ On prend le noeud 0, on le connecte avec p autres
 puis pour chaque noeud i, si t_i est son nbr de tunnels, on connecte i à p-t_i autres noeuds plus loins, n'ayant pas déjà ce nombre de noeuds
 
 OK, mais pour les derniers noeuds ? """
-    netx = networkx.random_regular_graph(p, n)
 
-    ### Ensuite, on le converti en un objet Reseau
-    net = Reseau()
-    
-    net = reseau_sans_tunnel(n)
-    for i in range(n):
-        voisins = gen_ens_aleat(p, 0, n, i)
-        for vois in voisins:
-            net._set_tunnel_double(i, vois)
-            
-    if not(est_connexe(net)):
-        net = reseau_aleatoire(n, p)
+    connexe = False
+    while not(connexe):
+        netx = networkx.random_regular_graph(p, n)
+        ### Ensuite, on le converti en un objet Reseau
+        net = Reseau()
+        # On ajoute les nœuds
+        for node_id in netx: #node est un int
+            net._set_agent(node_id)
+
+        # On ajoute les arêtes
+        for edge in netx.edges():
+            a,b = edge #couple d'int
+            net._set_tunnel(a,b)
+
+        connexe = est_connexe(net) # Visiblement, le réseau généré n'est pas facilement connexe ? D'après des tests manuels, si pourtant...
     return net
 
 

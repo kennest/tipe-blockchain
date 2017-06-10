@@ -52,17 +52,17 @@ def graphe_deg_nbr(savename, points, n, title, xlabel, ylabel):
     """
 savename: str
 points: tuple list
-These tuples are (x, y), with x=total degree of attackers and y=nbr of atkers
-So 0<=x<n**2 and 0<=y<n"""
+These tuples are (x, y), with x=nbr of atkers and y=total degree of attackers
+So 0<=x<n and 0<=y<n**2"""
 
-    tbl = [[0 for j in range(n)] for i in range(n**2)]
+    tbl = [[0 for j in range(n**2)] for i in range(n)] 
     plt.clf()
     for p in points:
         x,y = p
         tbl[x][y] += 1
     print("Check1")
-    for i in range(n**2):
-        for j in range(n):
+    for i in range(n):
+        for j in range(n**2):
             plt.scatter(i, j, s=(tbl[i][j]/10))
     print("Check2") #Le dessin des points prend du temps. Ce checkpoint permet de savoir si c'est ça qui est en train d'être exécuté.
     plt.title(title, size = 'xx-large')
