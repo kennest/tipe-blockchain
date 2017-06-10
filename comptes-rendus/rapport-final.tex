@@ -72,20 +72,23 @@ morekeywords={len,input,range}}
 
 \section{Préambule} % 75 mots | 42 mots
 
-	Mon objectif a peu changé depuis la MCOT. J'ai donc poursuivi le travail engagé, c'est-à-dire l'étude de l'impact d'un type d'attaque sur un réseau, selon sa topologie. Cependant, je ne me suis finalement pas concentré sur la vitesse de transmission des informations.
+	Mon objectif a peu changé depuis la MCOT. J'ai donc poursuivi l'étude de l'impact d'une attaque sur les noeuds du réseau, selon sa topologie. Cependant, je ne me suis finalement pas concentré sur la vitesse de transmission des informations.
+% Pourquoi ?
 
 \section{Introduction} % 100 mots | 62 mots
 % Le  candidat  doit  introduire  de  façon  claire  et  synthétique  le travail  qu’il  a effectivement réalisé, en cohérence avec son préambule.
-
-	La modélisation prend ici la forme d'un modèle multi-agents. Je traite deux types de réseaux, \emph{scale-free} et \emph{homogène}. L'étude d'un réseau \emph{scale-free} est importante, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme. Je les ai ici modélisés par l'agorithme de Barabási–Albert.
 	
-	 Cependant, j'ai comparé ce type de réseau avec des réseaux homogènes.
+La modélisation prend ici la forme d'un modèle multi-agents. Je traite deux types de réseaux, \emph{scale-free} et \emph{homogène}. % définition ?
+L'étude d'un réseau \emph{scale-free} est importante, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme. Je les ai ici modélisés par l'agorithme de Barabási–Albert. Cependant, j'ai comparé ce type de réseau avec des réseaux homogènes.
 
 \section{Corps Principal} %750 mots | 411 mots
 
 \subsection{Modalités d'action}
 
-	Je me suis dans un premier temps intéressé à la représentation des objets qui seront utiles pour la modélisation d'attaques sur un réseau.  Pour cela, j'ai utilisé des objets Pythons : les agents qui représentent les noeuds du réseau, les tunnels qui représentent les arêtes, et un objet qui rassemble les deux premiers, le réseau. Un dernier objet, l'information, est utilisé pour observer la propagation d'informations faussées par les attaquants. Ensuite, il a fallu définir la manière dont l'attaque allait opérer. C'est la que réside la différence avec le travail de Dimitri, qui s'est intéressé à des attaques sur les liens. Je me suis penché sur une attaque sur les noeuds. Ainsi, un noeud peut être soit normal, soit attaquant. Dans le premier cas, il transmettra toutes les informations qu'il reçoit sans les modifier à ses voisins. Mais un attaquant, avant de transmettre des informations, les faussera. 
+
+Je me suis dans un premier temps intéressé à la représentation des objets qui seront utiles pour la modélisation d'attaques sur un réseau.  Pour cela, j'ai utilisé des objets Pythons : les agents qui représentent les noeuds du réseau, les tunnels qui représentent les arêtes, et un objet qui rassemble les deux premiers, le réseau. Un dernier objet, l'information, est utilisé pour observer la propagation d'informations faussées par les attaquants.
+
+Ensuite, il a fallu définir la manière dont l'attaque allait opérer. Je me suis penché sur une attaque sur les noeuds. C'est là que réside la différence avec le travail de Dimitri Granger, l'autre membre du groupe, qui s'est intéressé à des attaques sur les liens. Ainsi, un noeud peut être soit normal, soit attaquant. Dans le premier cas, il transmettra toutes les informations qu'il reçoit sans les modifier à ses voisins. Mais un attaquant, avant de transmettre des informations, les faussera. 
 	
 \begin{center}
 \begin{tikzpicture}[scale = 0.5, thick]
