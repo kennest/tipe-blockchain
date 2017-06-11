@@ -4,11 +4,12 @@ from modelisation import scale_free
 #             n = 50 -> ~ 1.99
 #             n = 100 -> ~ 2
 #             n = 100 -> ~ 2.20
+#             n = 100, k = 200 ->
 #             n = 1000 -> ~ ?
 
 
 n = 200
-k = 100
+k = 300
 
 nbr = 0
 for i in range(k):

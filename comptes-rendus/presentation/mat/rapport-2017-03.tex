@@ -233,7 +233,7 @@
 \item Nous n'étudierons que des réseaux connexes
 \end{itemize}
 
-%% A modifier par la suite pour avoir des réseaux non orientés
+
 \begin{center}
 \begin{tikzpicture}[scale = 0.5, thick]
 	\node[fill=gray!20,draw=black,text=black] (zero) at (0, 0) {0};
@@ -259,7 +259,6 @@
 
 
 \begin{frame} \frametitle{Les types de réseaux - Réseau invariant d'échelle}
-% Images !
   \begin{itemize}
   \item \emph{Scale-free}, ou invariant d'échelle
     \begin{itemize}
@@ -269,38 +268,33 @@
   \item Nous utiliserons l'algorithme de Barabási-Albert, pour lequel $\gamma = 3$ et $\alpha \approx 0.83$.
   \end{itemize}
 
-\begin{center}
-\begin{tikzpicture}[scale = 0.3, thick]
-	\node[fill=gray!20,draw=black,text=black] (zero) at (0,1) {0};
-	\node[fill=gray!20,draw=black,text=black] (un) at (0,-1) {1};
-	\node[fill=gray!20,draw=black,text=black] (deux) at (3,0) {2};
-	\node[fill=gray!20,draw=black,text=black] (trois) at (3,-3) {3};
-	\node[fill=gray!20,draw=black,text=black] (quatre) at (3,3) {4};
-	\node[fill=gray!20,draw=black,text=black] (cinq) at (6,3) {5};
-	\node[fill=gray!20,draw=black,text=black] (six) at (6,-3) {6};
-	\node[fill=gray!20,draw=black,text=black] (sept) at (9,0) {7};
-	\node[fill=gray!20,draw=black,text=black] (huit) at (9,3) {8};
-	\node[fill=gray!20,draw=black,text=black] (neuf) at (9,-3) {9};
-	\node[fill=gray!20,draw=black,text=black] (dix) at (12,0) {10};
-
-	\draw (zero) -- (un);
-	\draw (deux) -- (zero);
-	\draw (deux) -- (un);
-	\draw (deux) -- (trois);
-	\draw (deux) -- (quatre);
-	\draw (deux) -- (cinq);
-	\draw (deux) -- (sept);
-	\draw (sept) -- (six);
-	\draw (sept) -- (huit);
-	\draw (sept) -- (neuf);
-	\draw (sept) -- (dix);
-\end{tikzpicture}
-\end{center}
-
-%\begin{center}
-%\includegraphics[scale=0.25]{scale-free.png}
-%\includegraphics[scale=0.15]{power-law.png} 
-%\end{center}
+  \begin{center}
+    \begin{tikzpicture}[scale = 0.3, thick]
+      \node[fill=gray!20,draw=black,text=black] (zero) at (0,1) {0};
+      \node[fill=gray!20,draw=black,text=black] (un) at (0,-1) {1};
+      \node[fill=gray!20,draw=black,text=black] (deux) at (3,0) {2};
+      \node[fill=gray!20,draw=black,text=black] (trois) at (3,-3) {3};
+      \node[fill=gray!20,draw=black,text=black] (quatre) at (3,3) {4};
+      \node[fill=gray!20,draw=black,text=black] (cinq) at (6,3) {5};
+      \node[fill=gray!20,draw=black,text=black] (six) at (6,-3) {6};
+      \node[fill=gray!20,draw=black,text=black] (sept) at (9,0) {7};
+      \node[fill=gray!20,draw=black,text=black] (huit) at (9,3) {8};
+      \node[fill=gray!20,draw=black,text=black] (neuf) at (9,-3) {9};
+      \node[fill=gray!20,draw=black,text=black] (dix) at (12,0) {10};
+      
+      \draw (zero) -- (un);
+      \draw (deux) -- (zero);
+      \draw (deux) -- (un);
+      \draw (deux) -- (trois);
+      \draw (deux) -- (quatre);
+      \draw (deux) -- (cinq);
+      \draw (deux) -- (sept);
+      \draw (sept) -- (six);
+      \draw (sept) -- (huit);
+      \draw (sept) -- (neuf);
+      \draw (sept) -- (dix);
+    \end{tikzpicture}
+  \end{center}
 \end{frame}
 
 
@@ -311,10 +305,10 @@
   \item Une simulation consiste en
     \begin{itemize}
     \item Génération d'un réseau
-          \begin{itemize}
-          \item Variation du nombre d'attaquants $n$
-          \item Diffusion de l'information pour chaque valeur de $n$
-          \end{itemize}
+      \begin{itemize}
+      \item Variation du nombre d'attaquants $n$
+      \item Diffusion de l'information pour chaque valeur de $n$
+      \end{itemize}
     \item Résultat de la simulation : proportion d'informations fausses en fonction du nombre d'attaquants
     \end{itemize}
   \end{itemize}
@@ -329,26 +323,28 @@
 \subsection{Sur un réseau homogène}
 
 \begin{frame} \frametitle{Variation du nombre de nœuds :  50 et 100 noeuds}
-
-  %\includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-10-3-5-i100.png}
-  \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-2-i100.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-100-3-1-i100.png} 
-
+  \vspace{-0.4cm}
+  \begin{center}
+    \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-2-i100.png}
+    \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-100-3-1-i100.png} 
+  \end{center}
   \begin{itemize}
-  \item Part d'informations fausses selon le nombre d'attaquants
-  \item Croissant, mais la courbe est concave : plus il y a d'attaquants, et moins l'action d'en ajouter un nouveau a un effet important
+  %\item Part d'informations fausses selon le nombre d'attaquants
   \item Plus il y a de nœuds et plus le réseau est vulnérable
-\end{itemize}
+  \item Courbe concave : plus il y a d'attaquants, et moins l'action d'en ajouter un nouveau a un effet important
+  \end{itemize}
 \end{frame}
 
 
 
 \begin{frame} \frametitle{Variation du nombre d'arêtes par nœud}
-\includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-2-i100.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-20-2-i100.png} 
+  \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-2-i100.png}
+  \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-20-2-i100.png} 
 
-\begin{itemize}
-	\item Courbe se divise en deux parties, la seconde affine
-	\item A l'arrivée sur la partie affine, les seuls nœuds ayant des informations vraies sont voisins de l'émetteur
-\end{itemize}
+  \begin{itemize}
+  \item Courbe se divise en deux parties, la seconde affine
+  \item A l'arrivée sur la partie affine, les seuls nœuds ayant des informations vraies sont voisins de l'émetteur
+  \end{itemize}
 \end{frame}
 
 \subsection{Sur un réseau invariant d'échelle}

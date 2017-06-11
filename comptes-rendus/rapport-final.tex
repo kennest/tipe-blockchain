@@ -65,9 +65,9 @@ morekeywords={len,input,range}}
 \begin{document}
 \maketitle
 
-\section{Abstract} % 100 mots | 109 mots
+\section*{Abstract} % 100 mots | 108 mots
 
-	Networks need to be efficient, in terms of communication speed, and reliable, so that they can resist to accidents and attacks. We focus on two types of networks : homogenous and scale-free. We model the networks as a graph, each node representing an agent. On these, attacks are performed. The methodology is the following : an agent has an initial true information. Then, it passes it to its neighbours. If they are normal agents, they repeat the process, but if they are attackers, they falsify the information before spreading them. The simulation show that for the same mean degree of nodes, homogenous networks are more resiliant than scale-free networks.
+	Networks need to be efficient, in terms of communication speed, and reliable, so that they can resist accidents and attacks. We focus on two types of networks : homogenous and scale-free. We model the networks as a graph, each node representing an agent. On these, attacks are performed. The methodology is the following : an agent has an initial true information. Then, it passes it to its neighbours. If they are normal agents, they repeat the process, but if they are attackers, they falsify the information before spreading them. The simulation show that for the same mean degree of nodes, homogenous networks are more resiliant than scale-free networks.
 
 
 
@@ -94,7 +94,7 @@ J'ai fait varier deux paramètres de la taille du réseau : le nombre de nœuds 
 
 \section{Corps Principal} %750 mots | 411 mots
 
-\subsection{Modalités d'action} % 250 | 182 mots
+\subsection{Modalités d'action} % 250 | 282 mots
 
 Il a fallu tout d'abord définir la manière dont une attaque allait opérer.
 Je me suis penché sur une attaque sur les noeuds.
@@ -123,24 +123,22 @@ Ensuite, j'ai défini les expériences que je souhaitais réaliser.
 Puis j'ai conçu l'architecture du code me permettant de réaliser ce plan d'expérience.
 
 
-\subsection{Restitution des résultats} %300 | 376
+\subsection{Restitution des résultats} %300 | 482
 
-Dans le cas des réseaux homogènes, j'ai fait varier le nombre de nœuds, j'ai considéré des réseaux ayant 10, 50 puis 100 nœuds, avec dans chaque cas trois arêtes par nœud.
+Dans le cas des réseaux homogènes, j'ai considéré des réseaux ayant 10, 50 puis 100 nœuds, avec dans chaque cas trois arêtes par nœud.
 J'ai également fait varier le nombre d'arêtes par nœud, pour un réseau de 50 agents, avec des degrés de 3 et 20 successivement.
 
 Pour chaque jeu de paramètres, j'ai effectué 100 simulations.
 Une simulation consiste en la génération d'un réseau.
-Pour chacun de ces réseaux, j'ai fait varier le nombre d'attaquants entre 0 et le nombre de nœuds $n$ du réseau.
+Pour chacun de ces réseaux, le nombre d'attaquants varie entre 0 et le nombre de nœuds $n$ du réseau.
 Pour chacun de ces cas, l'algorithme a effectué une diffusion de l'information dans le réseau.
 Il en résulte une proportion d'informations fausses en fonction du nombre d'attaquants.
-
 La comparaison de la vulnérabilité des différents réseaux en fonction de leur architecture se fonde sur la moyenne des 100 simulations. 
 
 
-Sur les réseaux homogènes, conformément à mes attentes, j'observe que le nombre d'informations fausses dans le réseau croît avec le nombre d'attaquants (voir figure \ref{noeuds}).
+Sur les réseaux homogènes, j'observe que le nombre d'informations fausses dans le réseau croît avec le nombre d'attaquants (voir figure \ref{noeuds}).
 La courbe est concave : plus il y a d’attaquants, moins l’action d’en ajouter un nouveau a un effet important.
 Cela s'explique par une redondance d'informations fausses.
-Pour un degré constant, la diffusion d'informations fausses est plus importante pour un réseau de grande taille.
 
 \begin{center}
 \includegraphics[width=0.49\linewidth]{../resultats/atkaleat/atkaleat-50-3-2-i100.png}
@@ -178,8 +176,9 @@ C'est ce qui explique les écarts.
 \end{center}
 
 Pour comparer les deux types de réseaux, j'ai entrepris d'établir le degré moyen d'un nœud dans un réseau invariant d'échelle.
-Ce degré moyen vaut deux.
-Alors, pour un même degré moyen, on constate que les réseaux homogènes ont en moyenne une plus grande proportion d'informations fausses (voir figure \ref{comp}).
+Pour ce faire, j'ai généré plusieurs réseaux invariants d'échelle ayant 100 nœuds et compté le degré moyen par nœud, grâce à un script Python.
+Le degré moyen déterminé vaut deux, pour un réseau invariant d'échelle généré avec l'algorithme de Barabási–Albert.
+Alors, on constate que les réseaux homogènes de degré moyen deux ont en moyenne une plus grande proportion d'informations fausses (voir figure \ref{comp}).
 
 
 \begin{center}
@@ -210,9 +209,21 @@ Ils devraient donc être moins souvent infecté, ce qui augmente les performance
 
 
 
-\section{Conclusion générale} %75 mots | 33 mots
+\section{Conclusion générale} %75 mots | 68 mots
 
-	Les résultats valident les hypothèses que nous avions formulées. Mais on voit que les réseaux homogènes, bien que plus difficiles à mettre en place, semblent être moins vulnérables que les réseaux scale-free. 
-Le modèle des réseaux \emph{scale-free} a une importance pratique, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme. Les réseaux homogènes sont plus difficiles à mettre en pratique, et donc peu utilisés. Mais il peremettent une base intéressante de comparaison.
+Les résultats infirment les hypothèses que nous avions formulées.
+Les réseaux homogènes, à degré moyen égal, semblent être moins robustes que les réseaux invariants d'échelle.
+Cependant, augmenter le degré moyen des réseaux homogènes peremet d'accroître leur résistance aux attaques.
+Mais ces réseaux sont peu réalisables en pratique
+Le modèle des réseaux \emph{scale-free} a une importance pratique, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme.
+
+L'étude réaliser par l'autre membre du groupe montre que pour des attaques sur les nœuds,
+
+% scale-free <-> étoile
+% homogène <-> Harary
+% si faible coût de protection, étoile > Harary
+% si élevé, Harary > étoile
+% Or dans ce que je fais, pas de coût de protection, et sf (qui est une fédération d'étoiles) > homogène
+% par contre, si protection non uniforme, sf > homogène
 
 \end{document}\grid
