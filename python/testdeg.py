@@ -4,7 +4,7 @@ from modelisation import scale_free
 #             n = 50 -> ~ 1.99
 #             n = 100 -> ~ 2
 #             n = 100 -> ~ 2.20
-#             n = 100, k = 200 ->
+#             n = 100, k = 200 -> 2.203
 #             n = 1000 -> ~ ?
 
 
