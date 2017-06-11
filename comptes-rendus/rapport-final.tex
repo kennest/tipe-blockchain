@@ -73,7 +73,11 @@ morekeywords={len,input,range}}
 
 \section{Préambule} % 75 mots | 55 mots
 
-	Mon objectif a peu changé depuis la MCOT. J'ai donc poursuivi l'étude de l'impact d'une attaque sur les noeuds du réseau, selon sa topologie. Cependant, je ne me suis finalement pas concentré sur la vitesse de transmission des informations. En effet, cette partie m'a semblé moins intéressante. J'ai préféré me concentrer sur l'étude des attaques.
+Mon objectif a peu changé depuis la MCOT.
+J'ai donc poursuivi l'étude de l'impact d'une attaque sur les noeuds du réseau, selon sa topologie.
+Cependant, je ne me suis finalement pas concentré sur la vitesse de transmission des informations.
+En effet, cette partie m'a semblé moins intéressante.
+J'ai préféré me concentrer sur l'étude des attaques.
 
 
 \section{Introduction} % 100 mots | 96 mots
@@ -162,12 +166,15 @@ En effet, lorsqu'un nœud ayant une forte connectivité devient attaquant, il a 
 \captionof{figure}{Réseaux scale-free - Courbes de trois simulations et moyenne sur cent simulations} \label{sf}
 \end{center}
 
-Pour une même somme de degrés des nœuds attaquants, qui traduit l'influence des attaquants, le nombre d'attaquants varie beaucoup (voir figure \ref{deg}).
-
+Pour une même somme de degrés des nœuds attaquants, le nombre d'attaquants varie beaucoup (voir figure \ref{deg}).
+Or, la somme des degrés des nœuds attaquants est une mesure de l'influence des attaquants.
+Par conséquent, il va y avoir de grands écarts selon les réseaux.
+Sur certains, les nœuds ayant des degrés élevés seront contaminés assez tôt, alors que sur d'autres, ils seront contaminés au contraire assez tardivement.
+C'est ce qui explique les écarts.
 
 \begin{center}
 \includegraphics[width=0.49\linewidth]{../resultats/scale-free/sf-t2-n-100-1-it100.png}
-\captionof{figure}{Etude de la somme des degrés attaquants selon le nombre d'attaquants} \label{deg}
+\captionof{figure}{Somme des degrés attaquants selon le nombre d'attaquants} \label{deg}
 \end{center}
 
 Pour comparer les deux types de réseaux, j'ai entrepris d'établir le degré moyen d'un nœud dans un réseau invariant d'échelle.
@@ -184,13 +191,23 @@ Alors, pour un même degré moyen, on constate que les réseaux homogènes ont e
 
 
 
-\subsection{Analyse - Exploitation - Discussion} %200 | 75
+\subsection{Analyse - Exploitation - Discussion} %200 | 222
 
-Si les résultats sur les réseaux homogènes peuvent être intéressants, ce type de réseau est peu facile à mettre en pratique.
-C'est un objet principalement théorique.
-De plus, on a supposé que la probabilité d'être attaquant ne dépend pas de la connectivité.
-Or en pratique, les serveurs très connectés sont de gros serveurs, généralement plus protégé que les autres.
+On remarque que pour les réseaux homogènes et invariants d'échelle, l'attaque modélisée contamine le réseau très rapidement.
+En effet, d'après les graphes ci-dessus, il suffit de 20\% d'attaquants pour contaminer plus de la moitié du réseau.
+De plus, on constate que l'augmentation du nombre de nœuds dans un réseau homogène ne va pas diluer les informations fausses, mais au contraire renforcer l'effet des attaquants.
+On peut appréhender ce phénomène en considérant que les modélisations effectuées sont équivalentes à créer un arbre de racine le nœud responsable de l'émission de l'information, et dont les branches sont les chemins suivis par l'information.
+Alors, rajouter des nœuds revient à augmenter la taille de l'arbre.
+Les nœuds attaquants sont distribués dans tous l'arbre, mais le plus près de la racine ils sont, le plus d'influence ils auront.
+
+Les résultats sur les réseaux homogènes peuvent être intéressants, notamment dans le cas où chaque nœud à un degré élevé.
+Mais ce type de réseau est peu facile à mettre en pratique.
+C'est donc un objet principalement théorique.
+
+Une limite du modèle concerne la probabilité pour un nœud d'être attaquant.
+Je l'ai considéré comme uniforme, or en pratique, les serveurs très connectés sont de gros serveurs, généralement plus protégé que les autres.
 Ils devraient donc être moins souvent infecté, ce qui augmente les performance des réseaux invariants d'échelle.
+
 
 
 \section{Conclusion générale} %75 mots | 33 mots
@@ -198,96 +215,4 @@ Ils devraient donc être moins souvent infecté, ce qui augmente les performance
 	Les résultats valident les hypothèses que nous avions formulées. Mais on voit que les réseaux homogènes, bien que plus difficiles à mettre en place, semblent être moins vulnérables que les réseaux scale-free. 
 Le modèle des réseaux \emph{scale-free} a une importance pratique, puisque beaucoup de réseaux réels, comme Internet, prennent cette forme. Les réseaux homogènes sont plus difficiles à mettre en pratique, et donc peu utilisés. Mais il peremettent une base intéressante de comparaison.
 
-
-
-%
-%
-%
-%% Uniquement les gros titres ou les plus petits items ?
-%%
-%% 3 en tout !
-%
-%\emph{Informatique pratique, Informatique théorique, Mathématiques - Autres Domaines}
-%
-%
-%\section{Mots-clefs}
-%
-%%
-%% Une colonne en français, une autre en anglais
-%%
-%
-%\begin{it}
-%\begin{itemize}
-%	\item Graphe | Graph
-%	\item Système multi-agent | Agent-based systm
-%	\item Réseau robuste | Robust network
-%	\item Connectivité | Connectivity
-%	\item Transmission de l'information | Data transmission
-%\end{itemize}
-%\end{it}
-%
-%
-%\section{Bibliographie commentée}
-%
-%
-%
-%
-%	Les réseaux, qu'ils soient physiques ou informatiques, sont vulnérables aux des attaques, qu'elles soient intelligentes ou non. Il convient donc de chercher comment protéger les protéger de telles attaques. Les réseaux permettant la circulation d'informations et de biens, le but de la défense est de garantir, dans un réseau informatique, la véracité des informations qui circulent, et, de manière générale, la connexité du réseau, pour qu'il reste possible de le parcourir. Notre modélisation retient deux sortes d'attaques : la première étant celle d'un utilisateur malveillant qui chercherait à prendre le contrôle d'un réseau informatique pour répandre de fausses informations, la seconde étant la suppression d'arêtes ou de noeuds composant le réseau. La structure même d'un réseau peut être mise en danger, par exemple par une catastrophe naturelle qui détruirait les câbles ou les centrales électriques. La question est alors de trouver comment organiser un réseau pour qu'il reste fonctionnel, c'est à dire connexe, même après la destruction de certains de ses composants, tout en minimisant le prix de sa construction. 
-%	
-%	La modélisation de ce problème prend souvent la forme d'un jeu\cite{goyal14} entre deux participants. L'un construit un réseau, avec ses noeuds et ses arêtes, et en protège certains. Ces actions ont un coût. L'autre participant, l'attaquant, choisit certains noeuds ou arêtes et les supprime s'ils ne sont pas protégés. Dans une modélisation plus fine, les noeuds et arêtes protégés peuvent aussi être supprimés, avec une certaine probabilité [Bravard-Charroin]. Les résultats montrent que si la protection d'un noeud est peu coûteuse par rapport à la création de liens, le réseau optimal est prend la forme d'une étoile dont le centre est protégé.  Au contraire, si la création de liens est moins chère, le réseau optimal sera très dense\cite{goyal14}. Le nombre minimal d'arête pour rendre $k$-connecté un réseau à $n$ noeuds est $\lceil(k * n) / 2\rceil$ selon une démonstration de Frank Harary\cite{harary}.
-%
-%	
-%	Il est nécessaire de classer les différents types de réseaux. Gueye\cite{gueye} introduit des mesures de vulnérabilité d'un réseau en étudiant la connexité de ce réseau après le retrait d'une arête. Une autre topologie\cite{XXX} nous permet d'observer les avantages et inconvéniants de certains réseaux. En particulier, les \emph{scale-free networks}, modèle présnt dans de nombreuses situation, sont efficaces pour propager rapidement des données, mais les n{\oe}uds ayant une connectivité fort, les serveurs, sont assez vulnérables aux attaques. selon ce même article, les réseaux \emph{bimodaux}, dont les n{\oe}uds ont soit $x$, soit $y$ arêtes sortantes sont ceux qui permettent de présenter le meilleur compromis à ce problème.
-%
-%\section{Problématique retenue}
-%
-%
-%% Réseau de transmission d'information : Architecture, vitesse et fiabilité
-%
-%%	"""Nous avons cherché à déterminer quelles architectures pemettent de diminuer la vulnérabilité d'un réseau. Pour cela, nous allons étudier deux types d'attaques. """
-%
-%	Les réseaux sont susceptibles de subir deux types d'attaques. Les unes détruisent des composants du réseau, les autres cherchent à propager de fausses informations. 
-%	
-%	Quelle architecture choisir pour rendre un réseau le moins vulnérable possible à ces deux types d'attaques ?   
-%%
-%%\begin{itemize}
-%%	\item Quelle architecture du réseau permet la meilleure résistance aux attaques, tout en gardant de bonnes vitesses de propagation des données ?
-%%	\item \textbf{Comment rechercher efficacement une information sur un réseau ? Application : Moteur de recherche décentralisé.}
-%%	\begin{itemize}
-%%		\item Comment s'assurer que les informations reçues sont \emph{de confiance}, c'est-à-dire vraie et correspondant à une réponse à ce qui a été demandé ?
-%%	\end{itemize}
-%%	
-%%	\item (Comment organiser le partage de fichiers efficacement (cas d'un iso \emph{linux}) ? Rajouter des contraintes : combien de n{\oe}uds maximum ?)
-%%	
-%%\end{itemize}
-%
-%\section{Objectifs du TIPE}
-%
-%% Personnel
-%
-%Notre but consiste à créer un réseau permettant une transmission des informations rapides, tout en résistant efficacement aux attaques, lors desquelles un attaquant prendrait possession de plusieurs n{\oe}uds.
-%
-%
-%
-%%	\begin{thebibliography}{56}
-%%	
-%%%	\bibitem{lamport94}
-%%%	  Leslie Lamport,
-%%%	  \emph{\LaTeX: a document preparation system},
-%%%	  Addison Wesley, Massachusetts,
-%%%	  2nd edition,
-%%%	  1994.
-%%	  
-%%	\bibitem{goyal14}
-%%	 S. Goyal, A. Vigier
-%%	 \emph{Attack, Defense and Contagion in Networks}
-%%	 2014-01-18
-%%	
-%%	\end{thebibliography}
-%
-%
-%\bibliographystyle{plain}
-%\bibliography{bib/goyal14} 
-%% Goyal ; Harary ; Bravard ; Dziusbynski ; Suto ; Gueye
-%% Designing P2P Networks Tolerant to Attacks and Faults Based on Bimodal Degree Distribution,” Journal of Communications, SI on Security and Privacy in Communication Systems and Networks, vol. 7, no. 8, pp.587-595, Aug. 2012.
 \end{document}\grid
