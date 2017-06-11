@@ -1,4 +1,11 @@
+"""
+Fonctions :
+ *  graphe
+ * graphe_full
+"""
+
 import matplotlib.pyplot as plt
+
 
 
 def graphe(les_x, les_y, savename, title, xlabel, ylabel):

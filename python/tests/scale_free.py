@@ -13,7 +13,7 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 #import numpy as np
 
-#iterations = 10 #nombre de passages pour un même nombre d'attaquants
+#iterations = 100 #nombre de passages pour un même nombre d'attaquants
 
 
 
@@ -90,7 +90,7 @@ gtype: int (1: normal, 2: degrés)"""
 
         title = "Scale-free, " + str(n) + " nœuds"
         xlabel = "Proportion d'attaquants"
-        ylabel = "Proportion de réponses fausses"
+        ylabel = "Proportion d'informations fausses"
         if showall:
             les_faux = [[0 for i in range(n)] for j in range(iterations)]
             k = 0

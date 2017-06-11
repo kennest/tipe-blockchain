@@ -1,6 +1,6 @@
 * Notes diverses
   
-** TODO [5/8]
+** TODO [7/10]
  * [X] Génération du scale-free selon un vrai algorithme
  * [X] Vérifier le comportement de testsf :: est-ce bien un noeud au moins qui est voisin (pas plus ?)
  * [X] Passer en bidirectionnel :: plus en accord avec la littérature [3/3]
@@ -16,14 +16,18 @@
    + [X] Afficher des graphes avec en abscisse degré total des attaquants, en ordonnée le nombre d'attaquants CLOCK: [2017-05-14 dim. 14:35]--[2017-05-14 dim. 15:00] =>  0:25
    + [X] Changer la taille des labels et titres
    + [X] Inverser abscisses et ordonnées pour le graphe des degrés
+   + [ ] Refaire les légendes/ moyennes sur un 'grand' nombre
  * [X] Optimiser les fonctions ::
- * [-] Présentation :: voir Notes bis [2/4]
+ * [-] Présentation :: voir Notes bis [3/4]
    + [X] Français
    + [X] Graphes en LaTeX
-   + [-] Génération des résultats
+   + [X] Génération des résultats
    + [ ] Diverses choses
- * [ ] Calculer la valeur de alpha pour alpha * k ^ gamma
- * [ ] _Planning_
+ * [X] Calculer la valeur de alpha pour alpha * k ^ gamma
+ * [X] _Planning_
+   + matin présentation
+   + jusqu'à 14h - 14h30, revue de la présentation
+   + rapport écrit -> 18h
  * [-] Parsing :: faire un vrai parsing des arguments
    + [-] Pour testsf. La suite viendra après ce qui est plus important.
    + [ ] Pour un réseau homogène

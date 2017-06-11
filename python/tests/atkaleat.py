@@ -13,14 +13,14 @@ except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
 
 #import numpy as np
 
-iterations = 10 #nombre de passages pour un même nombre d'attaquants
+iterations = 100 #nombre de passages pour un même nombre d'attaquants
 
 def test_atkaleat(n, nb_tun, nbr_fichier):
     """Lance une batterie de tests sur des réseaux générés 
     aléatoirement, en faisant varier le nombre d'attaquants."""
 
     nom_fichier = "../resultats/atkaleat/" + "atkaleat-" + str(n) +\
-                  "-"+ str(nb_tun) +"-"+ str(nbr_fichier)
+                  "-"+ str(nb_tun) +"-"+ str(nbr_fichier) + "-i" + str(iterations)
     resultats = [] # tableau contenant les résultats de la simulation
 
     temps_init = t.monotonic()
@@ -81,7 +81,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
         les_faux[i] = les_faux[i]/iterations/n
 
 
-    graphe(les_x, les_faux, nom_fichier, "Tracé avec "+str(n)+" nœuds et "+str(nb_tun)+" arêtes", "Proportion d'attaquants", "Proportion de réponses fausses")
+    graphe(les_x, les_faux, nom_fichier, "Réseau homogène "+str(n)+" nœuds et "+str(nb_tun)+" arêtes", "Proportion d'attaquants", "Proportion d'informations fausses")
     
     return resultats
 
