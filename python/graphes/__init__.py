@@ -61,9 +61,11 @@ So 0<=x<n and 0<=y<n**2"""
         x,y = p
         tbl[x][y] += 1
     print("Check1")
-    for i in range(n):
+    for i in range(n): # Il faudrait améliorer l'efficacité de cette boucle
         for j in range(n**2):
-            plt.scatter(i, j, s=(tbl[i][j]/10))
+            if tbl[i][j] != 0:
+                plt.scatter(i, j, s=(tbl[i][j]/2))
+                # La division par deux, c'est pour contrôler la taille des points
     print("Check2") #Le dessin des points prend du temps. Ce checkpoint permet de savoir si c'est ça qui est en train d'être exécuté.
     plt.title(title, size = 'xx-large')
     plt.xlabel(xlabel, size = 'x-large')

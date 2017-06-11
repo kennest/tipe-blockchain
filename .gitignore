@@ -9,7 +9,8 @@
 *.nav
 *.out
 *.snm
-*.synctex.gz
+#Sometimes generates synctex.gz (busy) files (weird ?) 
+*.synctex.gz*
 *.toc
 *.vrb
 *.blg

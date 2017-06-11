@@ -381,25 +381,9 @@ def gen_ens_aleat(n, m, M, y):
 ## A optimiser, il faudrait générer un réseau valide du premier coup !
 def reseau_aleatoire(n,p):
     """Génère un réseau homogène/régulier de taille n, de degré p."""
-    """Draft pour du bidimensionnel :
-tableau nbr_tun = [[id agents ayant k tunnels] for k in range(p+1)]
-
-Ensuite, on prend des agents ayant le même nombre minimal de tunnels, et on les lie. On rcommence jusqu'à avoir le truc kivabien
-MAIS
-est-ce que connexité ?
-réseau trop particulier ?
-est-ce que l'algo fonctionne ?
-
--OU-
-
-On prend le noeud 0, on le connecte avec p autres
-puis pour chaque noeud i, si t_i est son nbr de tunnels, on connecte i à p-t_i autres noeuds plus loins, n'ayant pas déjà ce nombre de noeuds
-
-OK, mais pour les derniers noeuds ? """
-
     connexe = False
     while not(connexe):
-        netx = networkx.random_regular_graph(p, n)
+        netx = networkx.random_regular_graph(p, n) # objet Graph de NetworkX
         ### Ensuite, on le converti en un objet Reseau
         net = Reseau()
         # On ajoute les nœuds
@@ -409,7 +393,7 @@ OK, mais pour les derniers noeuds ? """
         # On ajoute les arêtes
         for edge in netx.edges():
             a,b = edge #couple d'int
-            net._set_tunnel(a,b)
+            net._set_tunnel_double(a,b)
 
         connexe = est_connexe(net) # Visiblement, le réseau généré n'est pas facilement connexe ? D'après des tests manuels, si pourtant...
     return net

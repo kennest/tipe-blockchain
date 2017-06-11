@@ -68,7 +68,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
 
     ecrit_csv(resultats, nom_fichier)
     # Trace un graphe avec matplotlib
-    les_x = [i for i in range(n)]
+    les_x = [i/n for i in range(n)]
     les_vrais = [0 for i in range(n)]
     les_faux = [0 for i in range(n)]
     k = 0 # Compteur utilisé pour les deux boucles suivantes
@@ -77,11 +77,11 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
         les_vrais[p] += v
         les_faux[p] += f
     for i in range(n):
-        les_vrais[i] = les_vrais[i]/iterations
-        les_faux[i] = les_faux[i]/iterations
+        les_vrais[i] = les_vrais[i]/iterations/n
+        les_faux[i] = les_faux[i]/iterations/n
 
 
-    graphe(les_x, les_faux, nom_fichier, "Tracé avec "+str(n)+" agents et "+str(nb_tun)+" tunnels", "p Nombre d'attaquants", "Nombre de réponses fausses")
+    graphe(les_x, les_faux, nom_fichier, "Tracé avec "+str(n)+" nœuds et "+str(nb_tun)+" arêtes", "Proportion d'attaquants", "Proportion de réponses fausses")
     
     return resultats
 

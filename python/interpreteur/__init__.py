@@ -36,7 +36,7 @@ class Interpreteur(cmd.Cmd):
         print("""Lance la diffusion sur un réseau aléatoire
         
         Paramètres :
-        n : Nombre d'agents
+        `n` : Nombre d'agents
         nb_tun : nombre de tunnels
         p : nombre d'attaquants (p<=n)
         emetteur : emetteur de l'information
@@ -74,7 +74,17 @@ filenbr: nombre ajouté au fichier
         print("""Simule un grand nombre d'itérations sur des réseaux scale-free.
 
 Paramètres :
-        {n}""".format(n=sf_n_help))
+n : nombre d'agents
+filenbr: nombre ajouté au fichier
+-i <iterations>: int
+-s: showall: flag
+-g: type de graphe""")
+        
+        #print("""Simule un grand nombre d'itérations sur des réseaux scale-free.
+#
+#Paramètres :
+#        {n}
+#""".format(n=sf_n_help))
         
     def do_quitter(self, arg):
         """Quitte le programme"""

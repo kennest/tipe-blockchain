@@ -27,7 +27,11 @@ showall: bool
 iterations: int
 gtype: int (1: normal, 2: degrés)"""
 
-    savename = "../resultats/scale-free/" + "sf-t"+ str(gtype) + "-n-"+ str(n) +"-"+ str(nbr_fichier) +"-it" + str(iterations)
+    if showall:
+        b = "s"
+    else:
+        b = ""
+    savename = "../resultats/scale-free/" + "sf-t"+ str(gtype) + b + "-n"+ str(n) +"-"+ str(nbr_fichier) +"-it" + str(iterations)
     resultats = [] # tableau contenant les résultats de la simulation
 
     temps_init = t.monotonic()
@@ -84,7 +88,7 @@ gtype: int (1: normal, 2: degrés)"""
     if gtype == 1:
         les_x = [i/n for i in range(n)]
 
-        title = "Scale-free, " + str(n) + " agents"
+        title = "Scale-free, " + str(n) + " nœuds"
         xlabel = "Proportion d'attaquants"
         ylabel = "Proportion de réponses fausses"
         if showall:

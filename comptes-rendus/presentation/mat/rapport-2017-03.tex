@@ -108,7 +108,7 @@
 		\end{itemize}
 \item Objectifs du TIPE
 	\begin{itemize}
-		\item Quelle architecture choisir de façon à rendre un réseau le moins vulnérable ?
+		\item Quelle architecture choisir de façon à rendre un réseau moins vulnérable ?
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -163,17 +163,65 @@
 
 \begin{frame} \frametitle{Principe de diffusion de l'information}
   \begin{itemize}
-  \item Au départ, un agent a une information
-  \item Itérations jusqu'à ce que tous les nœuds aient une information
+  \only<1>{\item Au départ, un nœud a une information}
+  \only<2->{\item Itérations %jusqu'à ce que tous les nœuds aient une information
     \begin{itemize}
-    \item Parcours des agents un à un
-    \item Si \emph{normal} : passe son information à tous les voisins qui ne la possèdent pas
-    \item Si \emph{attaquant} : envoie une information fausse à tous ses voisins qui ne la possèdent pas encore
-    \end{itemize}
+    \item<2-> Parcours des nœuds un à un, chacun passe son information à ses voisins qui ne la possèdent pas
+    \only<2>{\item Si le voisin est \emph{normal}, l'information passe inchangée}
+    \only<3>{\item Si il est \emph{attaquant}, l'information passe à Faux}
+    \only<4>{\item Fin lorsque tous les nœuds ont reçu une information}
+    \end{itemize}}
   \end{itemize}
+
+  \only<1>{
+    \begin{center}
+      \begin{tikzpicture}[scale = 0.3, thick]
+	\node[fill=green,draw=black,text=black] (zero) at (0, 0) {A};
+	\node[fill=gray,draw=black,text=black] (un) at (2,3) {B};
+	\node[fill=gray,draw=black,text=black] (deux) at (5,3) {D};
+	\node[fill=gray,draw=black,text=black] (trois) at (3, -1) {C};
+
+	\draw (zero) -- (un);
+	\draw (zero) -- (trois);
+	\draw (un) -- (deux);
+	\draw (trois) -- (un);
+      \end{tikzpicture}
+  \end{center}}
+
+  \only<2>{
+    \begin{center}
+      \begin{tikzpicture}[scale = 0.3, thick]
+	\node[fill=green,draw=black,text=black] (zero) at (0, 0) {A};
+	\node[fill=gray,draw=black,text=black] (un) at (2,3) {B};
+	\node[fill=gray,draw=black,text=black] (deux) at (5,3) {D};
+	\node[fill=blue,draw=black,text=white] (trois) at (3, -1) {C};
+
+	\draw (zero) -- (un);
+	\draw (zero) -- (trois);
+	\draw (un) -- (deux);
+	\draw (trois) -- (un);
+      \end{tikzpicture}
+  \end{center}}
+
   
-\begin{center}
-\begin{tikzpicture}[scale = 0.3, thick]
+  \only<3>{
+    \begin{center}
+      \begin{tikzpicture}[scale = 0.3, thick]
+	\node[fill=green,draw=black,text=black] (zero) at (0, 0) {A};
+	\node[fill=red,draw=black,text=black] (un) at (2,3) {B};
+	\node[fill=gray,draw=black,text=black] (deux) at (5,3) {D};
+	\node[fill=blue,draw=black,text=white] (trois) at (3, -1) {C};
+
+	\draw (zero) -- (un);
+	\draw (zero) -- (trois);
+	\draw (un) -- (deux);
+	\draw (trois) -- (un);
+      \end{tikzpicture}
+  \end{center}}
+  
+  \only<4>{
+    \begin{center}
+      \begin{tikzpicture}[scale = 0.3, thick]
 	\node[fill=green,draw=black,text=black] (zero) at (0, 0) {A};
 	\node[fill=red,draw=black,text=black] (un) at (2,3) {B};
 	\node[fill=blue,draw=black,text=white] (deux) at (5,3) {D};
@@ -183,42 +231,44 @@
 	\draw (zero) -- (trois);
 	\draw (un) -- (deux);
 	\draw (trois) -- (un);
-\end{tikzpicture}
-\end{center}
-\begin{itemize}
-\item Initialement, A possède une information vraie
-\item Itération 1 : B et C reçoivent l'information vraie (B la modifie en faux)
-\item Itération 2 : D reçoit l'information, fausse, en provenance de B
-\end{itemize}
+      \end{tikzpicture}
+  \end{center}}
+  
+  \begin{itemize}
+  \only<1>{\item Initialement, A possède une information vraie}
+  \only<2>{\item Itération 1 : C reçoit l'information vraie}
+  \only<3>{\item Itération 1 : B reçoit l'information et la modifie en faux}
+  \only<4>{\item Itération 2 : D reçoit l'information, fausse, en provenance de B}
+  \end{itemize}
 \end{frame}
 
 
 
 \begin{frame} \frametitle{Les types de réseaux - Homogène}
 \begin{itemize}
-\item \emph{Homogène} : les degrés sortants de chaque noeud sont égaux
-\item nous n'étudierons que des réseaux connexes (strictement dans le cas orienté)
+\item \emph{Homogène} (ou réguliers): les degrés de chaque noeud sont égaux
+\item Nous n'étudierons que des réseaux connexes
 \end{itemize}
 
 %% A modifier par la suite pour avoir des réseaux non orientés
 \begin{center}
 \begin{tikzpicture}[scale = 0.5, thick]
 	\node[fill=gray!20,draw=black,text=black] (zero) at (0, 0) {0};
-	\node[fill=gray!20,draw=black,text=black] (un) at (2,3) {1};
-	\node[fill=gray!20,draw=black,text=black] (deux) at (5,3) {2};
-	\node[fill=gray!20,draw=black,text=black] (trois) at (7, 0) {3};
-	\node[fill=gray!20,draw=black,text=black] (quatre) at (3, -1) {4};
+	\node[fill=gray!20,draw=black,text=black] (un) at (3,2) {1};
+	\node[fill=gray!20,draw=black,text=black] (deux) at (6,0) {2};
+	\node[fill=gray!20,draw=black,text=black] (trois) at (6, -3) {3};
+	\node[fill=gray!20,draw=black,text=black] (quatre) at (3, -5) {4};
+        \node[fill=gray!20,draw=black,text=black] (cinq) at (0, -3) {5};
 
-	\draw[->] (zero) -- (un);
-	\draw[->] (zero) to[bend right] (quatre);
-	\draw[->] (un) to[bend right] (quatre);
-	\draw[->] (un) to[bend right] (deux);
-	\draw[->] (deux) to[bend right] (trois);
-	\draw[->] (deux) to[bend right] (un);
-	\draw[->] (trois) to[bend right] (deux);
-	\draw[->] (trois) -- (quatre);
-	\draw[->] (quatre) to[bend right] (zero);
-	\draw[->] (quatre) to[bend right] (un);
+	\draw (zero) -- (un);
+	\draw (zero) -- (trois);
+	\draw (zero) -- (cinq);
+	\draw (un) -- (deux);
+	\draw (un) -- (quatre);
+        \draw (deux) -- (trois);
+        \draw (deux) -- (quatre);
+        \draw (trois) -- (cinq);
+        \draw (quatre) -- (cinq);
 \end{tikzpicture}
 \end{center}
 
@@ -228,8 +278,8 @@
 \begin{frame} \frametitle{Les types de réseaux - Réseau invariant d'échelle}
 % Images !
 \begin{itemize}
-\item \emph{Scale-free}, ou invariant d'échelle : Le nombre d'arêtes par noeud suit une loi de puissance :la probabilité qu'un noeud ait $k$ voisins est $k^{-\gamma}$ Le réseau Internet est de ce type.
-\item Nous utiliserons l'algorithme de Barabási-Albert, pour lequel $\gamma = 3$.
+\item \emph{Scale-free}, ou invariant d'échelle : Le nombre d'arêtes par noeud suit une loi de puissance :la probabilité qu'un noeud ait $k$ voisins est $\alpha k^{-\gamma}$ Le réseau Internet est de ce type.
+\item Nous utiliserons l'algorithme de Barabási-Albert, pour lequel $\gamma = 3$ et $\alpha \approx 0.83$.
 \end{itemize}
 
 \begin{center}
@@ -274,7 +324,7 @@
   \item Une simulation consiste en
     \begin{itemize}
     \item Génération d'un réseau, puis variation du nombre d'attaquants
-    \item Résultat de la simulation : \% d'informations fausses en fonction du nombre d'attaquants
+    \item Résultat de la simulation : proportion d'informations fausses en fonction du nombre d'attaquants
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -287,9 +337,9 @@
 
 \subsection{Sur un réseau homogène}
 
-\begin{frame} \frametitle{Variation du nombre de noeuds : 10 et 50 noeuds}
+\begin{frame} \frametitle{Variation du nombre de nœuds : 10 et 50 noeuds}
 
-\includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-10-3-4.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} 
+\includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-10-3-2.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} 
 
 \begin{itemize}
 \item Nombre de réponses fausses selon le nombre d'attaquants
@@ -299,22 +349,22 @@
 
 
 
-\begin{frame} \frametitle{Variation du nombre d'arêtes par agent}
+\begin{frame} \frametitle{Variation du nombre d'arêtes par nœud}
 \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-3-1.png} \includegraphics[scale=0.3]{../../../resultats/atkaleat/atkaleat-50-20-1.png} 
 
 \begin{itemize}
-	\item Variation du nombre d'arêtes par agent
+	\item Variation du nombre d'arêtes par nœud
 	\item Courbe se divise en deux parties, la seconde affine
-	\item A l'arrivée sur la dernière partie, les seuls agents ayant des informations vraies sont voisins de l'émetteur
+	\item A l'arrivée sur la dernière partie, les seuls nœuds ayant des informations vraies sont voisins de l'émetteur
 \end{itemize}
 \end{frame}
 
 \subsection{Sur un réseau invariant d'échelle}
 
-\begin{frame}[fragile] \frametitle{Sur un scale-free network}
+\begin{frame}[fragile] \frametitle{Sur un réseau invariant d'échelle}
 \begin{center}
-\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-100-0-it3.png}
-\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-100-97-it100.png}
+\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-t1s-n100-2-it3.png}
+\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-t1-n100-1-it100.png}
 \end{center}
 
 \begin{itemize}
@@ -327,23 +377,24 @@
 
 \begin{frame}[fragile] \frametitle{Sur un réseau invariant d'échelle}
 \begin{center}
-\includegraphics[scale=0.3]{../../../resultats/scale-free/sf-100-2-it100.png}
+\includegraphics[scale=0.3]{../../../resultats/scale-free/sf-t2-n-100-1-it100.png}
 \end{center}
 \begin{itemize}
-	\item Pour avoir le même nombre de degrés attaquants, le nombre d'attaquants peut varier beaucoup (à une somme de degrés 400, entre 60 et 100 attaquants)
+	\item Pour avoir le même nombre de degrés attaquants, le nombre d'attaquants peut varier beaucoup (pour somme de degrés 300, entre 40 et 80 attaquants)
 \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}[fragile] \frametitle{Scale-free et homogène}
-\begin{center}
-\includegraphics[scale=0.25]{../../../resultats/atkaleat/atkaleat-100-2-1.png}
-\includegraphics[scale=0.25]{../../../resultats/scale-free/sf-100-97-it100.png}
-\end{center}
-
-\begin{itemize}
-	\item Le réseau homogène semble être plus performant, pour une même connectivité moyenne
+  \begin{center}
+    \includegraphics[scale=0.25]{../../../resultats/atkaleat/atkaleat-100-2-1.png}
+    \includegraphics[scale=0.25]{../../../resultats/scale-free/sf-t1-n100-1-it100.png}
+  \end{center}
+  
+  \begin{itemize}
+    \item Le degré moyen d'un nœud pour un réseau invariant d'échelle est 2.
+    \item A degré moyen égal, le réseau invariant d'échelle semble légèrement meilleur
 \end{itemize}
 \end{frame}
 
@@ -354,20 +405,19 @@
 \section{Conclusion}
 
 \begin{frame} \frametitle{Conclusion}
-\begin{itemize}
-	\item Résultats
-	\begin{itemize}
-		\item Courbes non linéaires, croissantes
-		\item Pour les graphes homogènes, division en deux parties affines
-		\item Réseaux invariants d'échelle : présence de paliers
-	\end{itemize}
-	\item En pratique
-	\begin{itemize}
-		\item Le réseau en étoile est peu vulnérable, si le noeud central est non-attaquant
-		\item Réseau homogène difficile à mettre en place
-		\item Dans le réseau scale-free, on a supposé que les noeuds ayant une forte connectivité ont la même probabilité d'être attaquants que les autres. Or en pratique, ce sont souvent des noeuds plus sécurisés.
-	\end{itemize}
-\end{itemize} 
+  \begin{itemize}
+  \item Résultats
+    \begin{itemize}
+    \item Courbes non linéaires, croissantes
+    \item Pour les graphes homogènes, division en deux parties affines
+    \item Réseaux invariants d'échelle : présence de paliers
+    \end{itemize}
+  \item En pratique
+    \begin{itemize}
+    \item Réseau homogène difficile à mettre en place
+    \item Dans le réseau scale-free, on a supposé que les noeuds ayant une forte connectivité ont la même probabilité d'être attaquants que les autres. Or en pratique, ce sont souvent des noeuds plus sécurisés.
+    \end{itemize}
+  \end{itemize} 
 \end{frame}
 
 
