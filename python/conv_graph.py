@@ -74,10 +74,10 @@ if i == 0:
 
 """
     
-i = 3
+#i = 3
 
-if i == 3:
-    filename = FNAMELIST[i]
+if True:
+    filename = "atkaleat-100-2-1"
     n = 100
     iterations = 10
     

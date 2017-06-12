@@ -2,7 +2,7 @@
 
 import random
 import math
-import networkx
+#import networkx
 
 class Agent:
     """Les agents sont les noeuds du réseau (utilisateurs). Leur stratégie peuvent être "normal" ou "attaque"."""
