@@ -53,7 +53,7 @@ Concevoir des réseaux capables de fonctionner après avoir été endommagés es
 \subsection{Modalités d'action}
 
 
-J'ai représenté les graphes par des matrices d'adjacence. Pour limiter le temps de calcul de mes fonctions informatiques, j'ai tout d'abord fixé le nombre de nœuds $p$  à 15, et le nombre $k$ de nœuds ou d'arêtes qu'une attaque peut enlever à 10. Le but est alors de trouver comment relier ces 15 noeuds et comment répartir des protections pour créer un graphe robuste. La représentation des attaques se déroule de la manière suivante : on donne en entrée un graphe, et une liste aléatoire de nœuds et d'arêtes à attaquer est choisie. Parmi cette liste, les éléments non protégés sont supprimés du graphe. On utilise alors l'algorithme de Floyd-Warshall pour deux raisons : déterminer si le graphe résiduel est connexe, et pour calculer son diamètre. En effet, l'algorithme de Floyd-Warshall fournit la matrice des distances du graphe. Il suffit alors de parcourir cette dernière pour trouver son maximum, qui sera le diamètre du graphe. S'il est fini, alors le graphe est connexe. On calcule ensuite le coût $f$ du graphe avec la formule suivante :
+J'ai représenté les graphes par des matrices d'adjacence. Pour limiter le temps de calcul de mes fonctions informatiques, j'ai tout d'abord fixé le nombre de nœuds $p$  à 15, et le nombre $k$ de nœuds ou d'arêtes qu'une attaque peut enlever à 10. Le but est alors de trouver comment relier ces 15 noeuds et comment répartir des protections pour créer un graphe robuste. La représentation des attaques se déroule de la manière suivante : on donne en entrée un graphe, et une liste aléatoire de nœuds et d'arêtes à attaquer est choisie. Parmi cette liste, les éléments non protégés sont supprimés du graphe. On utilise alors l'algorithme de Floyd-Warshall pour deux raisons : déterminer si le graphe résiduel est connexe, et pour calculer son diamètre. On calcule ensuite le coût $f$ du graphe avec la formule suivante :
 
 \begin{math}
 
@@ -120,40 +120,19 @@ J'ai ensuite fixé $c_{d}$, $c_{n}$ et $c_{l}$ et étudié la variation des coû
 \captionof{figure}{Variations de f et g en fonction de p.} 
 \end{center}
 
-On remarque donc que si la protection d'une arête est chère comparée au coût de sa formation et que la puissance des attaques reste limitée, alors l'organisation d'un réseau selon un graphe de Harary est   avantageuse. Cependant, si on fait augmenter la puissance des attaques proportionnellement au nombre de nœuds du réseau, la courbe du coût d'un graphe de Harary devient une hyperbole. Le coût de ce graphe augmente donc très rapidement, et dépasse donc rapidement le coût d'un graphe en étoile.
+On remarque donc que si la protection d'une arête est chère comparée au coût de sa formation et que la puissance des attaques reste limitée, alors l'organisation d'un réseau selon un graphe de Harary est   avantageuse. Cependant, si l'ampleur des attaques augment avec p, le coût du graphe en étoile devient rapidement plus faible.
+
+
 
 \subsection{Analyse - Exploitation - Discussion}
 Ces résultats peuvent s'expliquer de la manière suivante : si $k$ varie proportionnellement à $p$, le graphe de Harary doit rester (k+1)-arête connexe pour être suffisamment robuste. Le nombre d'arête de ce graphe, qui est $\lceil (p(k+1)/2) \rceil$, augmente donc de manière équivalente à  p². Un graphe dont les arêtes ne sont pas protégées doit donc avoir un très grand nombre d'arêtes pour rester (k+1)-connexe, ce qui compense la différence de coût, même si elle est élevée, entre une arête protégée et non protégée. Donc pour un grand réseau qui subit des attaques à grande échelle, une organisaton de réseau en étoile est plus optimale.
 
 Le modèle utilisé est limité par deux points qui réduisent sa pertinence en pratique :
-	-J'ai considéré que la défense était parfaite, c'est à dire que si un élément était protégé, alors il était impossible de le retirer, ce qui est peu réaliste.  Cependant, je ne pense pas que cela influe réellement sur les résultats.
-	-Les topologies de réseaux sont « utopiques » : un réseau en étoile serait difficile à mettre en place physiquement, par exemple pour un réseau routier. Un modèle plus réaliste serait peut-être plusieurs réseaux en étoile reliés entre eux.
+	-J'ai considéré que la défense était parfaite, c'est à dire que si un élément était protégé, alors il était impossible de le retirer.
+	-Les topologies de ces réseaux sont « utopiques » : un réseau en étoile serait difficile à mettre en place physiquement, par exemple pour un réseau routier. Un modèle plus réaliste serait peut-être plusieurs réseaux en étoile reliés entre eux.
 	
 \section{Conclusion générale}
 Pour conclure, si un réseau n'a à résister qu'à de faibles attaques et que les protections sont coûteuses,  le meilleur réseau est un graphe de Harary. Sinon, il est préférable de construire un réseau où les nœuds sont reliés à un nœud central protégé, avec des liens protégés également. Mon binôme a montré que concevoir des réseaux informatiques invariants d'échelle plutôt qu'homogènes permettait de limiter la propagation d'information fausses en leur sein.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
