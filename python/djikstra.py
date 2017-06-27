@@ -1,3 +1,7 @@
+"""
+Implémentaion de l'algorithme de Djikstra, inutile
+"""
+
 import modelisation as mod
 import heapq as hq #Pour implémenter des files de priorité
 

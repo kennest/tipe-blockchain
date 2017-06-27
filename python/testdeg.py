@@ -1,3 +1,7 @@
+"""
+Comptage des degrés moyens dans les réseaux scale-free générés
+"""
+
 from modelisation import scale_free
 
 # Résultats :

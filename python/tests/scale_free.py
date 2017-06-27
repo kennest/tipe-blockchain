@@ -1,3 +1,7 @@
+"""
+Test sur un réseau scale-free
+"""
+
 import time as t
 
 from modelisation.fonctionnement import diff_aleatoire, init_info, boucle

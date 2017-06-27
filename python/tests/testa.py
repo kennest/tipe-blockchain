@@ -1,3 +1,8 @@
+"""
+TESTS ONLY (probablement périmé)
+
+Module pour exécuter des tests sur un petit réseau
+"""
 import modelisation as mod
 
 ## Initialisation du réseau

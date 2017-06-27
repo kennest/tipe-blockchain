@@ -1,3 +1,10 @@
+"""
+TESTS ONLY
+
+Module utilisé lors de tests
+"""
+
+
 from modelisation import *
 
 net = Reseau()

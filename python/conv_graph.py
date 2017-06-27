@@ -1,3 +1,10 @@
+"""
+Scripts pour regénérer des graphs (.png) à partir de .csv obtenus précédemment
+
+Ce script a été utilisé pour rectifier légendes, titres...
+"""
+
+
 import graphes as g
 import modelisation as md
 

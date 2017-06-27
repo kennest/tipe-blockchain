@@ -1,6 +1,7 @@
 """
+Ce module sert à réaliser les graphes avec matplotlib.pyplot
 Fonctions :
- *  graphe
+ * graphe
  * graphe_full
 """
 
@@ -17,28 +18,23 @@ title: str
 xlabel: str
 ylabel: str
 """
-    ## Font parameters
-    #font = {'family' : 'normal', 'weight' : 'bold', 'size'   : 30}
-    #mp.rc('font', **font)
-    #mp.rcParams.update({'font.size': 30})
+    # Bottom vertical alignment for more space
+    title_font = {'size':'40', 'color':'black', 'weight':'bold'}
     
-    # Set the font dictionaries (for plot title and axis titles)
-    title_font = {'size':'40', 'color':'black', 'weight':'bold'} # Bottom vertical alignment for more space
     axis_font = {'size':'30'}
 
     plt.clf()
-
-    #plt.rc("font", size=30)
     
     plt.plot(les_x, les_y)
     plt.title(title, size = 'xx-large')
-    plt.xlabel(xlabel, size = 'x-large')#, **axis_font)
+    plt.xlabel(xlabel, size = 'x-large')
     plt.ylabel(ylabel, size = 'x-large')
     plt.savefig(savename + ".png")
     plt.show()
 
 def graphe_full(les_x, les_ys, savename, title, xlabel, ylabel):
-    """Trace un graphe avec en abscisse les_x, en ordonnée les différentes données de les_ys, ayant pour titre title.
+    """Trace un graphe avec en abscisse les_x, en ordonnée les différentes données de 
+les_ys, ayant pour titre title.
 les_x: float list ou int list
 les_ys: float list ou int list
 savename: str
@@ -73,7 +69,8 @@ So 0<=x<n and 0<=y<n**2"""
             if tbl[i][j] != 0:
                 plt.scatter(i, j, s=(tbl[i][j]/2))
                 # La division par deux, c'est pour contrôler la taille des points
-    print("Check2") #Le dessin des points prend du temps. Ce checkpoint permet de savoir si c'est ça qui est en train d'être exécuté.
+    print("Check2") #Le dessin des points prend du temps. Ce checkpoint permet de
+    #                savoir lorsque c'est fini.
     plt.title(title, size = 'xx-large')
     plt.xlabel(xlabel, size = 'x-large')
     plt.ylabel(ylabel, size = 'x-large')

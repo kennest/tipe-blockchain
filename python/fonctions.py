@@ -1,3 +1,7 @@
+"""
+Module utilisé par D.
+"""
+
 import modelisation as mod
 import random
 

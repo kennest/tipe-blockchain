@@ -1,3 +1,6 @@
+"""
+Test sur des réseaux homogènes (ou réguliers)
+"""
 import time as t
 
 from modelisation.fonctionnement import diff_aleatoire, init_info, boucle
@@ -9,11 +12,12 @@ try:
     # http://www.science-emergence.com/Articles/Tutoriel-Matplotlib/
 except ModuleNotFoundError: # Si jamais exécuté sur un ordinateur
     # n'ayant pas matplotlib
+    # il ne sera pas possible de générer des graphes, mais les .csv le seront
     pass
 
 #import numpy as np
 
-iterations = 100 #nombre de passages pour un même nombre d'attaquants
+iterations = 100 # nombre de passages pour un même nombre d'attaquants
 
 def test_atkaleat(n, nb_tun, nbr_fichier):
     """Lance une batterie de tests sur des réseaux générés 
@@ -23,20 +27,24 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
                   "-"+ str(nb_tun) +"-"+ str(nbr_fichier) + "-i" + str(iterations)
     resultats = [] # tableau contenant les résultats de la simulation
 
-    temps_init = t.monotonic()
+    temps_init = t.monotonic() # temps_init sera la base de la mesure du temps
     
     for k in range(iterations):
+
+        # Progression :
         print("Temps écoulé : " + str(t.monotonic() - temps_init) +\
               " s")
         print("Progression : " + str(k/iterations * 100) + "%")
-        #nombre de tests avec p attaquants
+
+        
         net_init = reseau_aleatoire(n, nb_tun)
-        init_info(net_init, n-1, n-2)
+        init_info(net_init, n-1, n-2) # l'info initiale
+        
         for p in range(n): #avec p attaquants, n-1 sera le
             #        dernier agent non attaquant, n-2 l'avant-dernier
             net = net_init.copy()
         
-        # Ensuite, nous initialisations p agents qui seront attaquants
+            # Ensuite, nous initialisations p agents qui seront attaquants
             for i in range(p):
                 ag = net._get_agent(i)
                 ag.strategie = "attaque"
@@ -48,7 +56,7 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
             faux = 0
             for agent in net.agents:
                 try: # En principe, le try est inutile, mais
-                     # intéressant pour faire des tests
+                     # on en avait besoin pour faire des tests
                     info = agent.informations[0]
                     assert info.id == 0 # l'information transmise
                     #                      a pour id 0
@@ -58,7 +66,8 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
                         vrai += 1
                     else:
                         print("Erreur ! Le texte de l'information est invalide !")
-                except:
+                        
+                except: # Normalement, jamais utilisé
                     print("Erreur, {} agents et {} attaquants ({} tunnels)".format(n, p, nb_tun))
                     print("Connexe : " + str(est_connexe(net)))
                     print(net)
@@ -66,8 +75,10 @@ def test_atkaleat(n, nb_tun, nbr_fichier):
     print("Temps écoulé : " + str(t.monotonic() - temps_init) + " s")
     print("Progression : " + str(k/iterations * 100) + "%")
 
+    # On enregistre un .csv avec les résultats :
     ecrit_csv(resultats, nom_fichier)
-    # Trace un graphe avec matplotlib
+    
+    # Tracé du graphe avec matplotlib
     les_x = [i/n for i in range(n)]
     les_vrais = [0 for i in range(n)]
     les_faux = [0 for i in range(n)]
